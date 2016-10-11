@@ -7,6 +7,5 @@ System requirements:
 * Python 2.7
 * Spyder (Optional)
 * Patience
-
 * Timing
-
+* God's blessing
