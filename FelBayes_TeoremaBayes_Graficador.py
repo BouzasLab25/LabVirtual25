@@ -48,13 +48,13 @@ ax.text(4.5, 0.42, '(%.3f)' %v_A, color='#3552D5', ha='center', va='bottom')
 ax.text(4.15, 0.32, '(%.3f)' %v_m, color='#32A5E7', ha='center', va='bottom')   
 
 ax_probA = plt.axes([0.15, 0.12, 0.65, 0.03], axisbg='#BCE2C2')     #Dibujamos el primer slider, especificamos su ubicacion (Limite izquierdo en X, limite inferior en y, limite derecho en X y altura apartir de su origen en Y), y el color.
-s_prob = Slider(ax_probA, 'p(A)', 0.01, 1.0, valinit=A)             #Asignamos la funcionalidad de slider, le damos un nombre, especificamos los valores entre los que puede variar y asignamos como valor inicial el default especificado al principio del codigo
+s_prob = Slider(ax_probA, 'p(A)', 0.01, 1.0, facecolor='#03B335', valinit=A)             #Asignamos la funcionalidad de slider, le damos un nombre, especificamos los valores entre los que puede variar y asignamos como valor inicial el default especificado al principio del codigo
 
 ax_verA = plt.axes([0.15, 0.07, 0.65, 0.03], axisbg='#BCC5E2')      #Dibujamos el segundo slider, con las mismas dimensiones que el primero, pero situandolo en una altura distinta
-s_verA = Slider(ax_verA, 'p(B|A)', 0.01, 1.0, valinit=v_A)          #Asignamos la funcion Slider, le damos unn nombre, definimos los valores entre los que peude variar y asignamos un valor inicial
+s_verA = Slider(ax_verA, 'p(B|A)', 0.01, 1.0, facecolor='#0332B3', valinit=v_A)          #Asignamos la funcion Slider, le damos unn nombre, definimos los valores entre los que peude variar y asignamos un valor inicial
 
 ax_verNoA = plt.axes([0.15, 0.02, 0.65, 0.03], axisbg='#BCE1E2')    #Dibujamos el tercer slider
-s_verNoA = Slider(ax_verNoA, 'p(B|No A)', 0.01, 1.0, valinit=v_NoA) #Asignamos la funcion de Slider, le damos nombre, un rango de valores y un valor inicial.
+s_verNoA = Slider(ax_verNoA, 'p(B|No A)', 0.01, 1.0, facecolor='#0399B3', valinit=v_NoA) #Asignamos la funcion de Slider, le damos nombre, un rango de valores y un valor inicial.
 
 def update(adri):   # Creamos una funcion para actualizar nuestra grafica
     ver_mar = (((s_prob.val)*(s_verA.val))+((1-s_prob.val)*(s_verNoA.val)))  #Actualizamos el computo de la verosimilitud marginal, jalando los valores obtenidos por el slider
