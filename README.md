@@ -9,3 +9,4 @@ System requirements:
 * Patience
 * Timing
 * God's blessing
+* Maiden's blood
