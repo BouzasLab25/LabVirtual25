@@ -35,18 +35,25 @@ d1 = ax.plot(x,mlab.normpdf(x, mu, sigma), 'black')
 d2 = ax.plot(x,mlab.normpdf(x, d, sigma), 'black')     
 
 ax.text(0, 0.42, 'Ruido', ha='center', va='bottom')  
-ax.text(d, 0.42, 'Senal', ha='center', va='bottom')  
+ax.text(d, 0.42, 'Senal', ha='center', va='bottom')
+ax.fill_between(x, 0, (scipy.stats.norm(d,1).pdf(x)), facecolor='#19D386', alpha=0.5)
+ax.fill_between(x, 0, (scipy.stats.norm(0,1).pdf(x)), facecolor='#C81BE2', alpha=0.5)
+ax.plot([0,0],[0,0.4], 'purple')
+ax.plot([d,d],[0,0.4], 'purple')
+ax.plot([0,d],[0.3,0.3], 'purple')
+ax.text(d/2, 0.31, 'd', ha='center', va='bottom', color='purple', fontweight='bold' )  
+ax.text(-2, 0.31, '(%.3f)' %d, ha='center', va='bottom', color='purple', fontsize=12 )  
 
-ax.set_title('Teoria de Deteccion de Senales', fontsize=18, fontweight='bold')  #Añadimos un titulo a la grafica
+ax.set_title('Discriminabilidad', fontsize=18, fontweight='bold')  #Añadimos un titulo a la grafica
 ax.set_xlabel('Evidencia')    #Damos un nombre al eje de las abscisas
 ax.set_ylabel('Probabilidad')           #Damos un nombre al eje de las ordenadas
 ax.axis([-3.0, 5.0, 0.0, 0.5])           #Especificamos las dimensiones de la grafica principal; los primeros dos valores corresponden al rango abarcado por el eje X y los ultimos, al eje Y.
  
 ax_hits = plt.axes([0.15, 0.12, 0.65, 0.03], axisbg='#BCE2C2')     #Dibujamos el primer slider, especificamos su ubicacion (Limite izquierdo en X, limite inferior en y, limite derecho en X y altura apartir de su origen en Y), y el color.
-s_hits = Slider(ax_hits, 'Hit Rate', 0.01, 1.0, valinit=hitRate)             #Asignamos la funcionalidad de slider, le damos un nombre, especificamos los valores entre los que puede variar y asignamos como valor inicial el default especificado al principio del codigo
+s_hits = Slider(ax_hits, 'Hit Rate', 0.5, 1.0, valinit=hitRate)             #Asignamos la funcionalidad de slider, le damos un nombre, especificamos los valores entre los que puede variar y asignamos como valor inicial el default especificado al principio del codigo
 
 ax_fa = plt.axes([0.15, 0.07, 0.65, 0.03], axisbg='#BCC5E2')      #Dibujamos el segundo slider, con las mismas dimensiones que el primero, pero situandolo en una altura distinta
-s_fa = Slider(ax_fa, 'F.A. Rate', 0.01, 1.0, valinit=faRate)          #Asignamos la funcion Slider, le damos unn nombre, definimos los valores entre los que peude variar y asignamos un valor inicial
+s_fa = Slider(ax_fa, 'F.A. Rate', 0.01, 0.5, valinit=faRate)          #Asignamos la funcion Slider, le damos unn nombre, definimos los valores entre los que peude variar y asignamos un valor inicial
 
 def update(adri):   # Creamos una funcion para actualizar nuestra grafica
     hitR = s_hits.val
@@ -59,9 +66,16 @@ def update(adri):   # Creamos una funcion para actualizar nuestra grafica
     ax.plot(x,mlab.normpdf(x, mu, sigma), 'black')      
     ax.plot(x,mlab.normpdf(x, d_, sigma), 'black')    
     ax.text(0, 0.42, 'Ruido', ha='center', va='bottom')  
-    ax.text(d_, 0.42, 'Senal', ha='center', va='bottom')      
+    ax.text(d_, 0.42, 'Senal', ha='center', va='bottom')
+    ax.fill_between(x, 0, (scipy.stats.norm(d_,1).pdf(x)), facecolor='#19D386', alpha=0.5)
+    ax.fill_between(x, 0, (scipy.stats.norm(0,1).pdf(x)), facecolor='#C81BE2', alpha=0.5)
+    ax.plot([0,0],[0,0.4], 'purple')
+    ax.plot([d_,d_],[0,0.4], 'purple')
+    ax.plot([0,d_],[0.3,0.3], 'purple')
+    ax.text(d_/2, 0.32, 'd', ha='center', va='bottom', color='purple', fontweight='bold')      
+    ax.text(-2, 0.31, '(%.3f)' %d_, ha='center', va='bottom', color='purple', fontsize=12 )  
     ax.axis([-3.0, 5.0, 0.0, 0.5]) #Mantenemos las dimensiones de la grafica como en un inicio
-    ax.set_title('Teoria de Deteccion de Senales', fontsize=18, fontweight='bold') #Reiteramos el titulo
+    ax.set_title('Discriminabilidad', fontsize=18, fontweight='bold') #Reiteramos el titulo
     ax.set_xlabel('Evidencia') #Reiteramos el nombre del eje de las abscisas
     ax.set_ylabel('Probabilidad') #Reiteramos el nombre del eje de las ordenadas
 s_hits.on_changed(update) #Llamamos la funcion de actualizacion por cada movimiento en el Slider de la Prior
