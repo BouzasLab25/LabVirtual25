@@ -1,27 +1,12 @@
-#Librerias necesarias para crear ventanas y graficas a la vez
-import matplotlib
-import math
-import numpy
-matplotlib.use("TkAgg")
-from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg, NavigationToolbar2TkAgg
-from matplotlib.figure import Figure
-from Tkinter import *
-import matplotlib.animation as animation
-import matplotlib.pyplot as plt
-import Tkinter as tk
-import ttk
+"""
+Last modified on Thu Oct 13 15:25:42 2016
 
-
-LARGE_FONT = ("Verdana", 14) 
-
-
-
-root = Tk()
-var = DoubleVar()
-
-f = Figure(figsize=(4,4), dpi=100)
-graph = f.add_subplot(111)
-
+@author: Alfosno
+"""
+#Cargamos las librerias necesarias
+import numpy                      #Biblioteca para operaciones matematicas complejas
+from matplotlib.widgets import Slider, Button  #Bajamos la libreria para hacer Sliders
+import matplotlib.pyplot as plt #Bajamos la libreria para hacer graficas
 
 ### RESCORLA-WAGNER ###
 
@@ -29,13 +14,16 @@ graph = f.add_subplot(111)
 a = 0.3  #alpha
 b = 0.15 #beta
 l = 100  #lambda
-
-#Variables del modelo
 Ensayos= 100
-AV = [0]*(Ensayos) #Incremento en V
-V = [0]*(Ensayos)  #Valor de V
+#Variables del modelo
+x=numpy.linspace(0, Ensayos, Ensayos)
+AV = numpy.zeros(len(x)) #Incremento en V
+V = numpy.zeros(len(x)) #Valor de V
 
-for k in range(0,(Ensayos-1)):
+fig, ax = plt.subplots()                           #Ampliamos nuestro espacio para poder generar dos graficos por separado (uno para la grafica principal y otro para mostrar los sliders)
+plt.subplots_adjust(left=0.1, bottom=0.25)        #Especificamos la relacion entre los espacios fig y ax
+
+for k in range(len(x)-1):
     AV[k] = a*b*(l - V[k])
 
     V[k+1] = V[k] + AV[k]
@@ -43,27 +31,29 @@ for k in range(0,(Ensayos-1)):
     print "AV: " + str(AV[k]) + " - " + " V: "+ str(V[k]) + " alpha: " + str(a) + " beta: " + str(b) + "lambda:" + str(l)
 
 
-graph.clear()
-graph.plot(Ensayos,V)
+#Despliegue de la grafica
+ax.plot(x, V)
+ax.set_xlabel('Ensayos')
+ax.set_ylabel('Valor de V')
+ax.set_title('Modelo RESCORLA-WAGNER')
 
-label = tk.Label(root, text="Ventana temporal (Estimulo unico)", font=LARGE_FONT)
-label.pack(pady=10,padx=10)
+ax_a = plt.axes([0.15,0.1,0.65,0.03], axisbg="#BCE2C2")
+slider_a = Slider(ax_a,"alpha",0.01,1,facecolor='#03B335',valinit=0.5)
+ax_b = plt.axes([0.15, 0.07, 0.65, 0.03], axisbg='#BCC5E2')
+slider_b = Slider(ax_b, 'beta', 0.01, 1.0, facecolor='#0332B3', valinit=0.5)
 
-canvas = FigureCanvasTkAgg(f, root)
-canvas.show()
-canvas.get_tk_widget().pack(side=tk.BOTTOM, fill=tk.BOTH, expand=True)
+def update(var):
+    a = slider_a.val  
+    b = slider_b.val
+    for k in range(len(x)-1):
+	    AV[k] = a*b*(l - V[k])
 
-toolbar = NavigationToolbar2TkAgg(canvas, root)
-toolbar.update()
-canvas._tkcanvas.pack(side=tk.TOP, fill=tk.BOTH, expand=True)
-
-label = tk.Label(root, text="a = 0.2", font=LARGE_FONT)
-label.pack(pady=10,padx=10)
-
-scale = Scale( root, from_=0, to=1.2, orient="horizontal", variable = var )
-scale.pack(anchor=CENTER)
-
-label = Label(root)
-label.pack()
-
-root.mainloop()
+	    V[k+1] = V[k] + AV[k]
+    ax.clear()
+    ax.plot(x, V)
+    ax.xlabel('Ensayos')
+    ax.ylabel('Valor de V')
+    ax.title('Modelo RESCORLA-WAGNER')
+slider_a.on_changed(update)
+slider_b.on_changed(update)
+plt.show()
