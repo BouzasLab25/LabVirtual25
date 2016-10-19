@@ -2,22 +2,22 @@
 
 Dr. Arturo Bouzas Riaño
 
+En este Repositorio de GitHub encontrarán disponibles Prácticas introductorias a los principales modelos matemáticos y computacionales en Psicología. Cada práctica está compuesta por una introducción teórica, ejercicios, código para resolver dichos ejercicios, graficadores para entender mejor los modelos y, de ser posible, simuladores de datos.
 
-This code will turn psychology students into experts in programming and understanding mathematical and computational models in Psychology. 
+Para ejecutar los códigos contenidos en el Repertorio, por favor sigue las Instrucciones correspondientes a tu sistema operativo.
 
-For executing the python codes, please follow the Instructions.info according to your operating system. 
-System requirements:
-* Just what any common computer already has. 
+Requisitos:
+* Una computadora funcional. 
 * Python 2.7
-* Spyder (Optional)
-* Patience
+* Spyder (Opcional; Recomendado)
+* Paciencia
 
 
 Colaboradores:
-Marco Antonio Negrete Villanueva
-Edgar De Jesús Vázquez Silva
-Adriana Felisa Chávez De la Peña
-Alfonso Medina Velázquez
-Stéphane Lejars Clorio
-Uriel Omar Bravo González
-Yuznhio Sierra Casiano
+Marco Antonio Negrete Villanueva;
+Edgar De Jesús Vázquez Silva;
+Adriana Felisa Chávez De la Peña;
+Alfonso Medina Velázquez;
+Stéphane Lejars Clorio;
+Uriel Omar González Bravo;
+Yuznhio Sierra Casiano.
