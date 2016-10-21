@@ -12,7 +12,7 @@ import matplotlib.pyplot as plt
 Kn = 0.9
 Kr = 0.9
 
-ensayos = []
+ensayos = 300*[]
 sim = 1
 
 x = np.linspace(-3.0, 3.0, 301)
@@ -23,7 +23,7 @@ print y
 
 plt.plot(x, st.norm.pdf(x, loc = 0, scale = np.sqrt(0.5)))
 
-#plt.plot(x, y)
+plt.plot(x, y)
 
 plt.axis([-3.0, 3.0, 0.0, 1.15])
 
