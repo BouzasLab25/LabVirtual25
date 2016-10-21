@@ -12,19 +12,45 @@ import matplotlib.pyplot as plt
 Kn = 0.9
 Kr = 0.9
 
-ensayos = 300*[]
-sim = 1
+ensayos = 120
+sim = 3
 
-x = np.linspace(-3.0, 3.0, 301)
+p = np.zeros((ensayos, sim))
+print(p)
+c = np.zeros((ensayos, sim))
+suma = np.zeros((ensayos, sim))
+x = np.linspace(0, ensayos, ensayos)
+#print(c)
 
-y = st.norm.rvs(loc=2, scale=1, size=301)
+FI_value = 10
+FI = np.zeros((ensayos))
 
-print y
+a = 0
 
-plt.plot(x, st.norm.pdf(x, loc = 0, scale = np.sqrt(0.5)))
+for i in range(ensayos):
+    if a == 9:
+        FI[i] = 1
+        a = 0
+    else:
+        FI[i] = 0
+        a = a + 1
+        
+print FI
 
-plt.plot(x, y)
+for i in range(ensayos):
+    for j in range(sim):
+        if i < ensayos-1:
+            p[i+1][j] = Kn*p[i][j]+(FI[i]*Kr*(1-p[i][j]))
+            c[i][j] = st.binom.rvs(1,p[i][j])
+            suma[i+1][j]= c[i][j]+suma[i][j]
+print p
+print c
+print suma
 
-plt.axis([-3.0, 3.0, 0.0, 1.15])
 
+plt.axis([0.0, ensayos, 0.0, ensayos-9]) 
+plt.title('Modelo 1', fontsize=25, fontweight='bold')  #Añadimos un titulo a la grafica
+plt.xlabel('Tiempo')    #Damos un nombre al eje de las abscisas
+plt.ylabel('Respuestas Acumuladas')  
+plt.plot(x, suma)
 plt.show()
