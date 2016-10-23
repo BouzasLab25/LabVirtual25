@@ -61,19 +61,19 @@ ax.set_ylabel('Respuestas Acumuladas')
 ax.plot(x, suma)
 #plt.show()
 
-ax_Sim = plt.axes([0.05, 0.11, 0.35, 0.035], axisbg='#F6EFC2')                    #Dibujamos un rectangulo especificando sus coordenadas
-s_Sim = Slider(ax_Sim, 'Simulations', 1, 10, facecolor='#F6EFC2', valinit=sim)
+ax_Sim = plt.axes([0.10, 0.11, 0.35, 0.035], axisbg='#F6EFC2')                    #Dibujamos un rectangulo especificando sus coordenadas
+s_Sim = Slider(ax_Sim, 'Subjects', 1, 5, facecolor='#F6EFC2', valinit=sim, valfmt='%0.0f')
 
-ax_Tr = plt.axes([0.05, 0.06, 0.35, 0.03], axisbg='#F6EFC2')                    #Dibujamos un rectangulo especificando sus coordenadas
-s_Tr = Slider(ax_Tr, 'Trials', 100, 500, facecolor='#F6EFC2', valinit=ensayos)
+ax_Tr = plt.axes([0.10, 0.06, 0.35, 0.03], axisbg='#F6EFC2')                    #Dibujamos un rectangulo especificando sus coordenadas
+s_Tr = Slider(ax_Tr, 'Trials', 100, 500, facecolor='#F6EFC2', valinit=ensayos, valfmt='%0.0f')
 
-ax_FI = plt.axes([0.05, 0.01, 0.35, 0.03], axisbg='#F6EFC2')                    #Dibujamos un rectangulo especificando sus coordenadas
-s_FI = Slider(ax_FI, 'F.I.', 1, 100, facecolor='#F6EFC2', valinit=FI_value)
+ax_FI = plt.axes([0.10, 0.01, 0.35, 0.03], axisbg='#F6EFC2')                    #Dibujamos un rectangulo especificando sus coordenadas
+s_FI = Slider(ax_FI, 'F.I.', 1, 100, facecolor='#F6EFC2', valinit=FI_value, valfmt='%0.0f')
 
-ax_Kn = plt.axes([0.60, 0.09, 0.35, 0.03], axisbg='#FF9EA0')                    #Dibujamos un rectangulo especificando sus coordenadas
+ax_Kn = plt.axes([0.55, 0.09, 0.35, 0.03], axisbg='#FF9EA0')                    #Dibujamos un rectangulo especificando sus coordenadas
 s_Kn = Slider(ax_Kn, 'Kn', 0.01, 1.0, facecolor='red', valinit=Kn)
 
-ax_Kr = plt.axes([0.60, 0.01, 0.35, 0.03], axisbg='#FF9EA0')                    #Dibujamos un rectangulo especificando sus coordenadas
+ax_Kr = plt.axes([0.55, 0.01, 0.35, 0.03], axisbg='#FF9EA0')                    #Dibujamos un rectangulo especificando sus coordenadas
 s_Kr = Slider(ax_Kr, 'Kr', 0.01, 1.0, facecolor='red', valinit=Kr)
 
 def update(adri):          # Creamos una funcion para actualizar nuestra grafica 
