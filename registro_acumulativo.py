@@ -35,7 +35,7 @@ for i in range(ensayos):
         FI[i] = 0
         a = a + 1
         
-print FI
+print(FI)
 
 for i in range(ensayos):
     for j in range(sim):
@@ -43,9 +43,9 @@ for i in range(ensayos):
             p[i+1][j] = Kn*p[i][j]+(FI[i]*Kr*(1-p[i][j]))
             c[i][j] = st.binom.rvs(1,p[i][j])
             suma[i+1][j]= c[i][j]+suma[i][j]
-print p
-print c
-print suma
+print(p)
+print (c)
+print (suma)
 
 
 plt.axis([0.0, ensayos, 0.0, ensayos-9]) 
