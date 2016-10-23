@@ -73,7 +73,7 @@ s_FI = Slider(ax_FI, 'F.I.', 1, 100, facecolor='#F6EFC2', valinit=FI_value, valf
 ax_Kn = plt.axes([0.55, 0.09, 0.35, 0.03], axisbg='#FF9EA0')                    #Dibujamos un rectangulo especificando sus coordenadas
 s_Kn = Slider(ax_Kn, 'Kn', 0.01, 1.0, facecolor='red', valinit=Kn)
 
-ax_Kr = plt.axes([0.55, 0.01, 0.35, 0.03], axisbg='#FF9EA0')                    #Dibujamos un rectangulo especificando sus coordenadas
+ax_Kr = plt.axes([0.55, 0.02, 0.35, 0.03], axisbg='#FF9EA0')                    #Dibujamos un rectangulo especificando sus coordenadas
 s_Kr = Slider(ax_Kr, 'Kr', 0.01, 1.0, facecolor='red', valinit=Kr)
 
 def update(adri):          # Creamos una funcion para actualizar nuestra grafica 
