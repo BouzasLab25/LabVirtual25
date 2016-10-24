@@ -15,9 +15,9 @@ Requisitos:
 
 
 Colaboradores:
+*Adriana Felisa Chávez De la Peña;
 *Marco Antonio Negrete Villanueva;
 *Edgar De Jesús Vázquez Silva;
-*Adriana Felisa Chávez De la Peña;
 *Alfonso Medina Velázquez;
 *Stéphane Lejars Clorio;
 *Uriel Omar González Bravo;
