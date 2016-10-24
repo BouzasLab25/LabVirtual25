@@ -1,4 +1,4 @@
-# Proyecto PAPIME 2016: Laboratorio 25 #
+﻿# Proyecto PAPIME 2016: Laboratorio 25 #
 
 Dr. Arturo Bouzas Riaño
 
@@ -7,14 +7,15 @@ En este Repositorio de GitHub encontrarán disponibles Prácticas introductorias
 Para ejecutar los códigos contenidos en el Repertorio, por favor sigue las Instrucciones correspondientes a tu sistema operativo.
 
 Requisitos:
-* Una computadora funcional. 
-* Python 2.7
-*****Paquetes: matplotlib, Tk
+* Una computadora funcional. 
+* Python 2.7  
+* Paqueterías: matplotlib (obligatoria), Tk (opcional).
 * Spyder (Opcional; Recomendado)
 * Paciencia
 
 
 Colaboradores:
+
 *Adriana Felisa Chávez De la Peña;
 *Marco Antonio Negrete Villanueva;
 *Edgar De Jesús Vázquez Silva;

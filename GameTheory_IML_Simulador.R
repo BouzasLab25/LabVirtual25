@@ -7,7 +7,7 @@
 
 rm(list=ls())
 
-trials<-500
+trials<-100
 sim<-50
 
 sr <- matrix(NA,nrow=trials,ncol=sim) # Estrategias jugador fila
