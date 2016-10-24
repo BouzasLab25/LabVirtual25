@@ -52,7 +52,7 @@ ax.set_ylabel('Probabilidad')                                                   
 ax.axis([-3.0, 5.0, 0.0, 0.7])                                                  #Especificamos las dimensiones de la grafica principal: (rango en x, rango en y)
  
 ax_Far = plt.axes([0.15, 0.12, 0.70, 0.03], axisbg='white')                    #Dibujamos un rectangulo especificando sus coordenadas
-s_Far = Slider(ax_Far, 'Tasa F.A.', 0.01, 1.0, facecolor='gray', valinit=faRate)      #Asignamos la funcionalidad de slider al rectángulo; especificamos los valores entre los que puede variar y asignamos como valor inicial el calculado al principio del codigo
+s_Far = Slider(ax_Far, 'Tasa F.A.', 0.01, 1.0, facecolor='#D3A519', valinit=faRate)      #Asignamos la funcionalidad de slider al rectángulo; especificamos los valores entre los que puede variar y asignamos como valor inicial el calculado al principio del codigo
 
 def update(adri):          # Creamos una funcion para actualizar nuestra grafica 
     faR = s_Far.val
@@ -66,7 +66,7 @@ def update(adri):          # Creamos una funcion para actualizar nuestra grafica
     ax.text(2.3, 0.65, 'Tasa Rechazos', color='#C81BE2', ha='center', va='bottom', fontsize=10, fontweight='bold')   #Escribimos los nombres de los cuatro posibles Outcomes a obtener, dependiendo la correspondencia entre la respuesta dada y la distribucion de origen del estimulo.
     ax.text(4.1, 0.65, 'Tasa F.A.', color='#D3A519', ha='center', va='bottom', fontsize=10, fontweight='bold')   
     ax.text(2.3, 0.61, '(%.2f)' %scipy.stats.norm(0,1).cdf(k_), color='#C81BE2', ha='center', va='bottom', fontsize=10)     #Calculamos y escribimos cuál es el área bajo la curva que corresponde a los Rechazos
-    ax.text(k-0.6, 0.50, 'Z=(%.2f)' %k_, color='red', ha='center', va='bottom', fontsize=10)      #Especificamos el área bajo la curva que corresponde a las Omisiones
+    ax.text(k_-0.6, 0.50, 'Z=(%.2f)' %k_, color='red', ha='center', va='bottom', fontsize=10)      #Especificamos el área bajo la curva que corresponde a las Omisiones
     ax.text(4.1, 0.61, '(%.2f)' %(1-scipy.stats.norm(0,1).cdf(k_)), color='#D3A519', ha='center', va='bottom', fontsize=10)  #Especificamos el área bajo la curva que corresponde a las Falsas Alarmas
     ax.text(0, 0.42, 'Ruido', ha='center', va='bottom')    #Identificamos la Distribucion de Ruido con una etiqueta
     ax.text(d, 0.42, 'Senal', ha='center', va='bottom')    #Etiqueta para la Distribucion de Senal
