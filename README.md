@@ -15,12 +15,12 @@ Requisitos:
 
 
 Colaboradores:
-*Marco Antonio Negrete Villanueva;
-*Edgar De Jesús Vázquez Silva;
-*Adriana Felisa Chávez De la Peña;
-*Alfonso Medina Velázquez;
-*Stéphane Lejars Clorio;
-*Uriel Omar González Bravo;
-*Yuznhio Sierra Casiano;
-*Jose Luis Baroja Manzano;
-*Jesus Manuel Ulloa Villareal.
+* Marco Antonio Negrete Villanueva
+* Edgar De Jesús Vázquez Silva
+* Adriana Felisa Chávez De la Peña
+* Alfonso Medina Velázquez
+* Stéphane Lejars Clorio
+* Uriel Omar González Bravo
+* Yuznhio Sierra Casiano
+* Jose Luis Baroja Manzano
+* Jesus Manuel Ulloa Villareal
