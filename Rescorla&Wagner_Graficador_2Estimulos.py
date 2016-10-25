@@ -45,13 +45,15 @@ ax.plot(x, V[:,1])
 ax.set_xlabel('Ensayos')
 ax.set_ylabel('Valor de V')
 ax.set_title('Modelo RESCORLA-WAGNER')
+ax.set_ylim(0, 100)
+
 
 ax_a = plt.axes([0.15,0.1,0.65,0.03], axisbg="#BCE2C2")
-slider_a = Slider(ax_a,"alpha",0.01,1,facecolor='#03B335',valinit=0.5)
+slider_a = Slider(ax_a,"alpha",0.01,1,facecolor='#03B335',valinit=a)
 ax_b1 = plt.axes([0.15, 0.07, 0.65, 0.03], axisbg='#BCC5E2')
-slider_b1 = Slider(ax_b1, 'beta1', 0.01, 1.0, facecolor='#0332B3', valinit=0.5)
+slider_b1 = Slider(ax_b1, 'beta1', 0.01, 1.0, facecolor='#0332B3', valinit=b1)
 ax_b2 = plt.axes([0.15, 0.02, 0.65, 0.03], axisbg='#BCE1E2')
-slider_b2 = Slider(ax_b2, 'beta2', 0.01, 1.0, facecolor='#0399B3', valinit=0.5)
+slider_b2 = Slider(ax_b2, 'beta2', 0.01, 1.0, facecolor='#0399B3', valinit=b2)
 
 def update(var):
 	a = slider_a.val  
@@ -65,9 +67,10 @@ def update(var):
 	ax.clear()
 	ax.plot(x, V[:,0])
 	ax.plot(x, V[:,1])
-	ax.xlabel('Ensayos')
-	ax.ylabel('Valor de V')
-	ax.title('Modelo RESCORLA-WAGNER')
+	ax.set_xlabel('Ensayos')
+	ax.set_ylabel('Valor de V')
+	ax.set_title('Modelo RESCORLA-WAGNER')
+        ax.set_ylim(0, 100)
 slider_a.on_changed(update)
 slider_b1.on_changed(update)
 slider_b2.on_changed(update)
