@@ -146,7 +146,7 @@ def update_2(adri):          # Creamos una funcion para actualizar nuestra grafi
     ax[1].set_ylabel('Hits')                                                   #Damos un nombre al eje de las ordenadas
     ax[1].axis([0.0, 1.0, 0.0, 1.0])      
     ax[1].scatter(pFA,pHit)
-    print "pFA: " + str(pFA) + " pHits: " + str(pHit)
+#    print ("pFA: " + str(pFA) + " pHits: " + str(pHit))
     
 s_k.on_changed(update_2)                    #Llamamos la funcion de actualizacion por cada movimiento en el Slider 
 s_d.on_changed(update)
