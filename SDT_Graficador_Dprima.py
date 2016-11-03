@@ -42,7 +42,7 @@ ax[0].text((d+0.9), 0.34, 'Senal', ha='center', va='bottom')
 ax[0].text((k+0.5), 0.17, 'F.A.', color='purple', fontweight='bold', ha='center', va='bottom')
 ax[0].plot([0,0],[0,0.4], 'black', ls='dashed')
 ax[0].plot([0,k],[0.3,0.3], 'black')
-ax[0].text(d/2, 0.31, 'k', ha='center', va='bottom', color='red')  
+ax[0].text((k+0.1), 0.38, 'k', ha='center', va='bottom', color='red')  
 ax[0].text(-2, 0.21, '(%.3f)' %k, ha='center', va='bottom', color='black', fontsize=12 )  
 ax[0].set_title('Discriminabilidad', fontsize=18, fontweight='bold')  #Añadimos un titulo a la grafica
 ax[0].set_ylabel('Probabilidad')           #Damos un nombre al eje de las ordenadas
@@ -57,7 +57,7 @@ ax[1].text((d+0.9), 0.34, 'Senal', ha='center', va='bottom')
 ax[1].text((d), 0.2, 'Hits', color='Green', fontweight='bold', ha='center', va='bottom')
 ax[1].plot([d,d],[0,0.4], 'black', ls='dashed')
 ax[1].plot([k,d],[0.3,0.3], 'black')
-ax[1].text(d/2, 0.31, 'k', ha='center', va='bottom', color='red')  
+ax[1].text((k+0.1), 0.38, 'k', ha='center', va='bottom', color='red')  
 ax[1].text(-2, 0.21, '(%.3f)' %(d-k), ha='center', va='bottom', color='black', fontsize=12 )  
 ax[1].set_ylabel('Probabilidad')           #Damos un nombre al eje de las ordenadas
 ax[1].axis([-3.0, 5.0, 0.0, 0.5])           #Especificamos las dimensiones de la grafica principal; los primeros dos valores corresponden al rango abarcado por el eje X y los ultimos, al eje Y.
@@ -105,7 +105,7 @@ def update(adri):   # Creamos una funcion para actualizar nuestra grafica
     ax[0].plot([k_,k_],[0,0.5], 'red')
     ax[0].plot([0,0],[0,0.4], 'black', ls='dashed')
     ax[0].plot([0,k_],[0.3,0.3], 'black')
-    ax[0].text(d_/2, 0.32, 'k', ha='center', va='bottom', color='red')      
+    ax[0].text((k_+0.1), 0.38, 'k', ha='center', va='bottom', color='red')      
     ax[0].text(-2, 0.21, '(%.3f)' %k_, ha='center', va='bottom', color='black', fontsize=12 )  
     ax[0].axis([-3.0, 5.0, 0.0, 0.5]) #Mantenemos las dimensiones de la grafica como en un inicio
     ax[0].set_title('Discriminabilidad', fontsize=18, fontweight='bold') #Reiteramos el titulo
@@ -121,7 +121,7 @@ def update(adri):   # Creamos una funcion para actualizar nuestra grafica
     ax[1].plot([k_,k_],[0,0.5], 'red')
     ax[1].plot([d_,d_],[0,0.4], 'black', ls='dashed')
     ax[1].plot([k_,d_],[0.3,0.3], 'black')
-    ax[1].text(d_/2, 0.32, 'k', ha='center', va='bottom', color='red')      
+    ax[1].text((k_+0.1), 0.38, 'k', ha='center', va='bottom', color='red')      
     ax[1].text(-2, 0.21, '(%.3f)' %(d_-k_), ha='center', va='bottom', color='black', fontsize=12 )  
     ax[1].axis([-3.0, 5.0, 0.0, 0.5]) #Mantenemos las dimensiones de la grafica como en un inicio
     ax[1].set_ylabel('Probabilidad') #Reiteramos el nombre del eje de las ordenadas
