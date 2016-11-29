@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 Created on Wed Oct 12 16:47:32 2016
-@author: Adriana Felisa
+@author: Adriana F. Chávez
 """
 #Cargamos las librerias necesarias
 from matplotlib.widgets import Slider    #Libreria para hacer Sliders
@@ -12,8 +12,8 @@ import math			                     # Librería matematica
 import scipy			                # Librería para hacer distribuciones de probabilidad
 import scipy.stats			             # Librerias para hacer operaciones estadisticas
 
-hits = 90             #Empezamos especificando un numero de Hits
-Falarms = 15           #Especificamos el numero de Falsas Alarmas
+hits = 88             #Empezamos especificando un numero de Hits
+Falarms = 20           #Especificamos el numero de Falsas Alarmas
 hitRate = hits/100.0         #Computamos la Tasa de Hits, dividiendo el número de Hits entre el Numero total de ensayos con Senal
 faRate = Falarms/100.0        # Tasa de F.Alarmas, (numero de Falsas Alarmas entre el numero de ensayos con ruido)
  
@@ -60,13 +60,13 @@ ax[0].axis([-3.0, 5.0, 0.0, 0.7])                                               
 ax[1].set_title('ROC', fontsize=18, fontweight='bold')  #Añadimos un titulo a la grafica
 ax[1].set_xlabel('Falsas Alarmas')                                                      #Damos un nombre al eje de las abscisas
 ax[1].set_ylabel('Hits')                                                   #Damos un nombre al eje de las ordenadas
-ax[1].axis([-0.05, 1.05, -0.05, 1.05])       
+ax[1].axis([-0.02, 1.02, -0.02, 1.02])       
 
 ax_k = plt.axes([0.10, 0.12, 0.80, 0.03], axisbg='white')                    #Dibujamos un rectangulo especificando sus coordenadas
-s_k = Slider(ax_k, 'Criterio', -3.0, 5.0, facecolor='white', valinit=k)      #Asignamos la funcionalidad de slider al rectángulo; especificamos los valores entre los que puede variar y asignamos como valor inicial el calculado al principio del codigo
+s_k = Slider(ax_k, 'Criterio', -3.0, 7.0, facecolor='white', valinit=k)      #Asignamos la funcionalidad de slider al rectángulo; especificamos los valores entre los que puede variar y asignamos como valor inicial el calculado al principio del codigo
 
 ax_d = plt.axes([0.10, 0.07, 0.80, 0.03], axisbg='white')                    #Dibujamos un rectangulo especificando sus coordenadas
-s_d = Slider(ax_d, 'D prima', 0.01, 5.0, facecolor='white', valinit=d) 
+s_d = Slider(ax_d, 'D prima', 0.01, 4.0, facecolor='white', valinit=d) 
 
 def update(adri):          # Creamos una funcion para actualizar nuestra grafica 
     global d_ant
@@ -108,7 +108,7 @@ def update(adri):          # Creamos una funcion para actualizar nuestra grafica
     ax[1].set_title('ROC', fontsize=18, fontweight='bold')  #Añadimos un titulo a la grafica
     ax[1].set_xlabel('Falsas Alarmas')                                                      #Damos un nombre al eje de las abscisas
     ax[1].set_ylabel('Hits')                                                   #Damos un nombre al eje de las ordenadas
-    ax[1].axis([-0.05, 1.05, -0.05, 1.05])  
+    ax[1].axis([-0.02, 1.02, -0.02, 1.02])  
     if d_ant == d_:
         ax[1].scatter(pFA,pHit)
     d_ant = d_
