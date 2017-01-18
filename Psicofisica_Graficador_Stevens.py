@@ -20,7 +20,7 @@ y = numpy.zeros(len(x))
 #El siguiente ciclo asigna un valor en el arreglo 'y' para cada valor de 'x'
 #de acuerdo con la ley de Stevens. En este caso, los valores de 'x' representan la magnitud fisica
 #del estimulo, y los valores de 'y', la magnitud percibida
-k = 1     #Constante de proporcionalidad
+k = 2.5     #Constante de proporcionalidad
 a = 1.2    #Exponente
 for i in range(len(x)):
     y[i] = k * math.pow(x[i], a)
@@ -47,9 +47,9 @@ ax.text(0.34, 1.15, '%.2f' %a, ha='center', color='#0C2DC2', va='bottom', fontsi
 
 ax_a=plt.axes([0.15,0.1,0.65,0.03], axisbg='#9BA3C7')
 slider_a=Slider(ax_a,"a",.5,1.5,facecolor='#0C2DC2',valinit=a)
+plt.text(1,-1.35, 'k= %.1f' %k, fontsize=13)
 
-def update(var):
-    k = 1.0      
+def update(var):      
     a = slider_a.val
     for i in range(len(x)):
         y[i] = k * math.pow(x[i], a)
