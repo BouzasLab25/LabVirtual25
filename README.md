@@ -20,6 +20,7 @@ Colaboradores:
 *Marco Antonio Negrete Villanueva;
 *Edgar De Jesús Vázquez Silva;
 *Alfonso Medina Velázquez;
+*José Manuel Niño García;
 *Stéphane Lejars Clorio;
 *Uriel Omar González Bravo;
 *Yuznhio Sierra Casiano;
