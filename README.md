@@ -9,7 +9,7 @@ Para ejecutar los códigos contenidos en el Repertorio, por favor sigue las Inst
 Requisitos:
 * Una computadora funcional. 
 * Python 2.7  
-* Paqueterías: matplotlib (obligatoria), Tk (opcional).
+* Paqueterías: matplotlib y scipy (obligatorias), Tk (opcional).
 * Spyder (Opcional; Recomendado)
 * Paciencia
 
