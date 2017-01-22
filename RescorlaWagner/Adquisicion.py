@@ -1,6 +1,6 @@
 #Cargamos las librerias necesarias
 import numpy                      #Biblioteca para operaciones matematicas complejas
-from matplotlib.widgets import Slider, Button  #Bajamos la libreria para hacer Sliders
+#from matplotlib.widgets import Slider, Button  #Bajamos la libreria para hacer Sliders
 import matplotlib.pyplot as plt #Bajamos la libreria para hacer graficas
 
 a = 0.05  #alpha
@@ -55,7 +55,7 @@ for k in range(len(est1) - 1):
                 Vx[i][j][k+1] = Vx[i][j][k] + a*(l -Vt)
             else:
                 Vx[i][j][k+1] = Vx[i][j][k]
-        
+
 time = range(len(est1))
 max_time = len(time)
 fig, ax = plt.subplots(len(estimulos)*len(estimulos[0]),2*fases)
@@ -64,10 +64,16 @@ for i in range(len(estimulos)):
         for k in range(fases):
             idx0 = max_time/fases*k
             idx1 = max_time/fases*(k+1) - 1
-            ax[i*len(estimulos[i]) + j,k*2 + 0].axis([idx0,idx1,-1, 2])
+            ax[i*len(estimulos[i]) + j,k*2 + 0].axis([idx0,idx1, -0.2, 1.2])
             ax[i*len(estimulos[i]) + j,k*2 + 0].plot(time[idx0:idx1], estimulos[i][j][idx0:idx1], 'ro')
-            ax[i*len(estimulos[i]) + j,k*2 + 1].axis([idx0,idx1,-1,110])
+            ax[0,k*2 + 0].set_title('Fase' + str(k+1), fontsize=16)
+            ax[i*len(estimulos[i]) + j,k*2 + 1].axis([idx0,idx1,-3,110])
             ax[i*len(estimulos[i]) + j,k*2 + 1].plot(time[idx0:idx1], Vx[i][j][idx0:idx1])
+            #ax[0,k*2 + 1].set_title('Aprendizaje')
+       
+fig.suptitle('Modelo Rescorla & Wagner', fontsize=14, fontweight='bold')
+fig.text(0.06, 0.7, 'Bloqueo', va='center', rotation='vertical', fontsize=16)
+fig.text(0.06, 0.3, 'Control', va='center', rotation='vertical', fontsize=16)
 #ax[len(estimulos),0].axis([0,max_time,-1, 2])
 #ax[len(estimulos),0].plot(time, refuerzo)
 plt.show()
