@@ -1,7 +1,7 @@
 """
 Last modified on Thu Oct 13 15:25:42 2016
 
-@author: Alfosno
+@author: Alfonso
 """
 #Cargamos las librerias necesarias
 import numpy                      #Biblioteca para operaciones matematicas complejas

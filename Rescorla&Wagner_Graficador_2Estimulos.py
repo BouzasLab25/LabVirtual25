@@ -1,7 +1,7 @@
 """
 Last modified on Thu Oct 13 2016
 
-@author: Alfosno
+@author: Alfonso
 """
 #Cargamos las librerias necesarias
 import numpy                      #Biblioteca para operaciones matematicas complejas
@@ -35,6 +35,7 @@ for i in range(len(x)-1):
 		VT[i] = sum(V[i,])
 		AV[i,j] = a*betas[j]*(l - VT[i])
 		V[i+1,j] = V[i,j] + AV[i,j]
+
 
 		print "AV1: " + str(AV[i,0]) + " - " + " V1: "+ str(V[i,0]) + " alpha: " + str(a) + " beta1: " + str(betas[0]) + "lambda:" + str(l) + "VT: " + str(VT[i]) 
 		print "AV2: " + str(AV[i,1]) + " - " + " V2: "+ str(V[i,1]) + " alpha: " + str(a) + " beta2: " + str(betas[1]) + "lambda:" + str(l) + "VT: " + str(VT[i]) 
