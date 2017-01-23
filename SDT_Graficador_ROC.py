@@ -20,7 +20,7 @@ faRate = Falarms/100.0        # Tasa de F.Alarmas, (numero de Falsas Alarmas ent
 d = (scipy.stats.norm(0,1).ppf(hitRate))-(scipy.stats.norm(0,1).ppf(faRate))      #Calculamos d’
 k = (d/2)                               						                  #Calculamos la localización del criterio
 
-fig, ax = plt.subplots(1,2)                       #Ampliamos nuestro espacio para generar dos areas independientes para la grafica principal y los sliders
+fig, ax = plt.subplots(1,2)                    #Ampliamos nuestro espacio para generar dos areas independientes para la grafica principal y los sliders
 plt.subplots_adjust(left=0.1, bottom=0.25)     #Especificamos la relación en el espacio entre dichas areas
 
 mu = 0               #La media de la distribucion de ruido, de acuerdo a la teoria
