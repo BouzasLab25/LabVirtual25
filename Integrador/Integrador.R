@@ -1,12 +1,12 @@
 rm(list=ls())
 
-# En esta secci??n revisaremos la ecuaci??n principal del integrador con fuga
-# que contiene un s??lo par??metro.Este primer ejercicio se encuentra dise??ado
+# En esta seccion revisaremos la ecuacion principal del integrador con fuga
+# que contiene un solo parametro.Este primer ejercicio se encuentra diseñado
 # para tener un primer acercamiento al modelo y su comportamiento cuando 
-# se modifican variables sencillas como el n??mero de ensayos o el valor
-# del par??metro a. 
+# se modifican variables sencillas como el numero de ensayos o el valor
+# del parametro a. 
 
-V <- c() # En esta l??nea creamos un objeto V que por el momento se 
+V <- c() # En esta linea creamos un objeto V que por el momento se 
 # encuentra vac??o. En este objeto iremos acumulando los valores del
 # integrador que obtendremos a lo largo de los ensayos. 
   
