@@ -51,9 +51,9 @@ def update(var):
 	    V[k+1] = V[k] + AV[k]
     ax.clear()
     ax.plot(x, V)
-    ax.xlabel('Ensayos')
-    ax.ylabel('Valor de V')
-    ax.title('Modelo RESCORLA-WAGNER')
+    ax.set_xlabel('Ensayos')
+    ax.set_ylabel('Valor de V')
+    ax.set_title('Modelo RESCORLA-WAGNER')
 slider_a.on_changed(update)
 slider_b.on_changed(update)
 plt.show()
