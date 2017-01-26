@@ -1,0 +1,20 @@
+
+%Oara ACA (2017-2)
+ 
+-Introduccion (Cosas que bajar, blablabla) - Clase de Como bajar/correr todo
+-Pre-Requisitos: Parte Matematica
+-------Introduccion a Modelos Bayesianos (Teorema de Bayes; Modelamiento Bayesiano)
+------Psicofisica (Funciones ilustrativas)
+------Comienzan temas:
+
+1.- Reflejo - Activacion ante estimulo (Killeen)
+-Evolucion  y adaptcion (Filosofia de la Ciencia)
+2.- Consecuencias - Amibas que siguen estimulacion (Modelo de amibas - Modelo de adaptacion)
+3.- Modelos de Aprendizaje (Integrador, RW)
+---HallPierce, etc
+---Reinforcement LEarning
+4.- Psicofísica
+5.- Igualacion
+6.- Timing
+
+%5532 1222
