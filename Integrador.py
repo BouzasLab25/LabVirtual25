@@ -28,11 +28,14 @@ ax.set_xlabel("Tiempo")
 ax.set_ylabel("Valor")
 ax.set_ylim(0.0, 105)
 ax.set_xlim(0.0,20)
+ax.text(12, 80, r'$V_{i+1} = a V_{i} + (1-a) R_{i}$', ha='center', va='bottom', fontsize=20)   #Escribimos los terminos que componen la Regla
+ax.text(12, 72, 'a = %.2f' %a, ha='center', color='#0C2DC2', va='bottom', fontsize=12) 
 ax.plot(x, y)
 
 # Creamos un objeto que contendra la informacion de Slider
 ax_a = plt.axes([0.25, 0.12, 0.65, 0.03], axisbg='#BCE2C2')
 a_value = Slider(ax_a, "Ventana temporal", 0.01, 0.99, valinit=a) 
+plt.text(0.4,-2.35, '0 < a < 1', fontsize=13)
 
 def update(val):
 	a = a_value.val
