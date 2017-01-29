@@ -23,10 +23,11 @@ for i in range(len(R)):	# Este ciclo For, se recorrera para todo el largo del ar
 	y[i+1] = a*V_ant + (1-a)*R[i]
 	V_ant = y[i+1]
 
-ax.set_title("Integrador", fontsize=18, fontweight="bold")
+ax.set_title("Integrador con Fuga", fontsize=18, fontweight="bold")
 ax.set_xlabel("Tiempo")
 ax.set_ylabel("Valor")
 ax.set_ylim(0.0, 105)
+ax.set_xlim(0.0,20)
 ax.plot(x, y)
 
 # Creamos un objeto que contendra la informacion de Slider
@@ -40,12 +41,11 @@ def update(val):
 		y[i+1] = a*V_ant + (1-a)*R[i]
 		V_ant = y[i+1]
 	ax.clear()
-	ax.set_title("Integrador", fontsize=18, fontweight="bold")
+	ax.set_title("Integrador con Fuga", fontsize=18, fontweight="bold")
 	ax.set_xlabel("Tiempo")
 	ax.set_ylabel("Valor")
 	ax.set_ylim(0.0, 105)
-	ax.plot(x, y)
-
-
+ 	ax.set_xlim(0.0, 20)
+ 	ax.plot(x, y)
 a_value.on_changed(update)
 plt.show()
