@@ -64,11 +64,13 @@ for i in range(len(estimulos)):
         for k in range(fases):
             idx0 = max_time/fases*k
             idx1 = max_time/fases*(k+1) - 1
+            #ax[i*len(estimulos[i]) + j,k*2 + 0].axis([idx0,idx1, -0.2, 1.2])
             ax[i*len(estimulos[i]) + j,k*2 + 0].axis([idx0,idx1, -0.2, 1.2])
             ax[i*len(estimulos[i]) + j,k*2 + 0].plot(time[idx0:idx1], estimulos[i][j][idx0:idx1], 'ro')
             ax[0,k*2 + 0].set_title('Fase' + str(k+1), fontsize=16)
+            #ax[i*len(estimulos[i]) + j,k*2 + 1].axis([idx0,idx1,-3,110])
             ax[i*len(estimulos[i]) + j,k*2 + 1].axis([idx0,idx1,-3,110])
-            ax[i*len(estimulos[i]) + j,k*2 + 1].plot(time[idx0:idx1], Vx[i][j][idx0:idx1])
+            ax[i*len(estimulos[i]) + j,k*2 + 1].plot(time[idx0:idx1], Vx[i][j][idx0:idx1], linewidth=5.0)
             #ax[0,k*2 + 1].set_title('Aprendizaje')
        
 fig.suptitle('Modelo Rescorla & Wagner', fontsize=14, fontweight='bold')
