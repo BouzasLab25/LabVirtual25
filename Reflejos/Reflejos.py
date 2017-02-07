@@ -1,3 +1,11 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Wed Jan 27 10:21:07 2017
+
+@author: Niño & Stéphane
+"""
+
+
 import math
 import numpy                      #Biblioteca para operaciones matematicas complejas
 from matplotlib.widgets import Slider, Button  #Bajamos la libreria para hacer Sliders

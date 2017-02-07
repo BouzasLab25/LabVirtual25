@@ -1,4 +1,6 @@
 rm(list=ls())
+#Autor: Yuznhio Sierra
+
 
 # En esta seccion revisaremos la ecuacion principal del integrador con fuga
 # que contiene un solo parametro.Este primer ejercicio se encuentra diseñado

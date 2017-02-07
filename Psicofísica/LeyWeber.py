@@ -1,3 +1,11 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Wed Jan 18 10:21:07 2017
+
+@author: Uriel
+"""
+
+
 #!/usr/bin/env python
 import math                       #Biblioteca para operaciones matematicas como raiz cuadrada, logaritmos, etc.
 import numpy                      #Biblioteca para operaciones matematicas complejas

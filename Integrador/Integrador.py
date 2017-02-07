@@ -1,9 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ### Programa en Python Integrador ###
-
-#Traducción del codigo hecho por Yuznio Sierra
-#Edgar Vazquez
+#Autores: Yuznhio Sierra & Edgar Vazquez
 
 from matplotlib.widgets import Slider, Button, RadioButtons
 import matplotlib.pyplot as plt

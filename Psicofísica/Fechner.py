@@ -5,14 +5,6 @@ Created on Wed Jan 18 10:21:07 2017
 @author: Uriel
 """
 
-# -*- coding: utf-8 -*-
-"""
-Created on Wed Jan 18 10:06:45 2017
-
-@author: Uriel
-Ley Psicofísica (Fechner)
-"""
-
 #!/usr/bin/env python
 import math                       #Biblioteca para operaciones matematicas como raiz cuadrada, logaritmos, etc.
 import numpy as np                #Biblioteca para operaciones matematicas complejas
