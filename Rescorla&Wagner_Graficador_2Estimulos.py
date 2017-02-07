@@ -17,10 +17,10 @@ b1 = 0.12 #beta para EC1
 b2 = 0.5 #beta para EC2
 betas = [b1,b2] #arreglo de betas
 l = 100  #lambda
-Ensayos = 100 
 EstP = 2 #Numero de estimulos presentes
 
 #Variables del modelo
+Ensayos = 100 
 x=numpy.linspace(0, Ensayos, Ensayos)
 AV = numpy.zeros((Ensayos,EstP)) #Incremento en V
 V = numpy.zeros((Ensayos,EstP))  #Valor de V
@@ -41,19 +41,17 @@ for i in range(len(x)-1):
 		print "AV2: " + str(AV[i,1]) + " - " + " V2: "+ str(V[i,1]) + " alpha: " + str(a) + " beta2: " + str(betas[1]) + "lambda:" + str(l) + "VT: " + str(VT[i]) 
 
 #Despliegue de la grafica
-ax.plot(x, V[:,0])
-ax.plot(x, V[:,1])
+ax.plot(x, V[:,0], linewidth=5.0)
+ax.plot(x, V[:,1], linewidth=5.0)
 ax.set_xlabel('Ensayos')
-ax.set_ylabel('Valor de V')
-ax.set_title('Modelo RESCORLA-WAGNER')
-ax.set_ylim(0, 100)
+ax.set_ylabel('Valor acumulado de V')
+ax.set_title('Modelo Rescorla & Wagner', fontsize=14, fontweight='bold')
 
-
-ax_a = plt.axes([0.15,0.1,0.65,0.03], axisbg="#BCE2C2")
+ax_a = plt.axes([0.15,0.11,0.65,0.03], axisbg="#BCE2C2")
 slider_a = Slider(ax_a,"alpha",0.01,1,facecolor='#03B335',valinit=a)
-ax_b1 = plt.axes([0.15, 0.07, 0.65, 0.03], axisbg='#BCC5E2')
+ax_b1 = plt.axes([0.15, 0.06, 0.65, 0.03], axisbg='#BCC5E2')
 slider_b1 = Slider(ax_b1, 'beta1', 0.01, 1.0, facecolor='#0332B3', valinit=b1)
-ax_b2 = plt.axes([0.15, 0.02, 0.65, 0.03], axisbg='#BCE1E2')
+ax_b2 = plt.axes([0.15, 0.01, 0.65, 0.03], axisbg='#BCE1E2')
 slider_b2 = Slider(ax_b2, 'beta2', 0.01, 1.0, facecolor='#0399B3', valinit=b2)
 
 def update(var):
@@ -66,12 +64,12 @@ def update(var):
 			AV[i,j] = a*betas[j]*(l - VT[i])
 			V[i+1,j] = V[i,j] + AV[i,j]
 	ax.clear()
-	ax.plot(x, V[:,0])
-	ax.plot(x, V[:,1])
+	ax.plot(x, V[:,0], linewidth=5.0)
+	ax.plot(x, V[:,1], linewidth=5.0)
 	ax.set_xlabel('Ensayos')
-	ax.set_ylabel('Valor de V')
-	ax.set_title('Modelo RESCORLA-WAGNER')
-        ax.set_ylim(0, 100)
+	ax.set_ylabel('Valor acumulado de V')
+	ax.set_title('Modelo Rescorla & Wagner', fontsize=14, fontweight='bold')
+	ax.set_ylim(0, 102)
 slider_a.on_changed(update)
 slider_b1.on_changed(update)
 slider_b2.on_changed(update)

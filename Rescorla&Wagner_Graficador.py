@@ -14,8 +14,9 @@ import matplotlib.pyplot as plt #Bajamos la libreria para hacer graficas
 a = 0.3  #alpha
 b = 0.15 #beta
 l = 100  #lambda
-Ensayos= 100
+
 #Variables del modelo
+Ensayos= 100
 x=numpy.linspace(0, Ensayos, Ensayos)
 AV = numpy.zeros(len(x)) #Incremento en V
 V = numpy.zeros(len(x)) #Valor de V
@@ -30,30 +31,29 @@ for k in range(len(x)-1):
    
     print "AV: " + str(AV[k]) + " - " + " V: "+ str(V[k]) + " alpha: " + str(a) + " beta: " + str(b) + "lambda:" + str(l)
 
-
 #Despliegue de la grafica
-ax.plot(x, V)
+ax.plot(x, V, linewidth=5.0)
 ax.set_xlabel('Ensayos')
-ax.set_ylabel('Valor de V')
-ax.set_title('Modelo RESCORLA-WAGNER')
+ax.set_ylabel('Valor acumulado de V')
+ax.set_title('Modelo Rescorla & Wagner', fontsize=14, fontweight='bold')
 
 ax_a = plt.axes([0.15,0.1,0.65,0.03], axisbg="#BCE2C2")
-slider_a = Slider(ax_a,"alpha",0.01,1,facecolor='#03B335',valinit=0.5)
-ax_b = plt.axes([0.15, 0.07, 0.65, 0.03], axisbg='#BCC5E2')
-slider_b = Slider(ax_b, 'beta', 0.01, 1.0, facecolor='#0332B3', valinit=0.5)
+slider_a = Slider(ax_a,"alpha",0.01, 1, facecolor='#03B335',valinit=0.5)
+ax_b = plt.axes([0.15, 0.05, 0.65, 0.03], axisbg='#BCC5E2')
+slider_b = Slider(ax_b, 'beta', 0.01, 1, facecolor='#0332B3', valinit=0.5)
 
 def update(var):
     a = slider_a.val  
     b = slider_b.val
     for k in range(len(x)-1):
 	    AV[k] = a*b*(l - V[k])
-
 	    V[k+1] = V[k] + AV[k]
     ax.clear()
-    ax.plot(x, V)
+    ax.plot(x, V, linewidth=5.0)
     ax.set_xlabel('Ensayos')
-    ax.set_ylabel('Valor de V')
-    ax.set_title('Modelo RESCORLA-WAGNER')
+    ax.set_ylabel('Valor acumulado de V')
+    ax.set_title('Modelo Rescorla & Wagner', fontsize=14, fontweight='bold')
+    ax.set_ylim(0, 102)
 slider_a.on_changed(update)
 slider_b.on_changed(update)
 plt.show()
