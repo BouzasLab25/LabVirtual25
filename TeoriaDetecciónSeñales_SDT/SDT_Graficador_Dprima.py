@@ -2,9 +2,16 @@
 """
 Created on Tue Oct 11 13:12:14 2016
 
-@author: Felisa
+@author: Adrifelcha
 """
+############### Este código ilustra el cómputo de la d' a partir de los datos obtenidos en un experimento con tareas de detección
+###############
+###############  
+
+
+##################################
 #Cargamos las librerias necesarias
+##################################
 from matplotlib.widgets import Slider  #Bajamos la libreria para hacer Sliders
 import matplotlib.pyplot as plt #Bajamos la libreria para hacer graficas
 import numpy as np
@@ -13,15 +20,28 @@ import math
 import scipy
 import scipy.stats
 
+
+#################################################################
+# Especificamos los datos hipotéticos obtenidos en nuestra tarea
+#################################################################
+
 hits = 90
 Falarms = 15
 hitRate = hits/100.0
 faRate = Falarms/100.0
 
+################################################################
+#Calculamos los parámetros
+################################################################
 k = scipy.stats.norm(0, 1).ppf(1-faRate)
 d = (scipy.stats.norm(0,1).ppf(hitRate))-(scipy.stats.norm(0,1).ppf(faRate))
 c = k-(d/2)
 b = (scipy.stats.norm(d,1).pdf(k))/(scipy.stats.norm(0,1).pdf(k))
+
+
+#################################
+#Graficamos el output
+#################################
 
 fig, ax = plt.subplots(3)                           #Ampliamos nuestro espacio para poder generar dos graficos por separado (uno para la grafica principal y otro para mostrar los sliders)
 plt.subplots_adjust(left=0.1, bottom=0.25)        #Especificamos la relacion entre los espacios fig y ax

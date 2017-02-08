@@ -3,30 +3,45 @@
 Created on Wed Oct 12 16:47:32 2016
 @author: Adriana Felisa
 """
+
+#########################################
 #Cargamos las librerias necesarias
-from matplotlib.widgets import Slider    #Libreria para hacer Sliders
-import matplotlib.pyplot as plt          #Libreria para hacer graficas
-import numpy as np                       #Librería para hacer operaciones matematicas
-import matplotlib.mlab as mlab	         #Libreria para personalizar graficas
-import math			                     # Librería matematica
-import scipy			                # Librería para hacer distribuciones de probabilidad
-import scipy.stats			             # Librerias para hacer operaciones estadisticas
+#########################################
+from matplotlib.widgets import Slider   #Libreria para hacer Sliders
+import matplotlib.pyplot as plt         #Libreria para hacer graficas
+import numpy as np                      #Librería para hacer operaciones matematicas
+import matplotlib.mlab as mlab	      #Libreria para personalizar graficas
+import math			                  #Librería matematica
+import scipy			            #Librería para hacer distribuciones de probabilidad
+import scipy.stats			      #Librerias para hacer operaciones estadisticas
 
+##############################################################
+# Especificamos los datos obtenidos en una tarea de detección
+##############################################################
 hits = 90             #Empezamos especificando un numero de Hits
-Falarms = 15           #Especificamos el numero de Falsas Alarmas
-hitRate = hits/100.0         #Computamos la Tasa de Hits, dividiendo el número de Hits entre el Numero total de ensayos con Senal
-faRate = Falarms/100.0        # Tasa de F.Alarmas, (numero de Falsas Alarmas entre el numero de ensayos con ruido)
+Falarms = 15          #Especificamos el numero de Falsas Alarmas
+hitRate = hits/100.0         # Computamos la Tasa de Hits, dividiendo el número de Hits entre el Numero total de ensayos con Senal
+faRate = Falarms/100.0       # Computamos la Tasa de F.Alarmas, (numero de Falsas Alarmas entre el numero de ensayos con Ruido)
  
-d = (scipy.stats.norm(0,1).ppf(hitRate))-(scipy.stats.norm(0,1).ppf(faRate))      #Calculamos d’
-k = (d/2)                               						                  #Calculamos la localización del criterio
+###########################################################
+#Calculamos los parámetros
+###########################################################
+d = (scipy.stats.norm(0,1).ppf(hitRate))-(scipy.stats.norm(0,1).ppf(faRate))      #Definimos d’ (calculándola)
+#Calculamos d' (Revisar el capítulo teorico para más detalles en la ecuación; la función 'scipy.stats.norm' contiene dos argumentos: la media y la varianza de una distribución normal.)
+k = (d/2)       #Definimos la localización del criterio (ARBITRARIAMENTE)
+#Arbitrariamente, colocamos el criterio a la mitad de las distribuciones
+#Dado que d' es la distancia entre las distribuciones, 
 
+###########################################################
+# Graficamos el Output
+###########################################################
 fig, ax = plt.subplots()                       #Ampliamos nuestro espacio para generar dos areas independientes para la grafica principal y los sliders
 plt.subplots_adjust(left=0.1, bottom=0.25)     #Especificamos la relación en el espacio entre dichas areas
 
 mu = 0               #La media de la distribucion de ruido, de acuerdo a la teoria
-variance = 1         #Un valor único para la varianza de ambas distribuciones, de acuerdo a la teoria
+variance = 1         #De acuerdo a los supuestos, las distribuciones son equivariantes. Definimos una varianza de 1.
 sigma = math.sqrt(variance)        #Calculamos la desviación estándar a partir de la varianza
-x = np.arange(-6.0, 6.0, 0.01)     #Especificamos la longitud del soporte de las distribuciones
+x = np.arange(-6.0, 6.0, 0.01)     #Especificamos la longitud del soporte de las distribuciones (El Eje X)
 yes = np.arange(k, 6.0, 0.01)      #Delimitamos el espacio de ‘respuestas afirmativas’, a la derecha del criterio.
 no = np.arange(-6.0, k, 0.01)      #Delimitamos el espacio de ‘respuestas negativas’, a la izquierda del criterio.
  

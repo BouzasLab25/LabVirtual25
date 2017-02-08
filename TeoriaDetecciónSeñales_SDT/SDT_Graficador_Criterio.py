@@ -4,22 +4,38 @@ Created on Mon Oct 24 13:34:01 2016
 
 @author: Adrifelcha
 """
+##################################
 #Cargamos las librerias necesarias
+##################################
 from matplotlib.widgets import Slider    #Libreria para hacer Sliders
 import matplotlib.pyplot as plt          #Libreria para hacer graficas
 import numpy as np                       #Librería para hacer operaciones matematicas
-import matplotlib.mlab as mlab	         #Libreria para personalizar graficas
-import math			                     # Librería matematica
-import scipy			                # Librería para hacer distribuciones de probabilidad
-import scipy.stats			             # Librerias para hacer operaciones estadisticas
+import matplotlib.mlab as mlab	       #Libreria para personalizar graficas
+import math			                  #Librería matematica
+import scipy			            #Librería para hacer distribuciones de probabilidad
+import scipy.stats			      #Librerias para hacer operaciones estadisticas
 
-hits = 90             #Empezamos especificando un numero de Hits
-Falarms = 15           #Especificamos el numero de Falsas Alarmas
+###################################################
+#Especificamos los datos/Resultados del experimento
+###################################################
+
+hits = 90            #Especificamos el numero de Hits (Verdaderos Positivos)
+Falarms = 15         #Especificamos el numero de Falsas Alarmas (Falsos Positivos)
 hitRate = hits/100.0         #Computamos la Tasa de Hits, dividiendo el número de Hits entre el Numero total de ensayos con Senal
-faRate = Falarms/100.0        # Tasa de F.Alarmas, (numero de Falsas Alarmas entre el numero de ensayos con ruido)
+faRate = Falarms/100.0       #Tasa de F.Alarmas, (numero de Falsas Alarmas entre el numero de ensayos con ruido)
+
+##################################################
+# Calculamos los parámetros 
+##################################################
  
 d = (scipy.stats.norm(0,1).ppf(hitRate))-(scipy.stats.norm(0,1).ppf(faRate))      #Calculamos d’
-k = scipy.stats.norm(0, 1).ppf(1-faRate)                            						                  #Calculamos la localización del criterio
+
+k = scipy.stats.norm(0, 1).ppf(1-faRate)                            			  #Calculamos la localización del criterio
+
+
+#################################################
+# Trazamos las gráficas
+#################################################
 
 fig, ax = plt.subplots()                       #Ampliamos nuestro espacio para generar dos areas independientes para la grafica principal y los sliders
 plt.subplots_adjust(left=0.1, bottom=0.25)     #Especificamos la relación en el espacio entre dichas areas
@@ -31,7 +47,7 @@ x = np.arange(-6.0, 6.0, 0.01)     #Especificamos la longitud del soporte de las
 yes = np.arange(k, 6.0, 0.01)      #Delimitamos el espacio de ‘respuestas afirmativas’, a la derecha del criterio.
 no = np.arange(-6.0, k, 0.01)      #Delimitamos el espacio de ‘respuestas negativas’, a la izquierda del criterio.
  
-d1 = ax.plot(x,mlab.normpdf(x, mu, sigma), 'black')      #Dibujamos la primer distribucion (Ruido)
+d1 = ax.plot(x,mlab.normpdf(x, mu, sigma), 'black')                   #Dibujamos la primer distribucion (Ruido)
 d2 = ax.plot(x,mlab.normpdf(x, d, sigma), 'black', ls='dashed')       #Dibujamos la segunda distribucion, con media en d’ (Senal)
 
 ax.plot([k,k],[0,0.55], 'red')   #Dibujamos el criterio como una linea vertical que cruza las distribuciones
