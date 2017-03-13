@@ -30,6 +30,8 @@ abline(v=d/2,col='blue',lty=2)             #Se??alamos la localizacion Optima (s
 d<-round(d,5)   #Redondeamos el valor de d' a 5 decimales para facilitar su representacion
 k<-round(k,5)   #Redondeamos el valor del criterio a 5 decimales para facilitar su representacion
 c<-round(c,5)   #Redondeamos el valor del Sesgo c a 5 decimales para facilitar su representacion
+h_rate<-round(h_rate,3)
+fa_rate<-round(fa_rate,3)
 beta<-round(beta,5) #Redondeamos el valor del Sesgo Beta a 5 decimales para facilitar su representacion
 
 text(-4,0.39,paste("K = ",k))  #Imprimimos la localizacion del criterio 
