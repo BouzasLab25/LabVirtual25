@@ -68,7 +68,8 @@
             JUNIO 2017
 
             \vspace{0.20in}
-            Edgar de Jesús Vázquez Silva, Facultad de Ingeniería
+            Edgar de Jesús Vázquez Silva\\
+            Laboratorio 25, Facultad de Psicología
 
 
         \end{large}
@@ -98,7 +99,7 @@
 
     Para comenzar a programar en Python necesitaremos una interfaz que nos facilite la tarea de generar "Códigos" (programas computacionales), lo más recomendable para las personas que no han tenido un acercamiento a un lenguaje de programación es utilizar una \textit{interfaz gráfica conocida como IDLE.} Otra opción es utilizar un editor de texto como SublimeText, NotePad++ ó Atom, y ejecutarlo desde la consola. Se recomienda al lector consultar la guía de instalación del IDLE Spyder, desarrollado por los alumnos del LAB 25. \url{https://github.com/Lab25UNAM/PAPIME2016/blob/master/guia_Instalacion.pdf}\\
 
-    En  los  siguientes  ejemplos,  las  entradas  y  salidas  son distinguidas  por  la  presencia  o  ausencia  de  los prompts \textbf{>>>}:  para  reproducir  los  ejemplos,  debes  escribir  todo  lo  que  esté  después  del prompt, cuando este aparezca; las líneas que no comiencen con el prompt son las salidas del intérprete.\\
+    En  los  siguientes  ejemplos,  las  entradas  y  salidas  son distinguidas  por  la  presencia  o  ausencia  de  los prompts \textbf{$>>>$}:  para  reproducir  los  ejemplos,  debes  escribir  todo  lo  que  esté  después  del prompt, cuando este aparezca; las líneas que no comiencen con el prompt son las salidas del intérprete.\\
 
     Una vez instalado la suite de desarrollo Anaconda, buscaremos el entorno de desarrollo \textit{Spyder.} Con esto estaremos listos para comenzar a desarrollar programas en lenguaje de programación Python.\\
 
@@ -137,12 +138,12 @@
     La sentencia de asignación crea nuevas variables y les da valores:
 
     \begin{lstlisting}[language=Python]
->>> mensaje = "¿Que Onda?"
->>> n = 17
->>> pi = 3.14159
+mensaje = "Hola mundo.... :)"
+n = 17
+pi = 3.14159
     \end{lstlisting}
 
-    Este ejemplo hace tres asignaciones. La primera asigna la cadena "¿Que Onda?" a una nueva variable denominada mensaje. La segunda le asigna el entero 17 a n, y la tercera le da el valor decimal 3.14159 a pi.\\
+    Este ejemplo hace tres asignaciones. La primera asigna la cadena \textit{"Hola mundo.... :)"} a una nueva variable denominada mensaje. La segunda le asigna el entero 17 a n, y la tercera le da el valor decimal 3.14159 a pi.\\
 
     \subsection{Tipos de variables}
         Hasta este punto ya hemos declarado algunas variables; sin embargo es importante conocer que tipo de valores podemos asignar a estas variables. Dentro de los tipos de datos principales que podemos utilizar en Python estan:\\
@@ -156,19 +157,20 @@
           Por ejemplo, si queremos guardar las calificaciones de 25 alumnos es más conveniente hacerlo en un arreglo de flotantes llamado "calificaciones" en lugar de declarar 25 variables de tipo flotante.}
         \end{itemize}
 
-        Muchos  de  los  ejemplos  de  este  manual,  incluso  aquellos  ingresados  en  el  prompt,  incluyen comentarios.  Los  comentarios  en  Python  comienzan  con  el  carácter  numeral, # ,  y  se  extienden  hasta  el final  físico  de  la  línea.  Un  comentario  quizás  aparezca  al  comienzo  de  la  línea  o  seguidos  de  espacios blancos  o  código,  pero  sin  una  cadena  de  caracteres. Ya  que  los  comentarios  son  para  aclarar  código  y  no  son interpretados por Python, pueden omitirse cuando se escriben ejemplos.\\
+        Muchos  de  los  ejemplos  de  este  manual,  incluso  aquellos  ingresados  en  el  prompt,  incluyen comentarios.  Los  comentarios  en  Python  comienzan  con  el  carácter  numeral, \# ,  y  se  extienden  hasta  el final  físico  de  la  línea.  Un  comentario  quizás  aparezca  al  comienzo  de  la  línea  o  seguidos  de  espacios blancos  o  código,  pero  sin  una  cadena  de  caracteres. Ya  que  los  comentarios  son  para  aclarar  código  y  no  son interpretados por Python, pueden omitirse cuando se escriben ejemplos.\\
 
     \begin{lstlisting}[language=Python]
-#Ejemplo de tipos de datos y la declaracion de variables
-#Este es un comentario, debe comenzar con el simbolo #
+# Ejemplo de tipos de datos y la declaracion de variables
+# Este es un comentario, debe comenzar con el simbolo #
 
->>> paloma_boton_azul = True    #Variable tipo booleana
->>> numero_mascotas = 3         #Variable de tipo entero
->>> promedio = 7.56             #Variable de tipo flotante
->>> Saludo = "Hola extraño.. :)"#Variable de tipo cadena
+paloma_boton_azul = True    # Variable tipo booleana
+numero_mascotas = 3         # Variable de tipo entero
+promedio = 7.56             # Variable de tipo flotante
+Saludo = "Hola humano... :)"# Variable de tipo cadena
 
-    #Variable de tipo arreglo
->>> calificaciones = [8.7, 9.7, 8.9, 8.1, 7.5, 6.8]
+
+#Variable de tipo arreglo
+calificaciones = [8.7, 9.7, 8.9, 8.1, 7.5, 6.8]
     \end{lstlisting}
 
     \newpage{}
@@ -187,7 +189,8 @@ if expresion_1 = = expresion_2:
     hacerAlgo()
 \end{lstlisting}
 
-    \\Para hablar de estructuras de control de flujo en Python, es imprescindible primero, hablar de identación. \textbf{¿Qué es la identación?} En un lenguaje informático, la identación es lo que la sangría al lenguaje humano escrito (a nivel formal).\\
+    \vspace{0.15in}
+    Para hablar de estructuras de control de flujo en Python, es imprescindible primero, hablar de identación. \textbf{¿Qué es la identación?} En un lenguaje informático, la identación es lo que la sangría al lenguaje humano escrito (a nivel formal).\\
 
     Así como para el lenguaje formal, cuando uno redacta una carta, debe respetar ciertas sangrías, los lenguajes informáticos, requieren una identación. No todos los lenguajes de programación, pero en el caso de Python, la identación es obligatoria, ya que de ella, dependerá su estructura.\\
 
@@ -195,23 +198,142 @@ if expresion_1 = = expresion_2:
 
 \begin{lstlisting}[language=Python]
 if expresion_1 = = expresion_2:
-    leerVariable          #Esto pasará si la comparacion
-    compararVariable      #de varibles es verdadera
+    leerVariable          # Esto pasara si la comparacion
+    compararVariable      # de varibles es verdadera
     imprimirMensaje
     multiplicarVariables
 
-imprimirMensajeFinal      #Esto ya no forma parte de la
-                          #estructura   if
+imprimirMensajeFinal      # Esto ya no forma parte de la
+                          # estructura   if
+\end{lstlisting}
+
+    En este ejemplo podemos observar que se verifica que la expresión\_1 sea igual que la expresión\_2. En caso de ser afirmativa la respuesta se ejecutarán las instrucciones indicadas por la \textbf{identación}. \textit{Es importante señalar que en este primer ejemplo, cuando las expresiones NO son iguales no se toma ninguna acción.} Esta observación es importante; pues esta primera estructura nos servirá cuando queremos evaluar una condicion y solo nos importen tomar acción en ese caso.\\
+
+    A continuación se enuncia un ejemplo en el cual nos interesa realizar una acción cuando las sentencias sean verdaderas y otro acción diferente cuando la sentencia NO sea verdadera.\\
+
+
+    La estrcutura if-else por su parte ofrece una alternativa de acción en caso que la sentecia a comparar sea falsa. Esta estructura puede declararse como se muestra a continuación:\\
+
+\begin{lstlisting}[language=Python]
+if expresion_1 = = expresion_2:
+    leerVariable          # Esto pasara si la comparacion
+    compararVariable      # de varibles es verdadera
+    imprimirMensaje
+    multiplicarVariables
+else
+    imprimirMensaje       # Esto pasara si la comparacion
+    terminarPrograma      # es falsa
+
+imprimirMensajeFinal      # Esto ya no forma parte de la
+                          # estructura   if
 \end{lstlisting}
 
 
-    \subsection{if-else anidados}
+    Como observamos en el ejemplo 2, primero evaluaremos que la expresión\_1 y la expresion\_2 sean iguales, si ocurre el caso en que ambos tengan el mismo valor se ejecutará la secuencia de pasos número\_1; en el caso contrario cuado la expresión\_1 y la expresión\_2 \textbf{NO} sean iguales se ejecutará la secuencia de pasos número\_2.\\
+
+    Con la finalidad de ser más claro con el lector a continuación se mencionan algunos ejemplos.\\
+
+\begin{lstlisting}[language=Python]
+# En este primer caso solo nos interesa realizar
+# una accion cuando la sentencia sea verdadera
+# Por lo tanto no lleva condicional else
+
+if velocidadAutomovil > 90:
+    multarCondutor          
+\end{lstlisting}
+  
+    En este primer caso no es relevante saber si el conductor va a una velocidad menor que la límite.\\
+
+\begin{lstlisting}[language=Python]
+# En este segundo caso nos interesa realizar
+# una accion cuando la sentencia sea verdadera
+# y otra accion cuando sea diferente
+
+if velocidadAutomovil > 90:
+    if edadConductor > 18:
+        multarConductor
+    else
+        llamarAlosPadres          
+\end{lstlisting}
+
+  En este ejemplo, nos interesa saber dos cosas: si el automóvil va a una velocidad mayor que la límite (en este caso 90 km/h) y si el conductor es menor o mayor de edad.\\
+
+  Hasta ahora ya hemos visto como preguntar si dos expresiones son iguales; sin embargo hay más comparaciones que podemos realizar. A continuación se enlistan los comparadores más comunes en Python.\\
+
+
+
+\begin{center}
+  \begin{tabular}{ |c|c|c|c| } 
+    \hline
+      \textbf{Simbolo}&\textbf{Significado} & \textbf{Ejemplo} & \textbf{Resultado} \\ 
+      ==    & igual que      &    89 == 7       & Falso\\ 
+      !=    & diferente      &    verde != rojo & Verdadero\\
+      $<$   & menor que      &    12.0 $<$ 12.5   & Verdadero\\
+      $>$   & mayor que      &    8 $>$ 10        & Falso\\
+      $<=$  & menor o igual que & 12 $<=$ 12      & Verdadero\\
+      $>=$  & mayor o igual que & 15 $>=$ 20      & Falso\\ 
+    \hline
+  \end{tabular}
+\end{center}
 
     \newpage{}
 
 
   \section{Ciclos condicionales}
+    A diferencia de las estructuras de control condicionales, las iterativas (también llamadas cíclicas o bucles), nos permiten \textit{ejecutar un mismo código, de manera repetida}, mientras se cumpla una condición.\\
+
+    En Python se dispone de dos estructuras cíclicas:
+
+    \begin{itemize}
+      \item{El bucle while}
+      \item{El bucle for}
+    \end{itemize}
+
+    Las veremos en detalle a continuación.\\
+
     \subsection{Ciclo while}
+      Este bucle, se encarga de ejecutar una misma acción \textbf{“mientras que”} una determinada condición se cumpla.\\
+
+      Ejemplo: \textit{Mientras que año sea menor o igual a 2017, imprimir la frase "Informe del año \_anio\_"}\\
+
+\begin{lstlisting}[language=Python]
+#Declaramos e inicializamos una variable
+anio = 2000
+
+while anio <= 2017:
+  print "Informe del ciclo ", str(anio)
+  anio = anio+1         
+\end{lstlisting}
+
+    Podemos notar que el ciclo while repetirá la impresión de un mensaje mientras que el valor de la variable anio sea menor o igual que 2017; además de realizar esta acción realizamos una acción más, el incremento de la variable en una unidad. \textbf{¿Que pasrá si no se incrementa esta variable?} la variable anio siempre tendrá un valor de 2000 y nunca saldrá del ciclo \textit{while}. El ejemplo anterior tendrá una salida similar a esta:\\
+
+\begin{lstlisting}[language=Python]
+Informe del ciclo 2000
+Informe del ciclo 2001
+Informe del ciclo 2002        
+Informe del ciclo 2003
+Informe del ciclo 2004
+.
+.
+
+.
+Informe del ciclo 2017
+\end{lstlisting}    
+
+    Pero, ¿Que sucede si el ciclo while es infinito o demasiado largo? Por ejemplo deseamos realizar un programa que pregunte al usuario su nombre y si la persona se llama $"$Eduardo$"$ imprimiremos un mensaje de felicitación. Para resolver situaciones de este tipo se emplea la instrucción $"break"$.\\
+
+\begin{lstlisting}[language=Python]
+while True:
+  nombre = raw_input("Indica tu nombre:  ")
+  if nombre == "Eduardo" :
+    break
+
+print "Hola Eduardo, bienvenido al sistema..."
+\end{lstlisting}    
+
+    En este caso el ciclo while se repetirá infinitamente. El ciclo consiste en preguntar el nombre de una persona y lo guarda en una variable llamada $"nombre"$, posteriormente verifica si el valor de la variable es igual a $"Eduardo"$, si la respuesta es afirmativa va a instrucción \textit{break} y sale del ciclo while. En caso que el nombre no sea igual a $"Eduardo"$ el programa seguirá ejecutando el ciclo while, preguntando infinitamente.\\ 
+
+
     \subsection{ciclo for}
 
     \newpage{}
