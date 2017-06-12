@@ -239,9 +239,9 @@ imprimirMensajeFinal      # Esto ya no forma parte de la
 # Por lo tanto no lleva condicional else
 
 if velocidadAutomovil > 90:
-    multarCondutor          
+    multarCondutor
 \end{lstlisting}
-  
+
     En este primer caso no es relevante saber si el conductor va a una velocidad menor que la límite.\\
 
 \begin{lstlisting}[language=Python]
@@ -253,7 +253,7 @@ if velocidadAutomovil > 90:
     if edadConductor > 18:
         multarConductor
     else
-        llamarAlosPadres          
+        llamarAlosPadres
 \end{lstlisting}
 
   En este ejemplo, nos interesa saber dos cosas: si el automóvil va a una velocidad mayor que la límite (en este caso 90 km/h) y si el conductor es menor o mayor de edad.\\
@@ -263,15 +263,15 @@ if velocidadAutomovil > 90:
 
 
 \begin{center}
-  \begin{tabular}{ |c|c|c|c| } 
+  \begin{tabular}{ |c|c|c|c| }
     \hline
-      \textbf{Simbolo}&\textbf{Significado} & \textbf{Ejemplo} & \textbf{Resultado} \\ 
-      ==    & igual que      &    89 == 7       & Falso\\ 
+      \textbf{Simbolo}&\textbf{Significado} & \textbf{Ejemplo} & \textbf{Resultado} \\
+      ==    & igual que      &    89 == 7       & Falso\\
       !=    & diferente      &    verde != rojo & Verdadero\\
       $<$   & menor que      &    12.0 $<$ 12.5   & Verdadero\\
       $>$   & mayor que      &    8 $>$ 10        & Falso\\
       $<=$  & menor o igual que & 12 $<=$ 12      & Verdadero\\
-      $>=$  & mayor o igual que & 15 $>=$ 20      & Falso\\ 
+      $>=$  & mayor o igual que & 15 $>=$ 20      & Falso\\
     \hline
   \end{tabular}
 \end{center}
@@ -302,7 +302,7 @@ anio = 2000
 
 while anio <= 2017:
   print "Informe del ciclo ", str(anio)
-  anio = anio+1         
+  anio = anio+1
 \end{lstlisting}
 
     Podemos notar que el ciclo while repetirá la impresión de un mensaje mientras que el valor de la variable anio sea menor o igual que 2017; además de realizar esta acción realizamos una acción más, el incremento de la variable en una unidad. \textbf{¿Que pasrá si no se incrementa esta variable?} la variable anio siempre tendrá un valor de 2000 y nunca saldrá del ciclo \textit{while}. El ejemplo anterior tendrá una salida similar a esta:\\
@@ -310,7 +310,7 @@ while anio <= 2017:
 \begin{lstlisting}[language=Python]
 Informe del ciclo 2000
 Informe del ciclo 2001
-Informe del ciclo 2002        
+Informe del ciclo 2002
 Informe del ciclo 2003
 Informe del ciclo 2004
 .
@@ -318,7 +318,7 @@ Informe del ciclo 2004
 
 .
 Informe del ciclo 2017
-\end{lstlisting}    
+\end{lstlisting}
 
     Pero, ¿Que sucede si el ciclo while es infinito o demasiado largo? Por ejemplo deseamos realizar un programa que pregunte al usuario su nombre y si la persona se llama $"$Eduardo$"$ imprimiremos un mensaje de felicitación. Para resolver situaciones de este tipo se emplea la instrucción $"break"$.\\
 
@@ -329,23 +329,140 @@ while True:
     break
 
 print "Hola Eduardo, bienvenido al sistema..."
-\end{lstlisting}    
+\end{lstlisting}
 
-    En este caso el ciclo while se repetirá infinitamente. El ciclo consiste en preguntar el nombre de una persona y lo guarda en una variable llamada $"nombre"$, posteriormente verifica si el valor de la variable es igual a $"Eduardo"$, si la respuesta es afirmativa va a instrucción \textit{break} y sale del ciclo while. En caso que el nombre no sea igual a $"Eduardo"$ el programa seguirá ejecutando el ciclo while, preguntando infinitamente.\\ 
+    En este caso el ciclo while se repetirá infinitamente. El ciclo consiste en preguntar el nombre de una persona y lo guarda en una variable llamada $"nombre"$, posteriormente verifica si el valor de la variable es igual a $"Eduardo"$, si la respuesta es afirmativa va a instrucción \textit{break} y sale del ciclo while. En caso que el nombre no sea igual a $"Eduardo"$ el programa seguirá ejecutando el ciclo while, preguntando infinitamente.\\
 
 
     \subsection{ciclo for}
+      El ciclo for en el lenguaje Python tiene cierta ventaja y diferencia con otros lenguajes. Podemos pensar que el ciclo For se define utilizando contadores y rangos en los cuales se ejecutaría el código del for.\\
+
+      A continuación la sintaxis de For en Python.\\
+
+La sintaxis es la siguiente:\\
+\begin{lstlisting}[language=Python]
+  for iterador in secuencia
+       #codigo a ejecutar
+\end{lstlisting}
+
+
+    Esto quiere decir que cuando usamos la sentencia For, tenemos la capacidad de recorrer una secuencia por medio de “iteraciones”, una secuencia como una lista o una simple cadena de texto, veamos un ejemplo para comprender mejor.\\
+
+    Si quisiéramos declarar una cadena de texto y recorrer cada uno de sus caracteres, podemos usar la sentencia For para ello.\\
+
+    Este programa recorrera cada letra de la cadena de texto “Hola!” y la imprimira en pantalla.\\
+
+    \begin{lstlisting}[language=Python]
+#!/usr/bin/python
+
+for letra in 'Hola!':
+  print 'Estamos en la letra :', letra
+
+
+Este seria el resultado:
+Estamos en la letra : H
+Estamos en la letra : o
+Estamos en la letra : l
+Estamos en la letra : a
+Estamos en la letra : !
+    \end{lstlisting}
+
+
+    \subsubsection{Iterar utilizando Indices (listas)}
+
+    También es posible hacer iteraciones con For utilizando indices de listas. Esto quiere decir que la variable iterada tendra el valor de un indice, algo así como un contador común y corriente.\\
+
+    Ejemplo:\\
+
+    \begin{lstlisting}[language=Python]
+#!/usr/bin/python
+autos = ['mercedez','BMW','Toyota']
+
+for indice in range(len(autos)) #range define un rango que es el tamano de la lista
+       print 'El auto es un ',autos[indice]
+
+
+
+En este ejemplo iteramos una lista de autos y  los accedemos utilizando el indice de la lista, el resultado seria:
+
+El auto es un mercedez
+El auto es un BMW
+El auto es un Toyota
+
+
+
+La equivalencia sin usar el indice seria la siguiente:
+#!/usr/bin/python
+
+autos = ['mercedez','BMW','Toyota']
+
+for auto in autos
+  print 'El auto es un ',auto
+    \end{lstlisting}
+
+
+    En cuyo caso la variable “auto” esta iterando la secuencia de la lista de autos, y toma el valor de cada uno de sus elementos dentro de esta lista.\\
 
     \newpage{}
 
   \section{Definición de funciones}
+    En Python, la definición de funciones se realiza mediante la instrucción \textbf{def} más un nombre de función descriptivo para el cuál, aplican las mismas reglas que para el nombre de las variables seguido de paréntesis de apertura y cierre. Como toda estructura de control en Python, la definición de la función finaliza con dos puntos (:) y el algoritmo que la compone, irá identado con 4 espacios:\\
 
-    \newpage{}
+\begin{lstlisting}[language=Python]
+def mi_funcion():
+    # aqui el algoritmo
+\end{lstlisting}
+
+\textbf{Una función, no es ejecutada hasta tanto no sea invocada. Para invocar una función, simplemente se la llama por su nombre:}\\
+
+\begin{lstlisting}[language=Python]
+def mi_funcion():
+    print "Hola Mundo"
+
+funcion()
+\end{lstlisting}
+
+Cuando una función, haga un retorno de datos, éstos, pueden ser asignados a una variable:\\
+
+\begin{lstlisting}[language=Python]
+def funcion():
+    return "Hola Mundo"
+
+frase = funcion()
+print frase
+\end{lstlisting}
 
 
-  \section{Estructuras definidas}
-    \subsection{Listas ordenadas}
-    \subsection{Diccionarios}
+
+    \subsubsection{Sobre los parámetros}
+
+    Un parámetro es un valor que la función espera recibir cuando sea llamada (invocada), a fin de ejecutar acciones en base al mismo. Una función puede esperar uno o más parámetros (que irán separados por una coma) o ninguno.\\
+
+\begin{lstlisting}[language=Python]
+def mi_funcion(nombre, apellido):
+    # algoritmo
+\end{lstlisting}
+
+    Los parámetros, se indican entre los paréntesis, a modo de variables, a fin de poder utilizarlos como tales, dentro de la misma función.\\
+
+    Los parámetros que una función espera, serán utilizados por ésta, dentro de su algoritmo, a modo de variables de ámbito local. Es decir, que los parámetros serán variables locales, a las cuáles solo la función podrá acceder:
+
+
+\begin{lstlisting}[language=Python]
+def mi_funcion(nombre, apellido):
+    nombre_completo = nombre, apellido
+    print nombre_completo
+\end{lstlisting}
+
+
+    En Python, también es posible, asignar valores por defecto a los parámetros de las funciones. Esto significa, que la función podrá ser llamada con menos argumentos de los que espera:\\
+
+\begin{lstlisting}[language=Python]
+def saludar(nombre, mensaje='Hola'):
+    print mensaje, nombre
+
+saludar('Pepe Grillo') # Imprime: Hola Pepe Grillo
+\end{lstlisting}
 
     \newpage{}
 
