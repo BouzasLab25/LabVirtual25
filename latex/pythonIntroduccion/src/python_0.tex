@@ -467,9 +467,200 @@ saludar('Pepe Grillo') # Imprime: Hola Pepe Grillo
     \newpage{}
 
 
+
+
+%%% ###############################
+%%% Sección de librerías
   \section{Librerías}
     \subsection{numpy}
+
+
+NumPy es una extensión de Python, que le agrega mayor soporte para vectores y matrices, constituyendo una biblioteca de funciones matemáticas de alto nivel para operar con esos vectores o matrices. El objeto principal de NumPy es el array multidimensional homogéneo. Es una tabla de elementos (habitualmente números), todos del mismo tipo, indexados por una tupla de enteros positivos. En NumPy las dimensiones se llaman ejes. El número de ejes es el rango.\\
+
+Hay muchas formas de crear un array NumPy. Por ejemplo:\\
+
+\begin{lstlisting}[language=Python]
+# Esta linea es muy importante, con ella importamos la libreria y todos sus
+# metodos para trabajar con ella.
+import numpy as np
+
+a = np.array([1, 2, 3, 4])
+b = np.array([(1.5, 2, 3), (4, 5, 6)])
+c = np.zeros( (3, 4) )
+d = np.arange( 1, 10, 2 )
+print a
+print b
+print c
+print d
+
+[1 2 3 4]
+[[ 1.5  2.   3. ]
+ [ 4.   5.   6. ]]
+[[ 0.  0.  0.  0.]
+ [ 0.  0.  0.  0.]
+ [ 0.  0.  0.  0.]]
+[1 3 5 7 9]
+
+\end{lstlisting}
+
+
+Los índices comienzan en cero. El índice -1 da el último elemento del array.\\
+
+
+\begin{lstlisting}[language=Python]
+print a[0], b[0,0], b[0][0]
+print d[-1]
+
+
+
+1 1.5 1.5
+9
+\end{lstlisting}
+
+
+ndim: número de dimensiones del array\\
+
+shape: número de elementos en cada dimensión\\
+
+\begin{lstlisting}[language=Python]
+print 'dim = ', b.ndim, '; shape = ', b.shape
+
+dim =  2 ; shape =  (2, 3)
+\end{lstlisting}
+
+Usaremos principalmente los tipos estandar int* y float* (además de otros tipos estandar como boolean):\\
+
+\begin{lstlisting}[language=Python]
+print a.dtype
+print b.dtype
+
+int64
+float64
+
+\end{lstlisting}
+
+
+  \subsubsection{Operaciones básicas}
+
+Los operadores aritméticos se aplican en los arrays elemento a elemento. ¡En las listas Python funcionan de forma diferente!\\
+
+\begin{lstlisting}[language=Python]
+a = np.array([1, 2, 3, 4])
+b = np.array([(1.5, 2, 3, PI)])
+print a+b
+a1 = [1, 2, 3, 4]
+b1 = [1.5, 2, 3, PI]
+print a1+b1
+
+[[ 2.5         4.          6.          7.14159265]]
+[1, 2, 3, 4, 1.5, 2, 3, 3.141592653589793]
+\end{lstlisting}
+
+
+\textbf{A diferencia de otros lenguajes, el operador * se aplica elemento a elemento en los arrays NumPy. El producto de matrices se realiza utilizando la función dot:}
+
+\begin{lstlisting}[language=Python]
+A = np.array( [[1, 1], [0, 1]] )
+B = np.array( [[2, 3], [1, 4]] )
+print A*B
+print A.dot(B)
+print np.dot(A,B)
+
+[[2 3]
+ [0 4]]
+[[3 7]
+ [1 4]]
+[[3 7]
+ [1 4]]
+\end{lstlisting}
+
+
+
+\subsubsection{Funciones elementales}
+
+NumPy contiene las funciones matemáticas elementales con sus nombres habituales. Por ejemplo
+
+\begin{lstlisting}[language=Python]
+print np.sin(PI/2)
+print np.exp(-1)
+print np.arctan(np.inf)
+print np.sqrt(4)
+
+
+1.0
+0.367879441171
+1.57079632679
+2.0
+\end{lstlisting}
+
+
+
+  %%% #################   Matplotlib  ####################
+
+    \newpage{}
     \subsection{matplotlib}
+
+Usamos el paquete Matplotlib para hacer plots sencillos. La segunda línea del código siguiente se usa sólo en Notebooks pero no en línea de comando o en Spyder.
+
+\begin{lstlisting}[language=Python]
+import matplotlib.pyplot as plt
+%matplotlib inline
+\end{lstlisting}
+
+\textbf{Plot en una dimensión.}\\
+
+\begin{lstlisting}[language=Python]
+plt.figure(1)
+plt.plot(x,f(x))                   # dibujar la funcion
+plt.plot(x,OX,'k-')                # dibujar el eje X
+plt.xlabel('x')
+plt.ylabel('y')
+plt.show()
+\end{lstlisting}
+
+\begin{figure}[ht]
+        \centering
+        \includegraphics[width=10.5cm, height=7cm]{/plot_1.png}
+\end{figure}
+
+
+\begin{lstlisting}[language=Python]
+plt.figure(2)
+plt.plot(x,np.sin(2*x),x,np.cos(3*x))
+plt.xlabel('x')
+plt.ylabel('y')
+plt.title('El seno y el coseno')
+plt.show()
+\end{lstlisting}
+
+\begin{figure}[ht]
+        \centering
+        \includegraphics[width=8.5cm, height=7cm]{/seno_coseno.png}
+\end{figure}
+
+
+\newpage{}
+\textbf{Plot en dos dimensiones}\\
+
+\begin{lstlisting}[language=Python]
+# Malla en el cuadrado [-1,1]x[-1,1]
+x = np.linspace( -1, 1, 30)     # columnas (Ancho)
+y = np.linspace( -1, 1, 30)     # filas (alto)
+
+[X,Y] = np.meshgrid(x,y)
+A = np.exp(-(X**2+Y**2)/10)
+
+plt.imshow(A);
+\end{lstlisting}
+
+\begin{figure}[ht]
+        \centering
+        \includegraphics[width=8.5cm, height=7cm]{/2_dimensions.png}
+\end{figure}
+
+
+
+
     \subsection{scipy}
 
 
