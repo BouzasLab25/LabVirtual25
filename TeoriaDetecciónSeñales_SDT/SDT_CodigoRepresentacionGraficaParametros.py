@@ -9,6 +9,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import matplotlib.mlab as mlab
 import math
+import scipy			            #Librería para hacer distribuciones de probabilidad
 import scipy.stats
 
 
@@ -35,8 +36,10 @@ plt.xlabel('Evidencia')
 plt.ylabel('Probabilidad')
 plt.text(0,0.41, 'Ruido', ha='center', va='bottom')
 plt.text(d,0.41, 'Senal', ha='center', va='bottom')
-plt.fill_between(x, 0, scipy.stats.norm(d,1).pdf(x), facecolor='blue', alpha=0.5)
-plt.fill_between(x, 0, scipy.stats.norm(0,1).pdf(x), facecolor='gray', alpha=0.5)
+plt.fill_between(x, 0, scipy.stats.norm(0,1).pdf(x), facecolor='yellow', alpha=0.3) 
+plt.fill_between(x, 0, scipy.stats.norm(d,1).pdf(x), facecolor='blue', alpha=0.3)
+intersection = (scipy.stats.norm(0,1).pdf(x) == scipy.stats.norm(d,1).pdf(x))
+plt.fill_between([-2,4], 0, intersection,facecolor='gray', alpha=0.5)
 plt.title('Representacion Grafica TDS',fontweight='bold')
 plt.show()
 

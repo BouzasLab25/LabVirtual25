@@ -5,7 +5,7 @@ Created on Mon Oct 03 15:25:42 2016
 @author: Felisa & Edgar
 """
 #Cargamos las librerias necesarias
-from matplotlib.widgets import Slider, Button  #Bajamos la libreria para hacer Sliders
+from matplotlib.widgets import Slider  #Bajamos la libreria para hacer Sliders
 import matplotlib.pyplot as plt #Bajamos la libreria para hacer graficas
 
 #Definimos los valores iniciales, con los que va a correr el simulador 'por default'

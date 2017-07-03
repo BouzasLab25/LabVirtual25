@@ -6,10 +6,10 @@
 rm(list=ls())  #Limpiamos el espacio de trabajo
 
 #####Datos a graficar#####
-h<-133  #Numero crudo de Hits
-f<-52   #Numero de Falsas Alarmas
-h_rate<-h/150      #Tasa de Hits relativo al total de Ensayos con Se??al
-fa_rate<-f/150     #Tasa de Falsas Alarmas relativa al total de Ensayos con Ruido
+h<-90  #Numero crudo de Hits
+f<-20   #Numero de Falsas Alarmas
+h_rate<-h/100      #Tasa de Hits relativo al total de Ensayos con Se??al
+fa_rate<-f/100     #Tasa de Falsas Alarmas relativa al total de Ensayos con Ruido
 
 #####Estimaci??n Param??trica#####
 k<-qnorm(1-fa_rate,0,1)   #Calculamos la localizacion del Criterio
@@ -39,6 +39,7 @@ text(-5,0.34,paste("C = ",c))  #Imprimimos el valor del Sesgo C
 text(-4,0.29,paste("D' = ",d)) #Imprimimos el valor de la distancia entre las medias (D')
 text(-5,0.24,paste("Hit Rate = ",h_rate))            #Especificamos la Tasa de Hits
 text(-4,0.19,paste("False alarm Rate = ",fa_rate))   #Especificamos la Tasa de Falsas Alarmas
+text(-4,0.13,paste("Beta = ",beta))   #Especificamos la Tasa de Falsas Alarmas
 
 
 ############ Curvas ROC
