@@ -104,8 +104,8 @@ def update(adri):          # Creamos una funcion para actualizar nuestra grafica
     c_ = k_-(d_/2)
     yes = np.arange(k_, 6.0, 0.01)       #A partir de la ubicacion del slider, definimos cual es el espacio de ‘respuestas afirmatorias’
     no = np.arange(-6.0, k_, 0.01)       #y definimos el espacio de ‘respuestas negativas’ antes del slider
-    yes_ideal = np.arange(k, 6.0, 0.01)       #A partir de la ubicacion del slider, definimos cual es el espacio de ‘respuestas afirmatorias’
-    no_ideal = np.arange(-6.0, k, 0.01)       #y definimos el espacio de ‘respuestas negativas’ antes del slider
+    yes_ideal = np.arange((d_/2), 6.0, 0.01)       #A partir de la ubicacion del slider, definimos cual es el espacio de ‘respuestas afirmatorias’
+    no_ideal = np.arange(-6.0,(d_/2), 0.01)       #y definimos el espacio de ‘respuestas negativas’ antes del slider
     pHit = 1-scipy.stats.norm(d_,1).cdf(k_)
     pFA = 1-scipy.stats.norm(0,1).cdf(k_)
     pMiss = scipy.stats.norm(d_,1).cdf(k_)
@@ -159,10 +159,10 @@ def update(adri):          # Creamos una funcion para actualizar nuestra grafica
     ax[1].text(0.2, 0.60, 'Omisiones', color='#003797', ha='center', va='bottom', fontsize=10, fontweight='bold')   
     ax[1].text(2.3, 0.60, 'FalsasAlarmas', color='#D3A519', ha='center', va='bottom', fontsize=10, fontweight='bold')   
     ax[1].text(4.05, 0.6, 'Hits', ha='center', color='#188A5B', va='bottom', fontsize=10)   
-    ax[1].text(-1.6, 0.57, '(%.2f)' %scipy.stats.norm(0,1).cdf(k_), color='#C81BE2', ha='center', va='bottom', fontsize=10)     #Calculamos y escribimos cuál es el área bajo la curva que corresponde a los Rechazos
-    ax[1].text(0.2, 0.57, '(%.2f)' %scipy.stats.norm(d_,1).cdf(k_), color='#003797', ha='center', va='bottom', fontsize=10)      #Especificamos el área bajo la curva que corresponde a las Omisiones
-    ax[1].text(2.3, 0.57, '(%.2f)' %(1-scipy.stats.norm(0,1).cdf(k_)), color='#D3A519', ha='center', va='bottom', fontsize=10)  #Especificamos el área bajo la curva que corresponde a las Falsas Alarmas
-    ax[1].text(4.05, 0.57, '(%.2f)' %(1-scipy.stats.norm(d_,1).cdf(k_)), ha='center', color='#188A5B', va='bottom', fontsize=10) #Especificamos el área bajo la curva que corresponde a los Hits
+    ax[1].text(-1.6, 0.57, '(%.2f)' %scipy.stats.norm(0,1).cdf(d_/2), color='#C81BE2', ha='center', va='bottom', fontsize=10)     #Calculamos y escribimos cuál es el área bajo la curva que corresponde a los Rechazos
+    ax[1].text(0.2, 0.57, '(%.2f)' %scipy.stats.norm(d_,1).cdf(d_/2), color='#003797', ha='center', va='bottom', fontsize=10)      #Especificamos el área bajo la curva que corresponde a las Omisiones
+    ax[1].text(2.3, 0.57, '(%.2f)' %(1-scipy.stats.norm(0,1).cdf(d_/2)), color='#D3A519', ha='center', va='bottom', fontsize=10)  #Especificamos el área bajo la curva que corresponde a las Falsas Alarmas
+    ax[1].text(4.05, 0.57, '(%.2f)' %(1-scipy.stats.norm(d_,1).cdf(d_/2)), ha='center', color='#188A5B', va='bottom', fontsize=10) #Especificamos el área bajo la curva que corresponde a los Hits
     ax[1].text(0, 0.42, 'Ruido', ha='center', va='bottom')    #Identificamos la Distribucion de Ruido con una etiqueta
     ax[1].text(d_, 0.42, 'Senal', ha='center', va='bottom')    #Etiqueta para la Distribucion de Senal
     ax[1].text((d/2), 0.5, 'C = %.4f' %c_, ha='center', va='bottom', color = 'red')      #Colocamos una etiqueta a la distribucion de Senal
