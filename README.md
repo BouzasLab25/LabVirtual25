@@ -17,12 +17,21 @@ Requisitos:
 Colaboradores:
 
 *Marco Antonio Negrete Villanueva;
-*Adriana Felisa Chávez De la Peña;
+
 *Edgar De Jesús Vázquez Silva;
+
 *Alfonso Medina Velázquez;
+
 *José Manuel Niño García;
+
 *Stéphane Lejars Clorio;
+
 *Uriel Omar González Bravo;
+
 *Yuznhio Sierra Casiano;
+
 *Jose Luis Baroja Manzano;
+
 *Jesus Manuel Ulloa Villareal.
+
+*Adriana Felisa Chávez De la Peña;
