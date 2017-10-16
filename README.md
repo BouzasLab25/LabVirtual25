@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Yummy Jekyll Theme
 
 A Simple, Bootstrap Based Theme. Especially for developers who like to show their projects on website and like to take notes. There are also some magical features to discover. 
@@ -138,6 +137,3 @@ The Apache License 2.0
 Copyright (c) 2016 DONG Chuan
 
 Check [LICENSE](https://github.com/DONGChuan/DONGChuan.github.io/blob/master/LICENSE) file and [official website](http://www.apache.org/licenses/LICENSE-2.0) for details
-=======
-Blablabla
->>>>>>> e3d0d9fb3823f33514059d01b4b3adccdca1ddcc
