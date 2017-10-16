@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Welcome to Jekyll!
 #
 # This config file is meant for settings that affect your whole blog, values
@@ -91,3 +92,24 @@ skill_software_keywords: [Java, C, C++, Qt, Python, MySQL, Oracle, SQLite, PL/SQ
 skill_j2ee_keywords: [Spring, Struct, Hibernet, MyBatis, JSP]
 skill_web_keywords: [HTML, CSS, JS, JQuery, Ajax, AngularJS, NodeJS, ExpressJS, MongoDB, Redis, PHP, Symfony, Boostrap]
 skill_mobile_app_keywords: [Android, Sketch UI Desgin]
+
+#title: Laboratorio Virtual para las Ciencias Cognitivas y del Comportamiento
+#description: Proyecto PAPIME; Laboratorio 25
+
+#baseurl: "/cayman-blog" # change this to the subpath of your site, e.g. /blog. Leave it empty if you don't need it.
+#url: "https://lorepirri.github.io" # change this to the base hostname & protocol for your site
+
+# social
+#author: "Lore Pirri"
+#image: /thumbnail-jumbo.png
+#twitter:
+#  username: lorepirri
+#  site:
+#facebook:
+  #publisher: 1592372034171500
+  #profile_id: 1809805629
+  #app_id: 1798910940422432 # cayman-blog
+  #authors: lorepirri
+#  admins:
+
+#theme: jekyll-theme-cayman
