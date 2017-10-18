@@ -1,2 +1,3 @@
-# PAPIME2016
-Material virtual desarrollado como apoyo en la enseñanza de los principales modelos matemáticos y estadísticos en Psicología
+# Proyecto PAPIME - Lab25
+
+Sitio Web del Laboratorio Virtual en Python para la Enseñanza de los modelos más importantes en Psicología Experimental.
