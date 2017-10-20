@@ -4,7 +4,7 @@
 # 'jekyll serve'. If you change this file, please restart the server process.
 
 # Site settings
-title: Herramientas virtuales para la enseñanza en CCC
+title: Laboratorio virtual para las Ciencias del Comportamiento
 name: Lab 25
 email: adrifelcha@gmail.com
 location: Facultad de Psicología
@@ -12,7 +12,7 @@ company: UNAM
 #company_url: my_company_website
 #github_url: my_github_url # ex. https://github.com/DONGChuan
 #github_username: # ex. DONGChuan
-description: Materiales desarrollados por los estudiantes del Laboratorio 25 (Dr. Arturo Bouzas) de la Facultad de Psicología, UNAM.
+description: Materiales desarrollados por los estudiantes del Laboratorio 25 (Dr. Arturo Bouzas) de la Facultad de Psicología, UNAM, para facilitar la enseñanza y el aprendizaje de los principales modelos de la Psicolgía Experimental.
 #favicon: favicon.png # Image must be in assets/images
 #repository: github_username/github_username.github.io # ex. DONGChuan/DONGChuan.github.io
 
