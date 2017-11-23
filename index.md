@@ -14,6 +14,7 @@ Esta página es una extensión de la [Página oficial del Lab 25](https://bouzas
 - Edgar de Jesús Vázquez Silva
 - Uriel Omar González Bravo
 - José Manuel Niño García
+- Elena Villalobos Nolasco
 - Marco Antonio Negrete Villanueva
 - Alfonso Medina Velázquez
 - Yuznhio Sierra Casiano
