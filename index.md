@@ -1,5 +1,3 @@
-**_This website was specifically designed for the students of Dr. Arturo Bouzas at UNAM and therefore, it's only available in Spanish_**
-
 # Bienvenidos!
 
 En este sitio web tendrán acceso (para su consulta en línea o descargas) al material virtual preparado por los estudiantes del Laboratorio 25 para facilitar la enseñanza y el aprendizaje de los modelos más importantes en el desarrollo de las Ciencias Cognitivas y del Comportamiento.
