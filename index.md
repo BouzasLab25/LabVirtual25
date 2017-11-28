@@ -9,7 +9,7 @@ Esta página es una extensión de la [Página oficial del Lab 25](https://bouzas
 
 **Estudiantes:**
 - Adriana Felisa Chávez De la Peña
-- Edgar de Jesús Vázquez Silva
+- Edgar De Jesús Vázquez Silva
 - Uriel Omar González Bravo
 - José Manuel Niño García
 - Elena Villalobos Nolasco
