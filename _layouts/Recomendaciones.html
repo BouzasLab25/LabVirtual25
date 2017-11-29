@@ -9,6 +9,21 @@
   <link rel="icon" href="http://adrifelcha.github.io/faviconMouse.png">
     <meta charset="UTF-8">
 
+<style>
+	.column {
+    float: left;
+    width: 33.33%;
+    padding: 10px;
+    height: 300px; 
+}
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+	  </style>
+	  
 {% seo %}
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#157878">
@@ -30,12 +45,7 @@
 	 <a href="http://bouzaslab25.com/PAPIME2016/" class="w3-btn w3-pale-blue w3-disabled w3-button w3-xlarge w3-hover-dark-grey w3-round-large"><i class="fa fa-book" aria-hidden="true"></i> Material Recomendado <i class="fa fa-book" aria-hidden="true"></i></a>
 	    </center>	
       {% endif %}
-    </section>
-	  <br>
-    	  <center>
-	  <hr>
-        </center>
-
+    </section>	  
     <section class="main-content">
       {{ content }}
 
