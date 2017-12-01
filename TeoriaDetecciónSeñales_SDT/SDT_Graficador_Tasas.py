@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 Created on Wed Oct 12 16:47:32 2016
-@author: Adriana Felisa
+@author: AdriFelCha (Adriana Felisa)
 """
 
 #########################################

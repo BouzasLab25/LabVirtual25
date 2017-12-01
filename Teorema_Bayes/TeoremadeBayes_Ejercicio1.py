@@ -2,7 +2,7 @@
 """
 Created on Fri Sep 30 13:33:09 2016
 
-@author: Felisa
+@author: AdriFelCha
 """
 #Cargamos las librerias necesarias 
 from matplotlib.pylab import hist, show  #Importar la propiedad de histograma y mostrar, desde la libreria matplotlib
@@ -63,6 +63,9 @@ NoVeneno_Fresa = 30.0 #y 30 de fresa
 Verosim_Vainilla_NoVeneno = NoVeneno_Vainilla/Tartas_NoVeneno #La probabilidad de sacar una tarta de vainilla NO envenenada se expresa como una razon
 Verosim_Fresa_NoVeneno = NoVeneno_Fresa/Tartas_NoVeneno #La probabilidad de sacar una tarta de fresa NO envenenada
 Verosimilitud_B = Verosim_Vainilla_NoVeneno #La verosimilitud que relaciona la Tarta de Vainilla con el lote de tartas NO envenenadas, corresponde a la probabilidad de sacar una tarta de fresa de dicho monton
+
+
+
 #Graficamos la Verosimilitud
 Verosimilitudes =[Verosim_Vainilla_Veneno, Verosim_Fresa_Veneno,Verosim_Vainilla_NoVeneno, Verosim_Fresa_NoVeneno] #Creamos un arreglo quecontenga la verosimilitud que relaciona todos los datos posibkles (Sacar una tarta de vainilla o fresa) con los distintos escenarios contemplados (Veneno o No veneno)
 plt.bar(0.4,Verosimilitudes[0],facecolor='#0B63AB', width=2) #Dibujamos la barra que corresponde a la probabilidad de sacar una tarta de Vainilla del lote Envenenado
@@ -81,7 +84,7 @@ plt.xlim(0,14) #Especificamos el espacio sobre el cual vamos a dibujar nuestras 
 plt.xticks([1.3,4.5,8.5,12.5], ['Vainilla|Veneno','Fresa|Veneno', 'Vainilla|No Veneno','Fresa|No Veneno']) #Pobemos un titulo a cada Barra, especificando la ubicacion donde se escribira
 plt.margins(0.2) 
 plt.subplots_adjust(bottom=0.15)
-show()
+show()  
 
 #Calculamos la verosimilitud marginal
 #Escribimos tal cual la ecuacion revisada en el capitulo donde se define la verosimilitud marginal
@@ -107,3 +110,4 @@ plt.xticks([1,2], Eventos_Posibles)
 plt.margins(0.2)
 plt.subplots_adjust(bottom=0.15)
 show()
+
