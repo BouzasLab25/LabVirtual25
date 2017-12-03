@@ -16,6 +16,8 @@ Requisitos:
 
 Colaboradores:
 
+*Adriana Felisa Chávez De la Peña;
+
 *Marco Antonio Negrete Villanueva;
 
 *Edgar De Jesús Vázquez Silva;
@@ -30,8 +32,3 @@ Colaboradores:
 
 *Yuznhio Sierra Casiano;
 
-*Jose Luis Baroja Manzano;
-
-*Jesus Manuel Ulloa Villareal.
-
-*Adriana Felisa Chávez De la Peña;
