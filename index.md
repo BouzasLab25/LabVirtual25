@@ -17,3 +17,5 @@ Esta página es una extensión de la [Página oficial del Lab 25](http://www.bou
 - Alfonso Medina Velázquez
 - Yuznhio Sierra Casiano
 - Stéphane Lejars Clorio
+
+**Administradora y responsable del Sitio Web:** Adriana Felisa Chávez De la Peña
