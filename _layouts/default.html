@@ -71,15 +71,12 @@ a.dark {
     color: #2E2E2E;
 }
 	
-h1, h2, h3, h4, h5 {
-    color: #086A87;
-}
-	  </style>
+  </style>
 	  
   </head>
   <body>
     <header>
-      <h1 class="project-name" color:"white">{{ site.title | default: site.github.repository_name }}</h1>
+      <h1 class="project-name">{{ site.title | default: site.github.repository_name }}</h1>
       <h2 class="project-tagline">{{ site.description | default: site.github.project_tagline }}</h2>
       {% if site.github.is_project_page %}
 	    <center>
