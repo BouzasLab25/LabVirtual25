@@ -51,7 +51,7 @@ ui <- dashboardPage(
                               HTML('<h4 style="text-align: justify;">En función a la correspondencia entre la presencia o asuencia de la señal en el mundo y el juicio de elección emitido por el organismo, podemos identificar dos grandes tipos de aciertos y errores. </h3>'),
                               tags$img(height=100, 
                                        width=100,
-                                       src = "https://github.com/BouzasLab25/LabVirtual25/blob/Apps/Apps%20Felisa/SDT_Outcomes.png"),
+                                       src = "https://github.com/BouzasLab25/LabVirtual25/blob/Apps/AppsFelisa/SDT_Outcomes.jpg"),
                               HTML('<h2 style="text-align:center; color:purple;">Por Ejemplo:</h2>'),
                               fluidRow(box(HTML('<h4>a) Si yo sé cuál es  <b>la estatura promedio</b> de las mujeres en mi familia, ¿qué predicciones puedo hacer sobre la estatura que tendrá mi sobrina recién nacida cuando crezca?.</h4>')),
                                        box(tags$br(),
