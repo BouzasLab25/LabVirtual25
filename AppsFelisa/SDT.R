@@ -52,14 +52,10 @@ ui <- dashboardPage(
                               tags$img(height=100, 
                                        width=100,
                                        src = "https://github.com/BouzasLab25/LabVirtual25/blob/Apps/AppsFelisa/SDT_Outcomes.jpg"),
-                              wellPanel(sliderInput(inputId="mean", 
-                                                    label = "Media",
-                                                    value=0, min=1.60, max=1.80,
-                                                    step= 0.05),
-                                        sliderInput(inputId="dev", 
-                                                    label = "DesviaciÃ³n EstÃ¡ndar",
-                                                    value=3, min=.01, max=.1,
-                                                    step=.02))),
+                              wellPanel(sliderInput(inputId="crit", 
+                                                    label = "Criterio",
+                                                    value=0, min=-4, max=5,
+                                                    step= 0.05))),
                        column(width=5, offset = 0, 
                               HTML('<h2 style="text-align:center; color:purple;"><b>Por Ejemplo:</b></h2>'),
                               HTML('<hr style="border: 0; height: 1px; background-image: -webkit-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0); background-image: -moz-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0); background-image: -ms-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0); background-image: -o-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);"'),
@@ -68,17 +64,16 @@ ui <- dashboardPage(
                               HTML('<h4 style="text-align:justify;">Por la experiencia que ha adquirido, esta presa sabe que 1) no siempre que un depredador se acerca, este hace el mismo ruido y 2)los depredadores no son lo único que causan ruido en la maleza.</h4>'),
                               HTML('<h4 style="text-align:justify;">Si la presa decide que el ruido podría ser una amenaza y sale corriendo, pueden ocurrir dos cosas: si acierta, salva su vida y si se equivoca, habrá desperdiciado energía que pudiese haber utilizado en buscar alimento.</h4>'),
                               HTML('<h4 style="text-align:justify;">Por otro lado, si la presa decide que el ruido no fue una amenaza y se queda en su lugar, puede ser el caso que no gane ni pierda nada, si acierta, o en el peor de los casos, si comete una omisión, muera devorado.</h4>'),
-                              plotOutput(outputId="normal")))
-              #box(plotOutput(outputId="normal"), verbatimTextOutput("stats")))
-      ),
+                              plotOutput(outputId="sdt_inicial")))
+                    ),
       
       # Second tab content
-      tabItem(tabName = "media",
-              fluidRow(HTML('<h1 style="text-align:center; color:purple;"><b><u>TeorÃ�a de DetecciÃ³n de SeÃ±ales</u></b></h1>'),
-                       HTML('<p style="text-align:center;"><b>por Adriana F. ChÃ¡vez</b></p>')),
+      tabItem(tabName = "about",
+              fluidRow(HTML('<h1 style="text-align:center; color:purple;"><b><u>Teoría de Detección de Señales</u></b></h1>'),
+                       HTML('<p style="text-align:center;"><b>por Adriana F. Chávez</b></p>')),
               
               fluidRow(column(width=5, offset = 1, background = 'yellow',
-                              HTML('<h1 style="text-align:center; color:purple;"><b>La Media</b></h1>'),
+                              HTML('<h1 style="text-align:center; color:purple;"><b>Más sobre el modelo</b></h1>'),
                               HTML('<hr style="border: 0; height: 1px; background-image: -webkit-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0); background-image: -moz-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0); background-image: -ms-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0); background-image: -o-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);"'),
                               HTML('<h3 style="text-align:justify;"> La media no es otra cosa que el <b>promedio</b> de los valores registrados para cierta variable.</h3>'),
                               tags$br(),
@@ -112,87 +107,31 @@ ui <- dashboardPage(
                        column(width=5, offset = 0, plotOutput(outputId="media")))
       ),
       
-      tabItem(tabName = "desv",
-              fluidRow(HTML('<h1 style="text-align:center; color:purple;"><b><u>TeorÃ�a de DetecciÃ³n de SeÃ±ales</u></b></h1>'),
-                       HTML('<p style="text-align:center;"><b>por Adriana F. ChÃ¡vez</b></p>')),
-              fluidRow(column(width=5, offset = 1, background = 'yellow',
-                              HTML('<h1 style="text-align:center; color:purple;"><b>La DesviaciÃ³n EstÃ¡ndar</b></h1>'),
-                              HTML('<hr style="border: 0; height: 1px; background-image: -webkit-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0); background-image: -moz-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0); background-image: -ms-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0); background-image: -o-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);"'),
-                              HTML('<h3 style="text-align:justify;"> La desviaciÃ³n estÃ¡ndar es una <b>medida de dispersiÃ³n</b> de los valores registrados, que nos informa quÃ© tanto se alejan estos de la <b>media</b>.</h3>'),
-                              HTML('<h3 style="text-align:justify;"> La <b>desviaciÃ³n estÃ¡ndar</b> se define como <b>la raÃ�z cuadrada de la varianza</b>.</h3>'),
-                              tags$br(),
-                              tags$br(),
-                              HTML('<h2 style="text-align:center; color:purple;"><b>La varianza</b>.</h2>'),
-                              HTML('<h3 style="text-align:justify;"> La varianza estÃ¡ definida como <b>el promedio de las diferencias cuadradas entre cada valor individual, y la media</b> de la muestra Ã³ poblacion de donde se estrajo.</h3>'),
-                              fluidRow(column(width=2, offset=1,
-                                              wellPanel(numericInput(inputId="val_1", 
-                                                                     label = "Dato 1",
-                                                                     value=1, min=0, max=10,
-                                                                     width='150px'))),
-                                       column(width=2, 
-                                              wellPanel(numericInput(inputId="val_2", 
-                                                                     label = "Dato 2",
-                                                                     value=1, min=0, max=10,
-                                                                     width='150px'))),
-                                       column(width=2,
-                                              wellPanel(numericInput(inputId="val_3", 
-                                                                     label = "Dato 3",
-                                                                     value=1, min=0, max=10,
-                                                                     width='150px'))),
-                                       column(width=2, 
-                                              wellPanel(numericInput(inputId="val_4", 
-                                                                     label = "Dato 4",
-                                                                     value=1, min=0, max=10,
-                                                                     width='150px'))),
-                                       column(width=2,
-                                              wellPanel(numericInput(inputId="val_5", 
-                                                                     label = "Dato 5",
-                                                                     value=1, min=0, max=10,
-                                                                     width='150px')))),
-                              HTML('<h4 style="text-align: justify;">La media funciona como una <b>medida de tendencia central</b> que permite describir en torno a quÃ© valor se distribuyen las observaciones de cierta variable.</h3>'),
-                              HTML('<h4 style="text-align: justify;">La DistribuciÃ³n Normal es muy utilizada en las ciencias sociales y naturles, pues permiten describir la forma en que los <b>valores</b> observados en ciertas <b>variables</b> se distribuyen al rededor de su <b>media</b> (<i>a.k.a. el promedio de las observaciones recopiladas</i>).</h3>')),
-                       column(width=5, offset = 0, plotOutput(outputId="desviacion")))
-              
-      ),
+      tabItem(tabName = "roc",
+              fluidRow(HTML('<h1 style="text-align:center; color:purple;"><b><u>Teoría de Detección de Señales</u></b></h1>'),
+                       HTML('<p style="text-align:center;"><b>por Adriana F. Chávez</b></p>'))),
       
-      tabItem(tabName = "prop",
-              fluidRow(HTML('<h1 style="text-align:center; color:purple;"><b><u>TeorÃ�a de DetecciÃ³n de SeÃ±ales</u></b></h1>'),
-                       HTML('<p style="text-align:center;"><b>por Adriana F. ChÃ¡vez</b></p>')),
-              fluidRow(column(width=5, offset = 1, background = 'yellow',
-                              HTML('<h1 style="text-align:center; color:purple;"><b>Propiedades</b></h1>'),
-                              HTML('<hr style="border: 0; height: 1px; background-image: -webkit-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0); background-image: -moz-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0); background-image: -ms-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0); background-image: -o-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);"'),
-                              HTML('<h3 style="text-align:justify;"> TambiÃ©n llamada <b>Curva Normal</b> o <b>Campana de Gauss</b>, una distribuciÃ³n de probabilidad Normal estÃ¡ definida por los siguientes parÃ¡metros:</h3>'),
-                              HTML('<h4 style="text-align: justify;">Se trata de una <b>distribuciÃ³n de probabilidad continua</b> que describe la probabilidad de que se observe cierto <b>valor (x)</b> si extraigo <b>aleatoriamente</b> un elemento perteneciente a cierta <b>muestra</b> o <b>poblaciÃ³n</b>.</h3>'),
-                              HTML('<h4 style="text-align: justify;">La DistribuciÃ³n Normal es muy utilizada en las ciencias sociales y naturles, pues permiten describir la forma en que los <b>valores</b> observados en ciertas <b>variables</b> se distribuyen al rededor de su <b>media</b> (<i>a.k.a. el promedio de las observaciones recopiladas</i>).</h3>')),
-                       column(width=5, offset = 0, plotOutput(outputId="props")))
-      ),
+      tabItem(tabName = "nop",
+              fluidRow(HTML('<h1 style="text-align:center; color:purple;"><b><u>Teoría de Detección de Señales</u></b></h1>'),
+                       HTML('<p style="text-align:center;"><b>por Adriana F. Chávez</b></p>'))),
       
-      tabItem(tabName = "Glos",
-              fluidRow(HTML('<h1 style="text-align:center; color:purple;"><b><u>G L O S A R I O</u></b></h1>'),
-                       HTML('<p style="text-align:center;"><b>(checa aquÃ� los conceptos con los que no estÃ©s familiarizado)</b></p>')), 
-              fluidRow(HTML('<hr style="border: 0; height: 1px; background-image: -webkit-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0); background-image: -moz-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0); background-image: -ms-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0); background-image: -o-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);"')),
-              
-              fluidRow(column(width=5, offset = 1, background = 'yellow',
-                              HTML('<h4 style="text-align: justify;"><b>DistribuciÃ³n de probabilidad contÃ�nua:</b></h3>'),
-                              HTML('<h4 style="text-align: justify;"><b>Muestra y PoblaciÃ³n:</b></h3>')),
-                       column(width=5, offset = 0, 
-                              HTML('<h4 style="text-align: justify;"><b>Muestra y PoblaciÃ³n:</b></h3>'))),
-              fluidRow(HTML('<hr style="border: 0; height: 1px; background-image: -webkit-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0); background-image: -moz-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0); background-image: -ms-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0); background-image: -o-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);"')
-              )
-      )
+      tabItem(tabName = "para",
+              fluidRow(HTML('<h1 style="text-align:center; color:purple;"><b><u>Teoría de Detección de Señales</u></b></h1>'),
+                       HTML('<p style="text-align:center;"><b>por Adriana F. Chávez</b></p>'))
     )
       )
-      )
+      ))
 
 server <- function(input, output) {
-  distribucion <- reactive({dnorm(seq(0.7,2.4,.001),input$mean,input$dev)})
-  output$normal <- renderPlot({plot(seq(0.7,2.4,.001), distribucion(), main="", xlab="", ylab="",type='l',
-                                    font.lab=2, axes = "FALSE", xlim= c(1.25,2.1), col="purple")
-    axis(1,at=c(1.5, 1.6, 1.7, 1.8, 1.9, 2),labels=c("1.5", "1.6", "1.7", "1.8", "1.9", "2"), font=2)
-    abline(v=input$mean, lwd=2)       
-    text(input$mean+.9,.05,expression(paste(mu)),cex=2.5,col='black',f=2)
+  signal_inicial <- dnorm(seq(-10,10,.05),2,1)
+  noise_inicial <-  dnorm(seq(-10,10,.05), 0,1) 
+  output$sdt_inicial <- renderPlot({plot(seq(-10,10,.05), signal_inicial, main="", xlab="", ylab="",type='l',
+                                    font.lab=2, axes = "FALSE", xlim= c(-4,5), col="purple")
+    lines(seq(-10,10,.05),noise_inicial,type='l',col='blue')
+    axis(1,at=c(-4, -3, -2, -1, 0, 1, 2, 3, 4, 5), labels=c("b", "c", "d", "e", "f", "a", "b", "c", "d", "e"), font=2)
+    abline(v=input$crit, lwd=2)       
+    text(input$crit+.9,.05,expression(paste(mu)),cex=2.5,col='black',f=2)
     mtext("Estatura de las mujeres en mi familia",1,cex=1.3, line=3, f=2)})
-  output$stats <- renderPrint({summary(distribucion())})
   
   valores <- reactive({c(input$val_1,input$val_2,input$val_3,input$val_4,input$val_5)})
   output$media <- renderPlot({plot(c(1:5),valores(), main="", xlab="", ylab="", pch=16,
