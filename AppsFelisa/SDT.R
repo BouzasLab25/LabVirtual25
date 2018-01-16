@@ -109,7 +109,8 @@ ui <- dashboardPage(
       
       tabItem(tabName = "roc",
               fluidRow(HTML('<h1 style="text-align:center; color:purple;"><b><u>Teoría de Detección de Señales</u></b></h1>'),
-                       HTML('<p style="text-align:center;"><b>por Adriana F. Chávez</b></p>'))),
+                       HTML('<p style="text-align:center;"><b>por Adriana F. Chávez</b></p>')),
+              HTML('<h4>Sección pendiente</h4>')),
       
       tabItem(tabName = "nop",
               fluidRow(HTML('<h1 style="text-align:center; color:purple;"><b><u>Teoría de Detección de Señales</u></b></h1>'),
@@ -129,7 +130,9 @@ server <- function(input, output) {
                                     font.lab=2, axes = "FALSE", xlim= c(-4,5), col="purple")
     lines(seq(-10,10,.05),noise_inicial,type='l',col='blue')
     axis(1,at=c(-4, -3, -2, -1, 0, 1, 2, 3, 4, 5), labels=c("b", "c", "d", "e", "f", "a", "b", "c", "d", "e"), font=2)
-    abline(v=input$crit, lwd=2)       
+    abline(v=input$crit, lwd=2)
+    text(-3.1,.4,"Probabilidad de cometer un(a):",cex=1,col='black',f=2)
+    text(-3.1,.36,paste("Hit= ",input$crit), cex=1, col='green', f=2) 
     text(input$crit+.9,.05,expression(paste(mu)),cex=2.5,col='black',f=2)
     mtext("Estatura de las mujeres en mi familia",1,cex=1.3, line=3, f=2)})
   
