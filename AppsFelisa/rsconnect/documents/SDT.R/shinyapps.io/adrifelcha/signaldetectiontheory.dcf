@@ -1,0 +1,13 @@
+name: signaldetectiontheory
+title: SignalDetectionTheory
+username:
+account: adrifelcha
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 259374
+bundleId: 1187539
+url: https://adrifelcha.shinyapps.io/signaldetectiontheory/
+when: 1516648633.55937
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: Bayes.R|Bayes_1.png|Bayes_2.png|Felisa_Template.R|Imagenes.pptx|NormalCurve.R|SDT_Outcomes.jpg|SDT_Outcomes.png|TODO.R
