@@ -1,0 +1,12 @@
+name: sdtheory
+title: SDTheory
+username:
+account: adrifelcha
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 289641
+bundleId: 1243780
+url: https://adrifelcha.shinyapps.io/sdtheory/
+when: 1519778791.58523
+asMultiple: FALSE
+asStatic: FALSE

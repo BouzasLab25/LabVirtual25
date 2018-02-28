@@ -41,34 +41,37 @@ ui <- dashboardPage(
                        HTML('<p style="text-align:center;"><b>por Adriana F. Ch&aacutevez</b></p>')),
               
               fluidRow(column(width=8, offset = 2, background = 'yellow',
-                              #fluidRow(box(   
                               HTML('<h2 style="text-align:center; color:purple;"><b>Introducci&oacuten</b></h2>'),
                               HTML('<hr style="border: 0; height: 1px; background-image: -webkit-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0); background-image: -moz-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0); background-image: -ms-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0); background-image: -o-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);"'),
                               HTML('<h4 style="text-align:justify;"></h4>'),
-                              HTML('<h4 style="text-align:justify;"> La <b>Teor&iacutea de Detecci&oacuten de Se&ntildeales</b> (<b>TDS</b>), proporciona un modelo estadístico para entender el problema al que se enfrentan los organismos cuando tienen que decidir si <i>algo</i> (una <b>se&ntildeal</b> a detectar) est&aacute o no ocurriendo, para poder as&iacute guiar su comportamiento de manera &oacuteptima, de acuerdo con las relaciones de contingencia aprendidas (es decir, las consecuencias anunciadas por la presencia de la se&ntildeal).</h4>'),
-                              HTML('<h4 style="text-align:justify;"> La TDS se desarrolla en torno a dos grandes supuestos:</h4>'),
-                              HTML('<h4 style="text-align:justify;"> &nbsp <b>1) En toda tarea de detecci&oacuten hay incertidumbre:</b> Todo est&iacutemulo se presenta y percibe con cierta variabilidad (representada con una distribuci&oacuten Normal) y, adem&aacutes, las se&ntildeales coexisten en el mundo con <b>ruido</b> (est&iacutemulos que pueden llegar a confundirse con la se&ntildeal al presentar evidencia similar). Ya sea porque nuestros sistemas perceptuales no est&aacuten lo suficientemete desarrollados para detectar la se&ntildeal de manera inequ&iacutevoca, o porque las se&ntildeales.</h4>'),
+                              HTML('<h4 style="text-align:justify;"> La <b>Teor&iacutea de Detecci&oacuten de Se&ntildeales</b> (<b>TDS</b>), proporciona un modelo estad&iacutestico para entender el problema al que se enfrentan los organismos cuando tienen que decidir si <i>algo</i> (una <b>se&ntildeal</b> a detectar) est&aacute o no presente en su entorno, para poder guiar su comportamiento de manera &oacuteptima, de acuerdo con las consecuencias anunciadas por la presencia de dicha se&ntildeal.</h4>'),
+                              HTML('<h4 style="text-align:justify;"> La TDS describe la <b>detecc&oacuten de se&ntildeales</b> como un problema adaptativo de decisi&oacuten, a partir de dos grandes supuestos:</h4>'),
+                              HTML('<h4 style="text-align:justify;"> &nbsp <b>1) En toda tarea de detecci&oacuten hay incertidumbre:</b> Hay variabilidad en la forma en que los est&iacutemulos se perciben y presentan en cada ocasi&oacuten (representada con una distribuci&oacuten Normal), por lo que las se&ntildeales a detectar no siempre se asocian con la misma evidencia. Por otro lado, las se&ntildeales coexisten en el mundo con <b>ruido</b>, est&iacutemulos que pueden llegar a confundirse con la se&ntildeal al asociarse con la misma evidencia. Y ya sea porque los sistemas perceptuales del agente detector son imprecisos en su lectura del mundo, o porque el ruido y la se&ntildeal comparten una gran similitud en la evidencia que producen, la <b>discriminabilidad</b> de estos variar&aacute entre individuos y tareas de detecci&oacuten.</h4>'),
                               HTML('<h4 style="text-align:justify;"> &nbsp <b>2) Las consecuencias importan</b>, acertar en el juicio de detecci&oacuten paga, errar cuesta y ambas cosas ocurren con distinta magnitud.</h4>'),
                               HTML('<h4 style="text-align:justify;"> De acuerdo con la <b>TDS</b>, los organismos compensan la incertidumbre con la informaci&oacuten que poseen sobre la estructura de su entorno, fijando un <b>criterio de elecci&oacuten</b> (<i>la l&iacutenea vertical que corta las distribuciones que describen la variabilidad en la presentaci&oacute en los est&iacute con ruido y se&ntilde) a la altura de un valor (x)</i>) que va a determinar a partir de cu&aacutenta evidencia se juzgar&aacute la presencia de la se&ntildeal.</h4>'),
-                              HTML('<h4 style="text-align: justify;">La localizaci&oacuten del criterio determina la probabilidad de que el organismo cometa un acierto (un <b>Hit</b> o un <b>Rechazo Correcto</b>) o un error (una <b>Falsa alarma</b> o una <b>Omisi&oacuten</b>.</h3>'),
-                              tags$img(height=400, 
-                                       width=550,
+                              HTML('<center>'),
+                              tags$img(height=230, 
+                                       width=350,
                                        align="middle",
-                                       src = "http://www.kitchensoap.com/wp-content/uploads/2013/07/Screen-Shot-2013-07-22-at-2.13.38-PM.png")),
-                       column(width=8, offset = 2, 
-                              HTML('<h2 style="text-align:center; color:purple;"><b>Por Ejemplo:</b></h2>'),
-                              HTML('<hr style="border: 0; height: 1px; background-image: -webkit-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0); background-image: -moz-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0); background-image: -ms-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0); background-image: -o-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);"'),
-                              HTML('<h4 style="text-align:justify;"></h4>'),
-                              HTML('<h4 style="text-align:justify;">Imagina el caso de una presa que, tras escuchar un ruido tras la maleza, tiene que decidir si se trata, o no, de una amenaza.</h4>'),
-                              HTML('<h4 style="text-align:justify;">Por la experiencia que ha adquirido, esta presa sabe que 1) no siempre que un depredador se acerca, este hace el mismo ruido y 2)los depredadores no son lo ÃÂÃÂºnico que causan ruido en la maleza.</h4>'),
-                              HTML('<h4 style="text-align:justify;">Si la presa decide que el ruido podrÃÂÃÂ­a ser una amenaza y sale corriendo, pueden ocurrir dos cosas: si acierta, salva su vida y si se equivoca, habrÃÂÃÂ¡ desperdiciado energÃÂÃÂ­a que pudiese haber utilizado en buscar alimento.</h4>'),
-                              HTML('<h4 style="text-align:justify;">Por otro lado, si la presa decide que el ruido no fue una amenaza y se queda en su lugar, puede ser el caso que no gane ni pierda nada, si acierta, o en el peor de los casos, si comete una omisiÃÂÃÂ³n, muera devorado.</h4>'),
-                              tags$br(),
+                                       src = "http://www.kitchensoap.com/wp-content/uploads/2013/07/Screen-Shot-2013-07-22-at-2.13.38-PM.png"),
+                              HTML('</center>'),
+                              HTML('<h4 style="text-align: justify;">La localizaci&oacuten del criterio determina la probabilidad de que el organismo cometa un acierto (un <b>Hit</b> o un <b>Rechazo Correcto</b>) o un error (una <b>Falsa alarma</b> o una <b>Omisi&oacuten</b>.</h3>'),
                               wellPanel(sliderInput(inputId="crit", 
                                                     label = "Criterio",
                                                     value=0, min=-4, max=5,
                                                     step= 0.05)),
-                              plotOutput(outputId="sdt_inicial")))
+                              plotOutput(outputId="sdt_inicial"),
+                              tags$br(),
+                              tags$br(),
+                              tags$br()),
+                       column(width=8, offset = 2, 
+                              HTML('<h2 style="text-align:center; color:purple;"><b>Por Ejemplo:</b></h2>'),
+                              HTML('<hr style="border: 0; height: 1px; background-image: -webkit-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0); background-image: -moz-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0); background-image: -ms-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0); background-image: -o-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);"'),
+                              HTML('<h4 style="text-align:justify;"></h4>'),
+                              HTML('<h4 style="text-align:justify;">Imagina el caso de una zarig&uumleya que tiene que decidir si el ruido que acaba de escuchar en la maleza, es un depredador (<i>se&ntildeal</i>) u otra cosa (<i>ruido</i>).</h4>'),
+                              HTML('<h4 style="text-align:justify;">Sabemos que 1) los depredadores no siempre causan el mismo ruido (hay variabilidad) y 2)existen muchas otras cosas que podr&iacutean generar un ruido similar.</h4>'),
+                              HTML('<h4 style="text-align:justify;">Si la presa decide que "s&iacute hay un depredador" y sale corriendo, pueden ocurrir dos cosas: acierta (salva su vida) o se equivoca (habr&aacute desperdiciado energ&iacutea que pudiese haber utilizado en buscar alimento. Por otro lado, si la presa decide "no, no es un depredador" y se queda donde est&aacute, </h4>'),
+                              tags$br()))
                     ),
       
       # Second tab content
@@ -109,16 +112,16 @@ server <- function(input, output) {
     lines(seq(-10,input$crit,.05),dnorm(seq(-10,input$crit,.05),2,1),type='l', lwd=4, col='darkorchid3') #Miss
     lines(seq(-10,10,.05),dnorm(seq(-10,10,.05),0,1),type='l', lwd=1, lty=3, col='white') #NOISE
     lines(seq(-10,10,.05),dnorm(seq(-10,10,.05),2,1),type='l', lwd=1, lty=3, col='white') #SIGNAL
-    axis(1,at=c(-4, -3, -2, -1, 0, 1, 2, 3, 4, 5), labels=c("b", "c", "d", "e", "f", "a", "b", "c", "d", "e"), font=2)
+    axis(1,at=c(-4, -3, -2, -1, 0, 1, 2, 3, 4, 5), labels=c("", "", "", "", "", "", "", "", "", ""), font=2)
     abline(v=input$crit, lwd=2)
     text(-2.9,.5,"Probabilidad de cometer un(a):",cex=1,col='black',f=2)
     text(-3.1,.46,paste("Hit= ",round(pnorm(input$crit,2,1,lower.tail=FALSE),3)), cex=1, col='forestgreen', f=2) 
-    text(-3.1,.34,paste("OmisiÃÂÃÂ³n= ",round(pnorm(input$crit,2,1,lower.tail=TRUE),3)), cex=1, col='darkorchid3', f=2) 
+    text(-3.1,.34,paste("Omisi\u{00F3}n= ",round(pnorm(input$crit,2,1,lower.tail=TRUE),3)), cex=1, col='darkorchid3', f=2) 
     text(-3.1,.42,paste("Falsa Alarma= ",round(pnorm(input$crit,0,1,lower.tail=FALSE),3)), cex=1, col='firebrick3', f=2) 
     text(-3.1,.38,paste("Rechazo Correcto= ",round(pnorm(input$crit,0,1,lower.tail=TRUE),3)), cex=1, col='dodgerblue3', f=2) 
     text(0,.43,"Ruido",cex=1.5,col='black',f=2)
-    text(2,.43,"SeÃÂÃÂ±al",cex=1.5,col='black',f=2)
-    mtext("Estatura de las mujeres en mi familia",1,cex=1.3, line=3, f=2)})
+    text(2,.43,"Se\u{00F1}al",cex=1.5,col='black',f=2)
+    mtext("Evidencia evaluada",1,cex=3, line=3, f=2)})
   
   valores <- reactive({c(input$val_1,input$val_2,input$val_3,input$val_4,input$val_5)})
   output$media <- renderPlot({plot(c(1:5),valores(), main="", xlab="", ylab="", pch=16,
