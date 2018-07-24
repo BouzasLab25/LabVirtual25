@@ -45,32 +45,39 @@ ui <- dashboardPage(
                               HTML('<hr style="border: 0; height: 1px; background-image: -webkit-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0); background-image: -moz-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0); background-image: -ms-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0); background-image: -o-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);"'),
                               HTML('<h4 style="text-align:justify;"></h4>'),
                               HTML('<h4 style="text-align:justify;"> La <b>Teor&iacutea de Detecci&oacuten de Se&ntildeales</b> (<b>TDS</b>) proporciona un modelo estad&iacutestico para entender el problema al que se enfrentan los organismos cuando tienen que decidir si <i>algo</i> (una <b>se&ntildeal</b>) est&aacute o no presente en su entorno, para guiar su comportamiento de manera &oacuteptima, en funci&oacuten de las consecuencias anunciadas por su presencia (o ausencia).</h4>'),
-                              HTML('<h4 style="text-align:justify;"> La TDS describe la <b>detecc&oacuten de se&ntildeales</b> como un problema de decisi&oacuten, fundamental para la adaptaci&oacuten de los organismos, a partir de dos grandes supuestos:</h4>'),
-                              HTML('<h4 style="text-align:justify;"> &nbsp <b>1) En toda tarea de detecci&oacuten hay incertidumbre:</b> Hay variabilidad en la forma en que los est&iacutemulos se perciben y presentan cada vez que se interact&uacutea con ellos (esta idea es gr&aacuteficamente representada con una distribuci&oacuten Normal, que describe la probabilidad de que el est&iacutemulo se&ntildeal se asocie con distintos grados de evidencia). Por otro lado, las se&ntildeales coexisten en el mundo con <b>ruido</b>, est&iacutemulos que dada su propia variabilidad, pueden llegar a confundirse con la se&ntildeal. Dependiendo la agudeza de los sistemas perceptuales del agente detector o de la naturaleza propia de los est&iacutemulos ruido y se&ntildeal (que pueden ser muy similares), la <b>discriminabilidad</b> de estos variar&aacute entre individuos y tareas de detecci&oacuten.</h4>'),
-                              HTML('<h4 style="text-align:justify;"> &nbsp <b>2) Las consecuencias importan</b>, acertar en el juicio de detecci&oacuten paga, errar cuesta y ambas cosas ocurren con distinta magnitud.</h4>'),
-                              HTML('<h4 style="text-align:justify;"> De acuerdo con la <b>TDS</b>, los organismos compensan la incertidumbre con la informaci&oacuten que poseen sobre la estructura de su entorno, fijando un <b>criterio de elecci&oacuten</b> (<i>la l&iacutenea vertical que corta las distribuciones que describen la variabilidad en la presentaci&oacute en los est&iacute con ruido y se&ntilde) a la altura de un valor (x)</i>) que va a determinar a partir de cu&aacutenta evidencia se juzgar&aacute la presencia de la se&ntildeal.</h4>'),
+                              HTML('<h4 style="text-align:justify;"> La TDS describe la <b>detecc&oacuten de se&ntildeales</b> como un problema de decisi&oacuten fundamental para la adaptaci&oacuten de los organismos, a partir de dos grandes supuestos:</h4>'),
+                              HTML('<h4 style="text-align:justify;"> &nbsp <b>1) En toda tarea de detecci&oacuten hay incertidumbre:</b> Hay variabilidad en la forma en que los est&iacutemulos se perciben y presentan cada vez que se interact&uacutea con ellos. Esta idea es gr&aacuteficamente representada con una distribuci&oacuten Normal, que describe la probabilidad de que un mismo est&iacutemulo se asocie con distintos grados de evidencia. Adem&aacutes de ello, hay que tomar en cuenta que, las se&ntildeales a detectar coexisten en el mundo con <b>ruido</b>, est&iacutemulos que dada su propia variabilidad, pueden llegar a producir evidencia similar y confundirse con una se&ntildeal.</h4>'),
+                              HTML('<h4 style="text-align:justify;"> Dependiendo la agudeza del sistema detector o bien, de la naturaleza propia de los est&iacutemulos ruido y se&ntildeal (qu&eacute tan similares son), la <b>discriminabilidad</b> de estos variar&aacute entre individuos y tareas de detecci&oacuten.</h4>'),
+                              HTML('<h4 style="text-align:justify;"> &nbsp <b>2) Las consecuencias importan:</b> Acertar en el juicio de detecci&oacuten paga y cometer un error cuesta. M&aacutes a&uacuten, la magnitud de las consecuencias en juego var&iacute para cada uno de los posibles resultados (aciertos o errores) a obtener:</h4>'),
+                              HTML('<br>'),
                               HTML('<center>'),
                               tags$img(height=230, 
                                        width=350,
                                        align="middle",
                                        src = "http://www.kitchensoap.com/wp-content/uploads/2013/07/Screen-Shot-2013-07-22-at-2.13.38-PM.png"),
                               HTML('</center>'),
-                              HTML('<h4 style="text-align: justify;">La localizaci&oacuten del criterio determina la probabilidad de que el organismo cometa un acierto (un <b>Hit</b> o un <b>Rechazo Correcto</b>) o un error (una <b>Falsa alarma</b> o una <b>Omisi&oacuten</b>.</h3>'),
+                              HTML('<br>'),
+                              HTML('<br>'),
+                              HTML('<h4 style="text-align:justify;"> De acuerdo con la <b>TDS</b>, los organismos compensan la incertidumbre contenida en la tarea de detecci&oacuten con la informaci&oacuten que poseen sobre la estructura de su entorno. En general, dicha informaci&oacuten puede ser de dos tipos: a) <b>informaci&oacuten probabil&iacutestica</b> (i.e. &iquestQu&eacute tan probable es que ocurra una se&ntildeal en este contexto?) y b)<b> informaci&oacuten sobre las consecuencias en juego</b> (i.e. &iquestQu&eacute tipo de error me conviene m&aacutes evitar? o bien, &iquestQu&eacute acierto me convendr&iacutea cometer, a&uacuten por mero azar?). Con base en ello, el sistema detector fija un <b>criterio de elecci&oacuten</b> (gr&aacuteficamente representado con una l&iacutenea vertical que corta las distribuciones trazadas para describir la variabilidad con que se dan los est&iacutemulos con ruido y se&ntildeal), que va a servir como regla de elecci&oacuten para definir a partir de qu&eacute valor (x) en el eje de evidencia se juzgar&aacute la presencia de la se&ntildeal.</h4>'),
+                              HTML('<br>'),
+                              HTML('<h4 style="text-align: justify;">De acuerdo con la representaci&oacuten gr&aacutefica del modelo de la TDS, la localizaci&oacuten del criterio sobre el eje de Evidencia determina la probabilidad de que el organismo cometa un acierto (un <b>Hit</b> o un <b>Rechazo Correcto</b>) o un error (una <b>Falsa alarma</b> o una <b>Omisi&oacuten</b>. Esta noci&oacuten, elemental en la concepci&oacuten de la detecci&oacuten de se&ntildeales como un problema de decisi&oacuten fundamental para la adaptabilidad de los organismos, puede explorarse a partir del siguiente graficador:</h3>')),
+                              column(width=4, offset = 4,
                               wellPanel(sliderInput(inputId="crit", 
                                                     label = "Criterio",
                                                     value=0, min=-4, max=5,
-                                                    step= 0.05)),
+                                                    step= 0.05))),
+                              column(width=6, offset = 3,
                               plotOutput(outputId="sdt_inicial"),
                               tags$br(),
                               tags$br(),
                               tags$br()),
                        column(width=8, offset = 2, 
-                              HTML('<h2 style="text-align:center; color:purple;"><b>Por Ejemplo:</b></h2>'),
+                              HTML('<h2 style="text-align:center; color:purple;"><b>Ejemplo:</b></h2>'),
                               HTML('<hr style="border: 0; height: 1px; background-image: -webkit-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0); background-image: -moz-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0); background-image: -ms-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0); background-image: -o-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);"'),
                               HTML('<h4 style="text-align:justify;"></h4>'),
-                              HTML('<h4 style="text-align:justify;">Imagina el caso de una zarig&uumleya que tiene que decidir si el ruido que acaba de escuchar en la maleza, es un depredador (<i>se&ntildeal</i>) u otra cosa (<i>ruido</i>).</h4>'),
-                              HTML('<h4 style="text-align:justify;">Sabemos que 1) los depredadores no siempre causan el mismo ruido (hay variabilidad) y 2)existen muchas otras cosas que podr&iacutean generar un ruido similar.</h4>'),
-                              HTML('<h4 style="text-align:justify;">Si la presa decide que "s&iacute hay un depredador" y sale corriendo, pueden ocurrir dos cosas: acierta (salva su vida) o se equivoca (habr&aacute desperdiciado energ&iacutea que pudiese haber utilizado en buscar alimento. Por otro lado, si la presa decide "no, no es un depredador" y se queda donde est&aacute, </h4>'),
+                              HTML('<h4 style="text-align:justify;">Imaginemos el caso de un conejo que repentinamente se encuentra ante la importante tarea de decidir si el ruido que acaba de escuchar en la maleza fue producido por un depredador (<i>la se&ntildeal</i> a detectar) u otra cosa (<i>el ruido</i> en el ambiente).</h4>'),
+                              HTML('<h4 style="text-align:justify;">Sabemos que <b>(1)</b> los depredadores no siempre causan el mismo ruido y que existen muchas otras cosas que podr&iacutean generar un ruido similar (<i>hay incertidumbre en la tarea ocasionada por la variabilidad de los est&iacutemulos</i>), y que <b>(2)</b> las consecuencias comprometidas en la tarea son sustancialmente diferentes: Si el conejo echa a correr y resulta que ha cometido un <i>Hit</i>, habr&aacute salvado su vida, y a&uacuten si hubiera resultado en una <i>Falsa Alarma</i>, el conejo simplemente habr&iacutea desperdiciado energ&iacutea; Por otro lado, si el conejo decide quedarse pastando (i.e. decide "no, no ha sido un depredador") y resulta que ha cometido una <i>Omisi&oacuten</i>, muy seguramente terminar&aacute siendo devorado.</h4>'),
+                              HTML('<h4 style="text-align:justify;">En este caso, dadas las consecuencias involcuradas en la tarea, esperar&iacutemos que el conejo colocara su criterio de elecci&oacuten muy a la izquierda en el eje de Evidencia, de manera tal que estar&iacutea emitiendo juicios de "S&iacute, se trata de un depredador" a&uacuten con niveles de evidencia muy bajos; todo por maximizar la probabilidad de cometer un <i>Hit</i> y evitar a toda costa las <i>Omisiones</i>.</h4>'),
                               tags$br()))
                     ),
       
@@ -86,7 +93,17 @@ ui <- dashboardPage(
               fluidRow(HTML('<h1 style="text-align:center; color:purple;"><b><u>Teor&iacutea de Detecci&oacuten de Se&ntildeales</u></b></h1>'),
                        HTML('<p style="text-align:center;"><b>por Adriana F. Ch&aacutevez</b></p>'),
                        tags$br(),
-                       tags$br()),
+                       tags$br(), 
+                       column(width=4, offset = 4,
+                              wellPanel(sliderInput(inputId="crit", 
+                                                    label = "Criterio",
+                                                    value=0, min=-4, max=5,
+                                                    step= 0.05))),
+                       column(width=6, offset = 3,
+                              plotOutput(outputId="sdt_inicial"),
+                              tags$br(),
+                              tags$br(),
+                              tags$br())),
                        HTML('<h1 style="text-align:center;"><b>Secci&oacuten pendiente</b></h1>')),
       
       tabItem(tabName = "nop",
@@ -142,13 +159,6 @@ server <- function(input, output) {
     text(1.9,(.2),"Hola",cex=1.2,col='white',f=2)
     mtext("Valores'",1,cex=1.3, line=3, f=2)})
   
-  output$desviacion <- renderPlot({plot(c(1:5),valores(), main="", xlab="", ylab="", pch=16,
-                                        font.lab=2, axes = "FALSE", xlim= c(1,5), ylim= c(0,10), col="purple")
-    axis(1,at=c(5, 4, 3, 2, 1),labels=c("Dato 5", "Dato 4", "Dato 3", "Dato 2", "Dato 1"), font=2)
-    axis(2,at=c(5, 4, 3, 2, 1, 6, 7, 8, 9, 10),labels=c("5", "4", "3", "2", "1", "6", "7", "8", "9", "10"), font=2)
-    lines(c(1,5),c(mean(valores()),mean(valores())), lwd=2, lty=1, col="deepskyblue3")    
-    text(1,mean(valores())+1,expression(paste(mu)),cex=2.5,col='black',f=2)
-    mtext("Valores'",1,cex=1.3, line=3, f=2)})
 }
 
 shinyApp(ui, server)
