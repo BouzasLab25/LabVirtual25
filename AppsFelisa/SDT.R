@@ -94,17 +94,26 @@ ui <- dashboardPage(
                        HTML('<p style="text-align:center;"><b>por Adriana F. Ch&aacutevez</b></p>'),
                        tags$br(),
                        tags$br(), 
-                       column(width=4, offset = 4,
-                              wellPanel(sliderInput(inputId="crit", 
-                                                    label = "Criterio",
-                                                    value=0, min=-4, max=5,
+                       column(width=5, offset = 1, 
+                              wellPanel(sliderInput(inputId="d_roc", 
+                                                    label = "Discriminabilidad (d')",
+                                                    value=2, min=-0, max=4,
                                                     step= 0.05))),
-                       column(width=6, offset = 3,
-                              plotOutput(outputId="sdt_inicial"),
+                       column(width=5, offset = 0,        
+                              wellPanel(sliderInput(inputId="k_roc", 
+                                                    label = "Criterio (k)",
+                                                    value=0, min=-4, max=4,
+                                                    step= 0.05))),
+                       column(width=5, offset = 1,
+                              plotOutput(outputId="roc_sdt"),
+                              tags$br(),
+                             tags$br(),
+                             tags$br()),
+                       column(width=5, offset = 0,
+                              plotOutput(outputId="roc_sdt2"),
                               tags$br(),
                               tags$br(),
-                              tags$br())),
-                       HTML('<h1 style="text-align:center;"><b>Secci&oacuten pendiente</b></h1>')),
+                              tags$br()))),
       
       tabItem(tabName = "nop",
               fluidRow(HTML('<h1 style="text-align:center; color:purple;"><b><u>Teor&iacutea de Detecci&oacuten de Se&ntildeales</u></b></h1>'),
@@ -119,6 +128,7 @@ ui <- dashboardPage(
                        tags$br(),
                        tags$br()),
               HTML('<h1 style="text-align:center;"><b>Secci&oacuten pendiente</b></h1>')))))
+
 
 server <- function(input, output) {
   output$sdt_inicial <- renderPlot({plot(10, 20, main="", xlab="", ylab="",type='l',
@@ -140,25 +150,69 @@ server <- function(input, output) {
     text(2,.43,"Se\u{00F1}al",cex=1.5,col='black',f=2)
     mtext("Evidencia evaluada",1,cex=3, line=3, f=2)})
   
-  valores <- reactive({c(input$val_1,input$val_2,input$val_3,input$val_4,input$val_5)})
-  output$media <- renderPlot({plot(c(1:5),valores(), main="", xlab="", ylab="", pch=16,
-                                   font.lab=2, axes = "FALSE", xlim= c(1,5), ylim= c(0,10), col="purple")
-    axis(1,at=c(5, 4, 3, 2, 1),labels=c("Dato 5", "Dato 4", "Dato 3", "Dato 2", "Dato 1"), font=2)
-    axis(2,at=c(5, 4, 3, 2, 1, 6, 7, 8, 9, 10),labels=c("5", "4", "3", "2", "1", "6", "7", "8", "9", "10"), font=2)
-    lines(c(1,5),c(mean(valores()),mean(valores())), lwd=2, lty=1, col="deepskyblue3")    
-    text(1,mean(valores())+1,expression(paste(mu)),cex=2.5,col='black',f=2)
-    mtext("Valores'",1,cex=1.3, line=3, f=2)})
+  output$roc_sdt <- renderPlot({plot(10, 20, main="", xlab="", ylab="",type='l',
+                                         font.lab=2, axes = "FALSE", xlim= c(-4,5),  ylim= c(0,.5),  col="darkorchid3", lwd=2)
+    lines(seq(input$k_roc,10,.05),dnorm(seq(input$k_roc,10,.05),input$d_roc,1),type='l', lwd=4, col='forestgreen') #Hit
+    lines(seq(input$k_roc,10,.05),dnorm(seq(input$k_roc,10,.05),0,1),type='l', lwd=4, col='firebrick3') #FA
+    lines(seq(-10,input$k_roc,.05),dnorm(seq(-10,input$k_roc,.05),0,1),type='l', lwd=4, col='dodgerblue3') #Rej
+    lines(seq(-10,input$k_roc,.05),dnorm(seq(-10,input$k_roc,.05),input$d_roc,1),type='l', lwd=4, col='darkorchid3') #Miss
+    lines(seq(-10,10,.05),dnorm(seq(-10,10,.05),0,1),type='l', lwd=1, lty=3, col='white') #NOISE
+    lines(seq(-10,10,.05),dnorm(seq(-10,10,.05),2,1),type='l', lwd=1, lty=3, col='white') #SIGNAL
+    axis(1,at=c(-4, -3, -2, -1, 0, 1, 2, 3, 4, 5), labels=c("", "", "", "", "", "", "", "", "", ""), font=2)
+    abline(v=input$k_roc, lwd=2)
+    text(-2.9,.5,"Probabilidad de cometer un(a):",cex=1,col='black',f=2)
+    text(-3.1,.46,paste("Hit= ",round(pnorm(input$k_roc,2,1,lower.tail=FALSE),3)), cex=1, col='forestgreen', f=2) 
+    text(-3.1,.34,paste("Omisi\u{00F3}n= ",round(pnorm(input$k_roc,2,1,lower.tail=TRUE),3)), cex=1, col='darkorchid3', f=2) 
+    text(-3.1,.42,paste("Falsa Alarma= ",round(pnorm(input$k_roc,0,1,lower.tail=FALSE),3)), cex=1, col='firebrick3', f=2) 
+    text(-3.1,.38,paste("Rechazo Correcto= ",round(pnorm(input$k_roc,0,1,lower.tail=TRUE),3)), cex=1, col='dodgerblue3', f=2) 
+    text(0,.43,"Ruido",cex=1.5,col='black',f=2)
+    text(2,.43,"Se\u{00F1}al",cex=1.5,col='black',f=2)
+    mtext("Evidencia evaluada",1,cex=3, line=3, f=2)})
   
-  output$props <- renderPlot({plot(seq(-6,6,.05), dnorm(seq(-6,6,.05),0,1), main="", xlab="", ylab="",type='l',
-                                   font.lab=2, axes = "FALSE", xlim= c(-4,4), col="black", lwd=2)
-    axis(1,at=c(4, 3, 2, 1, 0, -4, -3, -2, -1),labels=c("4", "3", "2", "1", "0", "-4", "-3", "-2", "-1"), font=2)
-    abline(v=0, lwd=2)       
-    abline(v=input$mean, lwd=2)
-    abline(v=input$mean, lwd=2)
-    text(0.3,.05,expression(paste(mu)),cex=2.5,col='black',f=2)
-    text(1.9,(.2),"Hola",cex=1.2,col='white',f=2)
-    mtext("Valores'",1,cex=1.3, line=3, f=2)})
+  output$roc_sdt2 <- renderPlot({plot(10, 20, main="", xlab="", ylab="",type='l',
+                                     font.lab=2, axes = "FALSE", xlim= c(-4,5),  ylim= c(0,.5),  col="darkorchid3", lwd=2)
+    lines(seq(input$k_roc,10,.05),dnorm(seq(input$k_roc,10,.05),input$d_roc,1),type='l', lwd=4, col='forestgreen') #Hit
+    lines(seq(input$k_roc,10,.05),dnorm(seq(input$k_roc,10,.05),0,1),type='l', lwd=4, col='firebrick3') #FA
+    lines(seq(-10,input$k_roc,.05),dnorm(seq(-10,input$k_roc,.05),0,1),type='l', lwd=4, col='dodgerblue3') #Rej
+    lines(seq(-10,input$k_roc,.05),dnorm(seq(-10,input$k_roc,.05),input$d_roc,1),type='l', lwd=4, col='darkorchid3') #Miss
+    lines(seq(-10,10,.05),dnorm(seq(-10,10,.05),0,1),type='l', lwd=1, lty=3, col='white') #NOISE
+    lines(seq(-10,10,.05),dnorm(seq(-10,10,.05),2,1),type='l', lwd=1, lty=3, col='white') #SIGNAL
+    axis(1,at=c(-4, -3, -2, -1, 0, 1, 2, 3, 4, 5), labels=c("", "", "", "", "", "", "", "", "", ""), font=2)
+    abline(v=input$k_roc, lwd=2)
+    text(-2.9,.5,"Probabilidad de cometer un(a):",cex=1,col='black',f=2)
+    text(-3.1,.46,paste("Hit= ",round(pnorm(input$k_roc,2,1,lower.tail=FALSE),3)), cex=1, col='forestgreen', f=2) 
+    text(-3.1,.34,paste("Omisi\u{00F3}n= ",round(pnorm(input$k_roc,2,1,lower.tail=TRUE),3)), cex=1, col='darkorchid3', f=2) 
+    text(-3.1,.42,paste("Falsa Alarma= ",round(pnorm(input$k_roc,0,1,lower.tail=FALSE),3)), cex=1, col='firebrick3', f=2) 
+    text(-3.1,.38,paste("Rechazo Correcto= ",round(pnorm(input$k_roc,0,1,lower.tail=TRUE),3)), cex=1, col='dodgerblue3', f=2) 
+    text(0,.43,"Ruido",cex=1.5,col='black',f=2)
+    text(2,.43,"Se\u{00F1}al",cex=1.5,col='black',f=2)
+    mtext("Evidencia evaluada",1,cex=3, line=3, f=2)})
   
-}
+  
+  hits <- c()   
+  falarms <- c()  
+  bias_c <- seq(-10,10,0.1) 
+  d_null <- 0  
+  hits_na <- c()     
+  falarms_na <- c()  
+  
+  for (i in 1:length(bias_c)){               
+   hits[i] <- eventReactive(input$d_roc, {pnorm((-input$d_roc/2)-bias_c[i])})            
+   falarms[i] <- eventReactive(input$d_roc, {pnorm((input$d_roc/2)-bias_c[i])})         
+   hits_na[i] <- pnorm((d_null/2)-bias_c[i])      
+   falarms_na[i] <- pnorm((-d_null/2)-bias_c[i])
+  }
+  
+  plot(fa_rate,h_rate, pch=16, col='deepskyblue4', xlim=c(0,1), ylim=c(0,1), xlab='F.A. Rate', ylab='Hit Rate')    
+  lines(hits,falarms,lwd=2,col='deepskyblue2')   
+  lines(hits_na,falarms_na,lwd=1,col='black', lty=2) 
+  lines(c(0.38, 0.48),c(0.2,0.2), lwd=2, lty=1, col="deepskyblue3")      
+  points(0.43,0.1, lty=3, pch=16, col='deepskyblue4')
+  text(0.5, 0.2, labels="All possible trade-offs between Hit  F.A. rates given the d'", offset=0, cex = 0.7, pos=4)
+  text(0.5, 0.1, labels="Observed Hit & F.A. rates given the used criterion", offset=0, cex = 0.7, pos=4)
+  text(0.85, 0.83, labels="d' = 0", offset=0, cex = 0.8, pos=4)
+  text(fa_rate-0.13, h_rate+0.02, paste("d' =", d), offset=0, cex = 0.8, pos=4)
+  title('ROC')
+  }
 
 shinyApp(ui, server)
