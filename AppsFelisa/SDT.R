@@ -169,50 +169,42 @@ server <- function(input, output) {
     text(2,.43,"Se\u{00F1}al",cex=1.5,col='black',f=2)
     mtext("Evidencia evaluada",1,cex=3, line=3, f=2)})
   
-  output$roc_sdt2 <- renderPlot({plot(10, 20, main="", xlab="", ylab="",type='l',
-                                     font.lab=2, axes = "FALSE", xlim= c(-4,5),  ylim= c(0,.5),  col="darkorchid3", lwd=2)
-    lines(seq(input$k_roc,10,.05),dnorm(seq(input$k_roc,10,.05),input$d_roc,1),type='l', lwd=4, col='forestgreen') #Hit
-    lines(seq(input$k_roc,10,.05),dnorm(seq(input$k_roc,10,.05),0,1),type='l', lwd=4, col='firebrick3') #FA
-    lines(seq(-10,input$k_roc,.05),dnorm(seq(-10,input$k_roc,.05),0,1),type='l', lwd=4, col='dodgerblue3') #Rej
-    lines(seq(-10,input$k_roc,.05),dnorm(seq(-10,input$k_roc,.05),input$d_roc,1),type='l', lwd=4, col='darkorchid3') #Miss
-    lines(seq(-10,10,.05),dnorm(seq(-10,10,.05),0,1),type='l', lwd=1, lty=3, col='white') #NOISE
-    lines(seq(-10,10,.05),dnorm(seq(-10,10,.05),2,1),type='l', lwd=1, lty=3, col='white') #SIGNAL
-    axis(1,at=c(-4, -3, -2, -1, 0, 1, 2, 3, 4, 5), labels=c("", "", "", "", "", "", "", "", "", ""), font=2)
-    abline(v=input$k_roc, lwd=2)
-    text(-2.9,.5,"Probabilidad de cometer un(a):",cex=1,col='black',f=2)
-    text(-3.1,.46,paste("Hit= ",round(pnorm(input$k_roc,2,1,lower.tail=FALSE),3)), cex=1, col='forestgreen', f=2) 
-    text(-3.1,.34,paste("Omisi\u{00F3}n= ",round(pnorm(input$k_roc,2,1,lower.tail=TRUE),3)), cex=1, col='darkorchid3', f=2) 
-    text(-3.1,.42,paste("Falsa Alarma= ",round(pnorm(input$k_roc,0,1,lower.tail=FALSE),3)), cex=1, col='firebrick3', f=2) 
-    text(-3.1,.38,paste("Rechazo Correcto= ",round(pnorm(input$k_roc,0,1,lower.tail=TRUE),3)), cex=1, col='dodgerblue3', f=2) 
-    text(0,.43,"Ruido",cex=1.5,col='black',f=2)
-    text(2,.43,"Se\u{00F1}al",cex=1.5,col='black',f=2)
-    mtext("Evidencia evaluada",1,cex=3, line=3, f=2)})
   
   
-  hits <- c()   
-  falarms <- c()  
   bias_c <- seq(-10,10,0.1) 
   d_null <- 0  
   hits_na <- c()     
   falarms_na <- c()  
   
-  for (i in 1:length(bias_c)){               
-   hits[i] <- eventReactive(input$d_roc, {pnorm((-input$d_roc/2)-bias_c[i])})            
-   falarms[i] <- eventReactive(input$d_roc, {pnorm((input$d_roc/2)-bias_c[i])})         
-   hits_na[i] <- pnorm((d_null/2)-bias_c[i])      
-   falarms_na[i] <- pnorm((-d_null/2)-bias_c[i])
+  for (i in 1:length(bias_c)){
+  hits_na[i] <- pnorm((d_null/2)-bias_c[i])      
+  falarms_na[i] <- pnorm((-d_null/2)-bias_c[i])
   }
   
-  plot(fa_rate,h_rate, pch=16, col='deepskyblue4', xlim=c(0,1), ylim=c(0,1), xlab='F.A. Rate', ylab='Hit Rate')    
-  lines(hits,falarms,lwd=2,col='deepskyblue2')   
-  lines(hits_na,falarms_na,lwd=1,col='black', lty=2) 
-  lines(c(0.38, 0.48),c(0.2,0.2), lwd=2, lty=1, col="deepskyblue3")      
-  points(0.43,0.1, lty=3, pch=16, col='deepskyblue4')
-  text(0.5, 0.2, labels="All possible trade-offs between Hit  F.A. rates given the d'", offset=0, cex = 0.7, pos=4)
-  text(0.5, 0.1, labels="Observed Hit & F.A. rates given the used criterion", offset=0, cex = 0.7, pos=4)
-  text(0.85, 0.83, labels="d' = 0", offset=0, cex = 0.8, pos=4)
-  text(fa_rate-0.13, h_rate+0.02, paste("d' =", d), offset=0, cex = 0.8, pos=4)
-  title('ROC')
+  Hits <- eventReactive(input$d_roc, {
+    Hits <- c()
+    for (i in 1:length(bias_c)){
+      Hits[i] <- pnorm((-input$d_roc/2)-bias_c[i])
+    }
+  })
+  
+  FAlarms <- eventReactive(input$d_roc, {
+    FAlarms <- c()
+    for (i in 1:length(bias_c)){
+      FAlarms[i] <- pnorm((input$d_roc/2)-bias_c[i])
+    }
+  })
+  
+  output$roc_sdt2 <- renderPlot({plot(.5,.5, pch=16, col='deepskyblue4', xlim=c(0,1), ylim=c(0,1), xlab='F.A. Rate', ylab='Hit Rate')    
+    lines(Hits,FAlarms,lwd=2,col='deepskyblue2')   
+    lines(hits_na,falarms_na,lwd=1,col='black', lty=2) 
+    lines(c(0.38, 0.48),c(0.2,0.2), lwd=2, lty=1, col="deepskyblue3")      
+    points(0.43,0.1, lty=3, pch=16, col='deepskyblue4')
+    text(0.5, 0.2, labels="All possible trade-offs between Hit  F.A. rates given the d'", offset=0, cex = 0.7, pos=4)
+    text(0.5, 0.1, labels="Observed Hit & F.A. rates given the used criterion", offset=0, cex = 0.7, pos=4)
+    text(0.85, 0.83, labels="d' = 0", offset=0, cex = 0.8, pos=4)
+    text(fa_rate-0.13, h_rate+0.02, paste("d' =", d), offset=0, cex = 0.8, pos=4)
+    title('ROC')})
   }
 
 shinyApp(ui, server)
