@@ -1,4 +1,5 @@
-﻿# RIMEDIE - Fel'site #
-## Visualizador en línea ##
+﻿#Laboratorio Virtual 25
 
-En este Repositorio de GitHub se hospeda la plataforma -actualmente en desarrollo- diseñada por Adriana Felisa Chávez De la Peña para desplegar en línea materiales y análisis realizados por parte del grupo de investigación e innovación educativa RIMEDIE.
+##Laboratorio virtual para las Ciencias del Comportamiento
+
+Materiales desarrollados por los estudiantes del Laboratorio 25 (Dr. Arturo Bouzas) de la Facultad de Psicología, UNAM, para facilitar la enseñanza y el aprendizaje de los principales modelos de la Psicolgía Experimental.
