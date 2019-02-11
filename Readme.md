@@ -1,4 +1,4 @@
-﻿# Laboratorio Virtual 25 #
-## para las Ciencias del Comportamiento ##
+﻿# RIMEDIE - Fel'site #
+## Visualizador en línea ##
 
-En este Repositorio de GitHub encontrarán disponibles Prácticas introductorias a los principales modelos matemáticos y computacionales en Psicología. Cada práctica está compuesta por una introducción teórica, ejercicios, código para resolver dichos ejercicios, graficadores para entender mejor los modelos y, de ser posible, simuladores de datos.
+En este Repositorio de GitHub se hospeda la plataforma -actualmente en desarrollo- diseñada por Adriana Felisa Chávez De la Peña para desplegar en línea materiales y análisis realizados por parte del grupo de investigación e innovación educativa RIMEDIE.
