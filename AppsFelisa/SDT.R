@@ -9,8 +9,9 @@ ui <- dashboardPage(
       menuItem("Introducci\u{00F3}n", tabName = "intro", icon = icon("book")),
       menuItem("Sobre el modelo", tabName = "about", icon = icon("star-o")),
       menuItem("Curvas ROC", tabName="roc", icon = icon("star-o")),
-      menuItem("Analisis No Param\u{00E9}trico", tabName="nop", icon = icon("book")),
-      menuItem("Estimaci\u{00F3}n Param\u{00E9}trica", tabName="para", icon = icon("info")))),
+      menuItem("Estimaci\u{00F3}n Param\u{00E9}trica", tabName="para", icon = icon("info"))
+      #menuItem("Analisis No Param\u{00E9}trico", tabName="nop", icon = icon("info"))
+      )),
   dashboardBody(
     tags$head(
       tags$style(HTML('.main-header .logo {
@@ -59,7 +60,6 @@ ui <- dashboardPage(
       tabItem(tabName = "about",
               fluidRow(HTML('<h1 style="text-align:center; color:purple;"><b><u>Teor&iacutea de Detecci&oacuten de Se&ntildeales</u></b></h1>'),
                        HTML('<p style="text-align:center;"><b>por Adriana F. Ch&aacutevez</b></p>')),
-              
               fluidRow(column(width=8, offset = 2, background = 'yellow',
                               HTML('<h2 style="text-align:center; color:purple;"><b>Detalles sobre el Modelo</b></h2>'),
                               HTML('<hr style="border: 0; height: 1px; background-image: -webkit-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0); background-image: -moz-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0); background-image: -ms-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0); background-image: -o-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);"'),
@@ -109,7 +109,7 @@ ui <- dashboardPage(
                                                     value=0, min=-4, max=5,
                                                     step= 0.05))),
                        column(width=6, offset = 3,
-                              plotOutput(outputId="sdt_inicial"),
+                              plotOutput(outputId="sdt_inicial_k"),
                               tags$br(),
                               tags$br(),
                               tags$br()),
@@ -123,27 +123,12 @@ ui <- dashboardPage(
       tabItem(tabName = "roc",
               fluidRow(HTML('<h1 style="text-align:center; color:purple;"><b><u>Teor&iacutea de Detecci&oacuten de Se&ntildeales</u></b></h1>'),
                        HTML('<p style="text-align:center;"><b>por Adriana F. Ch&aacutevez</b></p>')),
-
-              
               fluidRow(column(width=8, offset = 2, background = 'yellow',
                               HTML('<h2 style="text-align:center; color:purple;"><b>Curvas ROC</b></h2>'),
                               HTML('<hr style="border: 0; height: 1px; background-image: -webkit-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0); background-image: -moz-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0); background-image: -ms-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0); background-image: -o-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);"'),
                               HTML('<h4 style="text-align:justify;"></h4>'),
-                              HTML('<h4 style="text-align:justify;"> Las <b>Curvas ROC</b>   proporciona un modelo estad&iacutestico para entender el problema al que se enfrentan los organismos cuando tienen que decidir si <i>algo</i> (una <b>se&ntildeal</b>) est&aacute o no presente en su entorno, para guiar su comportamiento de manera &oacuteptima, en funci&oacuten de las consecuencias anunciadas por su presencia (o ausencia).</h4>'),
-                              HTML('<h4 style="text-align:justify;"> &nbsp <b>2) Las consecuencias importan:</b> Acertar en el juicio de detecci&oacuten paga y cometer un error cuesta. M&aacutes a&uacuten, la magnitud de las consecuencias en juego var&iacute para cada uno de los posibles resultados (aciertos o errores) a obtener:</h4>'),
-                              HTML('<br>'),
-                              HTML('<center>'),
-                              tags$img(height=230, 
-                                       width=350,
-                                       align="middle",
-                                       src = "http://www.kitchensoap.com/wp-content/uploads/2013/07/Screen-Shot-2013-07-22-at-2.13.38-PM.png"),
-                              HTML('</center>'),
-                              HTML('<br>'),
-                              HTML('<br>'),
-                              HTML('<h4 style="text-align:justify;"> De acuerdo con la <b>TDS</b>, los organismos compensan la incertidumbre contenida en la tarea de detecci&oacuten con la informaci&oacuten que poseen sobre la estructura de su entorno. En general, dicha informaci&oacuten puede ser de dos tipos: a) <b>informaci&oacuten probabil&iacutestica</b> (i.e. &iquestQu&eacute tan probable es que ocurra una se&ntildeal en este contexto?) y b)<b> informaci&oacuten sobre las consecuencias en juego</b> (i.e. &iquestQu&eacute tipo de error me conviene m&aacutes evitar? o bien, &iquestQu&eacute acierto me convendr&iacutea cometer, a&uacuten por mero azar?). Con base en ello, el sistema detector fija un <b>criterio de elecci&oacuten</b> (gr&aacuteficamente representado con una l&iacutenea vertical que corta las distribuciones trazadas para describir la variabilidad con que se dan los est&iacutemulos con ruido y se&ntildeal), que va a servir como regla de elecci&oacuten para definir a partir de qu&eacute valor (x) en el eje de evidencia se juzgar&aacute la presencia de la se&ntildeal.</h4>'),
-                              HTML('<br>'),
-                              HTML('<h4 style="text-align: justify;">De acuerdo con la representaci&oacuten gr&aacutefica del modelo de la TDS, la localizaci&oacuten del criterio sobre el eje de Evidencia determina la probabilidad de que el organismo cometa un acierto (un <b>Hit</b> o un <b>Rechazo Correcto</b>) o un error (una <b>Falsa alarma</b> o una <b>Omisi&oacuten</b>. Esta noci&oacuten, elemental en la concepci&oacuten de la detecci&oacuten de se&ntildeales como un problema de decisi&oacuten fundamental para la adaptabilidad de los organismos, puede explorarse a partir del siguiente graficador:</h3>'))),              
-              
+                              HTML('<h4 style="text-align:justify;"> Las <b>Curvas ROC</b>  (identificadas as&iacute por su nombre en ingl&eacutes: Receiver-Operating Characteristic Curve) describen la relaci&oacuten entre las tasas de Hits y Falsas Alarmas a obtener en tareas de detecci&oacuten por cada localizaci&oacuten posible del criterio sobre el eje de evidencia, dada la distancia entre las distribuciones de se&ntildeal y ruido, que como ya vimos, representa la discriminabilidad.</h4>'),
+                              HTML('<br>'))),              
               fluidRow(column(width=5, offset = 1, 
                               wellPanel(sliderInput(inputId="d_roc", 
                                                     label = "Discriminabilidad (d')",
@@ -161,9 +146,11 @@ ui <- dashboardPage(
                              tags$br()),
                        column(width=5, offset = 0,
                               plotOutput(outputId="roc_sdt2"),
-                              tags$br(),
-                              tags$br(),
-                              tags$br()))),
+                              tags$br())),
+              fluidRow(column(width=8, offset = 2, background = 'yellow',
+                              HTML('<h4 style="text-align:justify;"> El &aacuterea bajo la curva ROC (AUC, por sus siglas en ingles: Area Under the Curve) representa una forma precisa y completa de evaluar la sensibilidad del sistema detector ante la tarea estudiada. N&oacutetese que se habla de <b>Sensibilidad</b> y no de <b>Discriminabilidad</b> porque, aunque ambos conceptos refieren a qu&eacute tan f&aacutecil es para el sistema distinguir entre la se&ntildeal y el ruido y se relacionan directamente con la distancia que existe entre sus distribuciones, la primera apela a la precisi&oacuten con que el sistema detector puede responder a la tarea -utilizando distintas estrategias o reglas de elecci&oacuten- y la segunda, a una cualidad inherente a los est&iacutemulos.</h4>'),
+                              HTML('<h4 style="text-align:justify;"> En general, a mayor discriminabilidad, menor incertidumbre en la tarea de detecci&oacuten. Cuando la se&ntildeal es indistinguible del ruido (d = 0) la curva ROC se ve como una funci&oacuten de identidad (con AUC = 0.5), donde la probabilidad de obtener un Hit o una Falsa Alarma es exactamente la misma sin importar d&oacutende se localice el criterio. A mayor discriminabilidad, mayor ser&aacute la distancia entre la curva ROC correspondiente y la funci&oacuten identidad, con un AUC cada vez m&aacutes cercano a 1.0. En general, el AUC puede tomar valores entre 0.5 -un sistema que no distingue en lo absoluto entre la Se&ntildeal y el Ruido- y 1.0 -distinci&oacuten perfecta entre los mismos-.</h4>'),
+                              HTML('<br>')))),
       
       tabItem(tabName = "nop",
               fluidRow(HTML('<h1 style="text-align:center; color:purple;"><b><u>Teor&iacutea de Detecci&oacuten de Se&ntildeales</u></b></h1>'),
@@ -179,24 +166,53 @@ ui <- dashboardPage(
                               HTML('<h2 style="text-align:center; color:purple;"><b>Estimaci&oacuten param&eacutetrica</b></h2>'),
                               HTML('<hr style="border: 0; height: 1px; background-image: -webkit-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0); background-image: -moz-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0); background-image: -ms-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0); background-image: -o-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);"'),
                               HTML('<h4 style="text-align:justify;"></h4>'),
-                              HTML('<h4 style="text-align:justify;"> La Teor&iacutea de Detecci&oacuten de Se&ntildeales aparece por primera vez en 1954 en el contexto del estudio y desarrollo de radares para detectar se&ntildeales el&eacutectricas espec&iacuteficas (Peterson, Birdsall y Fox, 1954). Pocos meses despu&eacutes, los psic&oacutelogos John A. Swets y Wilson P. Tanner (1954) trasladaron la teor&iacutea a un contexto psicol&oacutegico, en el estudio de la percepci&ocauten de los organismos. Desde entonces, la SDT constituye uno de los modelos m&aacutes estudiados, desarrollados y ampliamente aplicados en Psicolog&iacutea (Stainslaw y Todorov, 1999), extendi&eacutendose desde su foco inicial en el estudio de la percepci&oacuten hacia el estudio de cualquier escenario donde los organismos se enfrenten al problema de emitir -y guiar su comportamiento en funci&oacuten a- juicios de detecci&oacuten.</h4>'),
-                              HTML('<h4 style="text-align:justify;"> La TDS funciona como una herramienta para traducir el desempe&ntildeo observado en tareas de detecci&oacuten en inferencias sobre la precisi&oacuten con que la se&ntildeal se distingue del ruido (la <b>discriminabilidad</b>) y la posible preferencia -o tendencia- del sistema detector a responder en favor o en contra de su detecci&oacuten, de acuerdo a la estructura de la tarea y las consecuencias comprometidas (el <b>sesgo</b>). Esta distinci&oacuten entre la discriminabilidad de los est&iacutemulos comprometidos y el sesgo del sistema, es una de las principales propiedades de la SDT cuya importancia e implicaciones se discuten a continuaci&oacuten.</h4>'),
+                              HTML('<h4 style="text-align:justify;"> A continuaci&oacuten se ilustra el c&oacutemputo de los par&aacutemetros comprendidos en la versi&oacuten est&aacutendar de la Teor&iacutea de Detecci&oacuten de Se&ntildeales, donde se asume que la variabilidad asociada con la Se&ntildeal y el Ruido puede ser descrita con <b>un par de distribuciones normales con varianzas iguales</b>, que se sobrelapan.</h4>'),
+                              HTML('<h4 style="text-align:justify;"> Esto implica que despu&eacutes de haber realizado una <b>tarea de detecci&oacuten experimental</b> donde se ha expuesto a sujetos exprerimentales a una serie de ensayos aleatorios, donde s&oacutelo algunos conten&iacutean la se&ntildeal que se les solicit&oacute detectar, las <b>tasas de respuesta</b>, entendidas como la proporcion de ensayos en que se observ&oacute cada uno de los cuatro resultados posibles pueden ser utilizadas para estimar la estructura subyacente a la tarea.</h4>'),
+                              HTML('<h4 style="text-align:justify;"> A t&iacutetulo personal, creo que es interesante se&ntildealar que toda la estimaci&oacuten param&eacutetrica deriva de los siguientes elementos, ideas o concepciones centrales:</h4>'),
+                              HTML('<h4 style="text-align:justify;"> <b>1.</b> Las tasas de respuesta registradas en tareas de detecci&oacuten experimentales son interpretadas como el reflejo directo del &aacuterea de las distribuciones de Ruido y Se&ntildeal que caen a cada lado del criterio, por lo que fungen como materia prima para estimar 1) la localizaci&oacuten del criterio, 2) la distancia entre las distribuciones y 3) la preferencia o sesgo del sistema hacia una respuesta.</h4>'),
+                              HTML('<h4 style="text-align:justify;"> <b>1.1</b> Las tasas de respuesta pueden ser agrupadas en parejas complementarias, estimadas a partir de un mismo total. Por ejemplo, la tasa de Falsas Alarmas y la tasa de Rechazos correctos son complementarias entre si, pues ambas representan los &uacutenicos resultados posibles de obtener al responder a un ensayo sin la se&ntildeal: o se acierta respondiendo "No", o se comete una Falsa alarma al responder "S&iacute". En este tutorial, utilizaremos <b>s&oacutelamente las tasas de Rechazos Correctos y Omisiones</b> para resumir el desempe&ntildeo observado en los sujetos experimentales.</h4>'),
+                              HTML('<h4 style="text-align:justify;"> <b>2.</b> Para contar con un punto de referencia a partir del cual asignar una localizaci&oacuten sobre el "eje de la evidencia" (es decir, la base de las distribuciones de ruido y se&ntildeal), se asume que la distribuci&oacuten de ruido tiene una media = 0 y que su varianza es igual a la de la distribuci&oacuten de se&ntildeal (distribuci&oacuten est&aacutendar =  1). Con ello, la localizaci&oacuten de la distribuci&oacuten de se&ntildeal y el criterio sobre el eje de decisi&oacuten, pueden ser computadas utilizando como <b>las desviaciones est&aacutendar</b> como referencia (en este caso, usando los <b>puntajes Z como unidad</b>).</h4>'),
                               tags$br(),
                               HTML('<h2 style="text-align:center; color:purple;"><b>1. Criterio (k)</b></h2>'),
-                              #HTML('<hr style="border: 0; height: 1px; background-image: -webkit-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0); background-image: -moz-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0); background-image: -ms-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0); background-image: -o-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);"'),
                               HTML('<h4 style="text-align:justify;"></h4>'),
-                              HTML('<h4 style="text-align:justify;"> La TDS define la <b>detecci&oacuten de se&ntildeales</b> como una tarea cargada de incertidumbre. La  variabilidad se considera una propiedad intr&iacutenseca de las se&ntildeales a detectar bajo el supuesto de que ning&uacuten est&iacutemulo se percibe o se presenta de manera id&eacutentica en cada exposici&oacuten. Para ello, <b>el modelo suele representar con una distribuci&oacuten normal la variabilidad impl&iacutecita en la evidencia con la que puede asociarse la se&ntildeal.</b></h4>'),
-                              HTML('<h4 style="text-align:justify;"> Tambi&eacuten es necesario tomar en cuenta que las se&ntildeales coexisten en el mundo con otros est&iacutemulos o estados que -dada su propia variabilidad- pueden llegar a producir evidencia similar y ser confundidos por una se&ntildeal. Para capturar esta idea, el modelo suele presentar <b>una segunda distribuci&oacuten normal para representar la variabilidad asociada con el ruido inmerso en el ambiente</b>.</h4>'),
-                              HTML('<h4 style="text-align:justify;"> En el marco de la TDS, se entiende por <b>discriminabilidad</b> el grado en que la se&ntildeal puede distinguirse del ruido. Gr&aacuteficamente, la discriminabilidad de los est&iacutemulos se define a partir de <b>la distancia entre las medias de ambas distribuciones</b>, misma que determina el &aacuterea de sobrelape que existe entre estas. <b>A mayor discriminabilidad, menor area de sobrelape.</b></h4>'),
-                              column(width=4, offset = 4,
-                                     wellPanel(sliderInput(inputId="disc", 
-                                                           label = "Discriminabilidad",
-                                                           value=2, min=0, max=4,
-                                                           step= 0.2))),
+                              HTML('<h4 style="text-align:justify;"> Asumiendo que la distribuci&oacuten de Ruido tiene una media en 0 y desviaci&oacuten est&aacutendar de 1, la localizaci&oacuten del criterio sobre el eje de evidencia puede estimarse a partir de la <b>tasa de rechazos correctos</b>.</h4>'),
+                              HTML('<h4 style="text-align:justify;"> La localizaci&oacuten del criterio sobre el eje de evidencia queda capturada en el <b>par&aacutemetro k</b>, usando como unidad base <b>las desviaciones est&aacutendar</b> respecto de la media de la distribuci&oacuten de Ruido. Para ello, basta computar el <b>puntaje Z</b> que corresponde con la tasa de rechazos correctos para saber d&oacutende se localiza el criterio de elecci&oacuten, utilizando la desviaci&oacuten estanda como unidad de medida.</h4>'),
                               column(width=6, offset = 3,
-                                     plotOutput(outputId="sdt_inicial_d"),
-                                     tags$br(),
-                                     tags$br(),
+                                     wellPanel(sliderInput(inputId="k_rej", 
+                                                           label = "Tasa de Rechazos Correctos",
+                                                           value=2, min=0.01, max=0.99,
+                                                           step= 0.01))),
+                              column(width=6, offset = 3,
+                                     plotOutput(outputId="param_criterio"),
+                                     tags$br()))),
+              fluidRow(column(width=8, offset = 2, background = 'yellow',
+                              tags$br(),
+                              HTML('<h2 style="text-align:center; color:purple;"><b>2. Discriminabilidad (d)</b></h2>'),
+                              HTML('<h4 style="text-align:justify;"></h4>'),
+                              HTML('<h4 style="text-align:justify;"> La discriminabilidad de los est&iacutemulos comprometidos en la tarea de detecci&oacuten, se cuantifica con el <b>par&aacutemetro d</b> que representa <b>la distancia entre las medias de las distribuciones de ruido y se&ntildeal, en unidades de desviaci&oacuten est&aacutendar</b>.</h4>'),
+                              HTML('<h4 style="text-align:justify;"> El c&oacutemputo de d se puede realizar <b>a partir de las tasas de omisiones y rechazos correctos</b>, de tal forma que la estimaci&oacuten de la media de la distribuci&oacuten de se&ntildeal puede entenderse a partir de los siguientes pasos, ilustrados de manera independiente en nuestro siguiente graficador:</h4>'),
+                              HTML('<h4 style="text-align:justify;"> <b>1.- </b>Usamos la tasa de rechazos correctos como un indicador del &aacuterea de la distribuci&oacuten de ruido que ha ca&iacutedo por debajo del criterio. De esta forma, podemos estimar la distancia entre la media de la distribuci&oacuten de ruido y el criterio en unidades de desviaci&oacuten est&aacutendar, computando para ello el puntaje Z correspondiente. Una vez m&aacutes, el valor absoluto del puntaje Z resultante indica la distancia respecto de la media de la distribuci&oacuten de Ruido, mientras que el signo positivo o negativo indica la direcci&oacuten relativa del criterio por debajo o por encima de la misma. <b><i>Ver Panel A</i></b>.</h4>'),
+                              HTML('<h4 style="text-align:justify;"> <b>2.- </b>Ahora, para determinar la distancia entre el criterio de elecci&oacuten y la media de la distribuci&oacuten de se&ntildeal, usamos la tasa de omisiones para saber cu&aacutel es el &aacuterea de esta distribuci&oacute que queda por debajo del criterio y computar el puntaje Z correspondiente. De esta forma, podemos saber la distancia y posici&oacuten relativa del criterio respecto de la media de la distribuci&oacuten de se&ntildeal.  <b><i>Ver Panel B</i></b>.</h4>'),
+                              HTML('<h4 style="text-align:justify;"> <b>3.- </b>Finalmente, integramos la informaci&oacuten que tenemos acerca de la distancia entre el criterio y las medias de cada distribuci&oacuten mediante una resta simple: Restamos el Puntaje Z computado para la distribuci&oacute de Se&ntildeal (a partir de la tasa de omisiones) del Puntaje Z computado para la distribuci&oacuten de Ruido (a partir de la tasa de rechazos correctos). <b><i>Ver Panel C</i></b>.</h4>'),
+                              
+                              column(width=5, offset = 1,
+                                     wellPanel(sliderInput(inputId="d_miss", 
+                                                           label = "Tasa de Omisiones",
+                                                           value=0.5, min=0.01, max=0.99,
+                                                           step= 0.01))),
+                              column(width=5, offset = 0,        
+                                     wellPanel(sliderInput(inputId="d_rej", 
+                                                           label = "Tasa de Rechazos Correctos",
+                                                           value=0.5, min=0.01, max=0.99,
+                                                           step= 0.01))),
+                              column(width=6, offset = 3,
+                                     plotOutput(outputId="param_discriminabilidad1"),
+                                     tags$br()),
+                              column(width=6, offset = 3,
+                                     plotOutput(outputId="param_discriminabilidad2"),
+                                     tags$br()),
+                              column(width=6, offset = 3,
+                                     plotOutput(outputId="param_discriminabilidad3"),
                                      tags$br())))))))
 
 
@@ -210,11 +226,11 @@ server <- function(input, output) {
     axis(1,at=c(-4, -3, -2, -1, 0, 1, 2, 3, 4, 5), labels=c("", "", "", "", "", "", "", "", "", ""), font=2)
     abline(v=input$crit, lwd=2)
     text(0,.43,"Ruido",cex=1.2,col='black',f=2)
-    text(2,.43,"Se\u{00F1}al",cex=1.2,col='black',f=2)
+    text(input$disc,.43,"Se\u{00F1}al",cex=1.2,col='black',f=2)
     mtext("Evidencia evaluada",1,cex=2, line=3, f=2)})
   
   
-  output$sdt_inicial <- renderPlot({plot(10, 20, main="", xlab="", ylab="",type='l',
+  output$sdt_inicial_k <- renderPlot({plot(10, 20, main="", xlab="", ylab="",type='l',
                                     font.lab=2, axes = "FALSE", xlim= c(-4,5),  ylim= c(0,.5),  col="darkorchid3", lwd=2)
     lines(seq(input$crit,10,.05),dnorm(seq(input$crit,10,.05),2,1),type='l', lwd=4, col='forestgreen') #Hit
     lines(seq(input$crit,10,.05),dnorm(seq(input$crit,10,.05),0,1),type='l', lwd=4, col='firebrick3') #FA
@@ -258,26 +274,10 @@ server <- function(input, output) {
   d_null <- 0  
   hits_na <- c()     
   falarms_na <- c()  
-  #fAlarms <- c()
-  #hits <- c()
-  
   for (i in 1:length(bias_c)){
   hits_na[i] <- pnorm((d_null/2)-bias_c[i])      
   falarms_na[i] <- pnorm((-d_null/2)-bias_c[i])
   }
-  
-  #Hits <- eventReactive(input$d_roc, {
-    #for (i in 1:length(bias_c)){
-    #  hits[i] <- pnorm((-(input$d_roc)/2)-bias_c[i])
-    #}
-  #})
-  
-#  FAlarms <- eventReactive(input$d_roc, {
-#    for (i in 1:length(bias_c)){
- #     fAlarms[i] <- pnorm((input$d_roc/2)-bias_c[i])
-    #}
- # })
-  
   output$roc_sdt2 <- renderPlot({
     plot(.5,.5, pch=16, col='white', xlim=c(0,1), ylim=c(0,1), xlab='F.A. Rate', ylab='Hit Rate')    
     lines(pnorm((-(input$d_roc)/2)-bias_c), pnorm((input$d_roc/2)-bias_c), lwd=2, col='deepskyblue2')   
@@ -290,6 +290,30 @@ server <- function(input, output) {
     text(0.85, 0.83, labels="d' = 0", offset=0, cex = 0.8, pos=4)
     #text(fa_rate-0.13, h_rate+0.02, paste("d' =", d), offset=0, cex = 0.8, pos=4)
     title('ROC')})
-  }
+  
+  
+  
+  
+  
+  output$param_criterio <- renderPlot({plot(10, 20, main="", xlab="", ylab="",type='l',
+                                           font.lab=2, axes = "FALSE", xlim= c(-4,5),  ylim= c(0,.5),  col="darkorchid3", lwd=2)
+    lines(seq(qnorm(input$k_rej, 0,1),10,.05),dnorm(seq(qnorm(input$k_rej, 0,1),10,.05),0,1),type='l', lwd=4, col='firebrick3') #FA
+    lines(seq(-10,qnorm(input$k_rej, 0,1),.05),dnorm(seq(-10,qnorm(input$k_rej, 0,1),.05),0,1),type='l', lwd=4, col='dodgerblue3') #Rej
+    lines(seq(-10,10,.05),dnorm(seq(-10,10,.05),0,1),type='l', lwd=1, lty=3, col='white') #NOISE
+    lines(seq(-10,10,.05),dnorm(seq(-10,10,.05),2,1),type='l', lwd=1, lty=2, col='black') 
+    axis(1,at=c(-4, -3, -2, -1, 0, 1, 2, 3, 4, 5), labels=c("", "", "", "", "", "", "", "", "", ""), font=2)
+    abline(v=qnorm(input$k_rej, 0,1), lwd=2)
+    text(-2.9,.5,"Tasas de respuesta:",cex=1,col='black',f=2)
+    text(-3.1,.42,paste("Falsa Alarma= ",round(pnorm(qnorm(input$k_rej, 0,1),0,1,lower.tail=FALSE),3)), cex=1, col='firebrick3', f=1) 
+    text(-2.6,.38,paste("Rechazo Correcto= ",round(pnorm(qnorm(input$k_rej, 0,1),0,1,lower.tail=TRUE),3)), cex=1, col='dodgerblue3', f=1) 
+    text(-3.1,.34,paste("k = ",round(qnorm(input$k_rej, 0,1),3)), cex=1, col='black', f=2) 
+    text(0,.43,"Ruido",cex=1.5,col='black',f=2)
+    text(2,.43,"Se\u{00F1}al",cex=1.5,col='black',f=1)
+    mtext("Evidencia evaluada",1,cex=3, line=3, f=2)})
+  
+  
+}
+
+
 
 shinyApp(ui, server)
