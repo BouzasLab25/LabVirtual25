@@ -80,7 +80,7 @@ ui <- dashboardPage(
                                                            label = "Discriminabilidad",
                                                            value=2, min=0, max=4,
                                                            step= 0.2))),
-                              column(width=6, offset = 3,
+                              column(width=10, offset = 1,
                                      plotOutput(outputId="sdt_inicial_d"),
                                      tags$br(),
                                      tags$br(),
@@ -108,7 +108,7 @@ ui <- dashboardPage(
                                                     label = "Criterio",
                                                     value=0, min=-4, max=5,
                                                     step= 0.05))),
-                       column(width=6, offset = 3,
+                       column(width=10, offset = 1,
                               plotOutput(outputId="sdt_inicial_k"),
                               tags$br(),
                               tags$br(),
@@ -182,7 +182,7 @@ ui <- dashboardPage(
                                                            label = "Tasa de Rechazos Correctos",
                                                            value=2, min=0.01, max=0.99,
                                                            step= 0.01))),
-                              column(width=6, offset = 3,
+                              column(width=10, offset = 1,
                                      plotOutput(outputId="param_criterio"),
                                      tags$br()))),
               fluidRow(column(width=8, offset = 2, background = 'yellow',
@@ -195,23 +195,23 @@ ui <- dashboardPage(
                               HTML('<h4 style="text-align:justify;"> <b>2.- </b>Ahora, para determinar la distancia entre el criterio de elecci&oacuten y la media de la distribuci&oacuten de se&ntildeal, usamos la tasa de omisiones para saber cu&aacutel es el &aacuterea de esta distribuci&oacute que queda por debajo del criterio y computar el puntaje Z correspondiente. De esta forma, podemos saber la distancia y posici&oacuten relativa del criterio respecto de la media de la distribuci&oacuten de se&ntildeal.  <b><i>Ver Panel B</i></b>.</h4>'),
                               HTML('<h4 style="text-align:justify;"> <b>3.- </b>Finalmente, integramos la informaci&oacuten que tenemos acerca de la distancia entre el criterio y las medias de cada distribuci&oacuten mediante una resta simple: Restamos el Puntaje Z computado para la distribuci&oacute de Se&ntildeal (a partir de la tasa de omisiones) del Puntaje Z computado para la distribuci&oacuten de Ruido (a partir de la tasa de rechazos correctos). <b><i>Ver Panel C</i></b>.</h4>'),
                               
-                              column(width=5, offset = 1,
-                                     wellPanel(sliderInput(inputId="d_miss", 
-                                                           label = "Tasa de Omisiones",
-                                                           value=0.5, min=0.01, max=0.99,
-                                                           step= 0.01))),
-                              column(width=5, offset = 0,        
+                              column(width=5, offset = 1,        
                                      wellPanel(sliderInput(inputId="d_rej", 
                                                            label = "Tasa de Rechazos Correctos",
                                                            value=0.5, min=0.01, max=0.99,
                                                            step= 0.01))),
-                              column(width=6, offset = 3,
+                              column(width=5, offset = 0,
+                                     wellPanel(sliderInput(inputId="d_miss", 
+                                                           label = "Tasa de Omisiones",
+                                                           value=0.5, min=0.01, max=0.99,
+                                                           step= 0.01))),
+                              column(width=10, offset = 1,
                                      plotOutput(outputId="param_discriminabilidad1"),
                                      tags$br()),
-                              column(width=6, offset = 3,
+                              column(width=10, offset = 1,
                                      plotOutput(outputId="param_discriminabilidad2"),
                                      tags$br()),
-                              column(width=6, offset = 3,
+                              column(width=10, offset = 1,
                                      plotOutput(outputId="param_discriminabilidad3"),
                                      tags$br())))))))
 
@@ -224,7 +224,6 @@ server <- function(input, output) {
     lines(seq(-10,10,.05),dnorm(seq(-10,10,.05),0,1),type='l', lwd=2, lty=1, col='black') #NOISE
     lines(seq(-10,10,.05),dnorm(seq(-10,10,.05),input$disc,1),type='l', lwd=2, lty=1, col='black') #SIGNAL
     axis(1,at=c(-4, -3, -2, -1, 0, 1, 2, 3, 4, 5), labels=c("", "", "", "", "", "", "", "", "", ""), font=2)
-    abline(v=input$crit, lwd=2)
     text(0,.43,"Ruido",cex=1.2,col='black',f=2)
     text(input$disc,.43,"Se\u{00F1}al",cex=1.2,col='black',f=2)
     mtext("Evidencia evaluada",1,cex=2, line=3, f=2)})
@@ -301,15 +300,77 @@ server <- function(input, output) {
     lines(seq(-10,qnorm(input$k_rej, 0,1),.05),dnorm(seq(-10,qnorm(input$k_rej, 0,1),.05),0,1),type='l', lwd=4, col='dodgerblue3') #Rej
     lines(seq(-10,10,.05),dnorm(seq(-10,10,.05),0,1),type='l', lwd=1, lty=3, col='white') #NOISE
     lines(seq(-10,10,.05),dnorm(seq(-10,10,.05),2,1),type='l', lwd=1, lty=2, col='black') 
+    axis(1,at=c(-4, -3, -2, -1, 0, 1, 2, 3, 4, 5), labels=c("", "", "", "", "0", "", "", "", "", ""), font=2)
+    lines(c(0,0), c(0,0.45), lwd=2, lty=3)
+    lines(c(0,qnorm(input$k_rej, 0,1)), c(0.05,0.05), lwd=2, lty=3)
+    abline(v=qnorm(input$k_rej, 0,1), lwd=2)
+    text(-2.9,.47,"Tasas de respuesta:",cex=1,col='black',f=2)
+    text(-3.1,.42,paste("Falsa Alarma= ",round(pnorm(qnorm(input$k_rej, 0,1),0,1,lower.tail=FALSE),3)), cex=1, col='firebrick3', f=1) 
+    text(-2.9,.38,paste("Rechazo Correcto= ",round(pnorm(qnorm(input$k_rej, 0,1),0,1,lower.tail=TRUE),3)), cex=1, col='dodgerblue3', f=1) 
+    text(-3.1,.30,paste("k = ",round(qnorm(input$k_rej, 0,1),3)), cex=2, col='black', f=2) 
+    text(qnorm(input$k_rej, 0,1)/2,.08,paste("Z = ",round(qnorm(input$k_rej, 0,1),3)), cex=1, col='black', f=2) 
+    text(0,.43,"Ruido",cex=1.5,col='black',f=2)
+    text(2,.43,"Se\u{00F1}al",cex=1.5,col='black',f=1)
+    mtext("Evidencia evaluada",1,cex=1.5, line=3, f=2)})
+  
+  
+  output$param_discriminabilidad1 <- renderPlot({plot(10, 20, main="", xlab="", ylab="",type='l',
+                                            font.lab=2, axes = "FALSE", xlim= c(-4,5),  ylim= c(0,.5),  col="darkorchid3", lwd=2)
+    lines(seq(qnorm(input$d_rej, 0,1),10,.05),dnorm(seq(qnorm(input$d_rej, 0,1),10,.05),0,1),type='l', lwd=4, col='black') #FA
+    lines(seq(-10,qnorm(input$d_rej, 0,1),.05),dnorm(seq(-10,qnorm(input$d_rej, 0,1),.05),0,1),type='l', lwd=4, col='dodgerblue3') #Rej
+    lines(seq(-10,10,.05),dnorm(seq(-10,10,.05),0,1),type='l', lwd=1, lty=3, col='white') #NOISE
+    lines(seq(-10,10,.05),dnorm(seq(-10,10,.05),2,1),type='l', lwd=1, lty=2, col='black') 
+    axis(1,at=c(-4, -3, -2, -1, 0, 1, 2, 3, 4, 5), labels=c("", "", "", "", "0", "", "", "", "", ""), font=2)
+    lines(c(0,0), c(0,0.45), lwd=2, lty=3)
+    lines(c(0,qnorm(input$d_rej, 0,1)), c(0.05,0.05), lwd=2, lty=3)
+    abline(v=qnorm(input$d_rej, 0,1), lwd=2)
+    text(-2.9,.5,"Tasas de respuesta:",cex=1,col='black',f=2)
+    text(-2.9,.47,paste("Rechazo Correcto= ",round(pnorm(qnorm(input$d_rej, 0,1),0,1,lower.tail=TRUE),3)), cex=1, col='dodgerblue3', f=1) 
+    text(-2.9,.35,"Distancia entre el criterio", cex=1, col='black', f=2) 
+    text(-2.9,.32,"y la media Ruido", cex=1, col='black', f=2)
+    text(-2.8,.27,paste("Puntaje Z = ",round(qnorm(input$d_rej, 0,1),3)), cex=1.5, col='black', f=2) 
+    text(4.5,0.49,"Panel A",cex=1.5,col='black',f=2)
+    text(0,.43,"Ruido",cex=1.5,col='black',f=2)
+    text(2,.43,"Se\u{00F1}al",cex=1.5,col='black',f=1)
+    mtext("Evidencia evaluada",1,cex=1.5, line=3, f=2)})
+  
+  
+  output$param_discriminabilidad2 <- renderPlot({plot(10, 20, main="", xlab="", ylab="",type='l',
+                                            font.lab=2, axes = "FALSE", xlim= c(-4,5),  ylim= c(0,.5),  col="darkorchid3", lwd=2)
+    lines(seq(qnorm(input$k_rej, 0,1),10,.05),dnorm(seq(qnorm(input$k_rej, 0,1),10,.05),0,1),type='l', lwd=4, col='firebrick3') #FA
+    lines(seq(-10,qnorm(input$k_rej, 0,1),.05),dnorm(seq(-10,qnorm(input$k_rej, 0,1),.05),0,1),type='l', lwd=4, col='dodgerblue3') #Rej
+    lines(seq(-10,10,.05),dnorm(seq(-10,10,.05),0,1),type='l', lwd=1, lty=3, col='white') #NOISE
+    lines(seq(-10,10,.05),dnorm(seq(-10,10,.05),2,1),type='l', lwd=1, lty=2, col='black') 
+    axis(1,at=c(-4, -3, -2, -1, 0, 1, 2, 3, 4, 5), labels=c("", "", "", "", "", "", "", "", "", ""), font=2)
+    abline(v=qnorm(input$k_rej, 0,1), lwd=2)
+    text(-2.9,.5,"Tasas de respuesta:",cex=1,col='black',f=2)
+    text(-3.1,.42,paste("Falsa Alarma= ",round(pnorm(qnorm(input$k_rej, 0,1),0,1,lower.tail=FALSE),3)), cex=1, col='firebrick3', f=1) 
+    text(-2.6,.38,paste("Rechazo Correcto= ",round(pnorm(qnorm(input$k_rej, 0,1),0,1,lower.tail=TRUE),3)), cex=1, col='dodgerblue3', f=1) 
+    text(-3.1,.34,paste("k = ",round(qnorm(input$k_rej, 0,1),3)), cex=1, col='black', f=2)
+    text(4.5,0.49,"Panel B",cex=1.5,col='black',f=2)
+    text(0,.43,"Ruido",cex=1.5,col='black',f=2)
+    text(2,.43,"Se\u{00F1}al",cex=1.5,col='black',f=1)
+    mtext("Evidencia evaluada",1,cex=1.5, line=3, f=2)})
+  
+  
+  output$param_discriminabilidad3 <- renderPlot({plot(10, 20, main="", xlab="", ylab="",type='l',
+                                            font.lab=2, axes = "FALSE", xlim= c(-4,5),  ylim= c(0,.5),  col="darkorchid3", lwd=2)
+    lines(seq(qnorm(input$k_rej, 0,1),10,.05),dnorm(seq(qnorm(input$k_rej, 0,1),10,.05),0,1),type='l', lwd=4, col='firebrick3') #FA
+    lines(seq(-10,qnorm(input$k_rej, 0,1),.05),dnorm(seq(-10,qnorm(input$k_rej, 0,1),.05),0,1),type='l', lwd=4, col='dodgerblue3') #Rej
+    lines(seq(-10,10,.05),dnorm(seq(-10,10,.05),0,1),type='l', lwd=1, lty=3, col='white') #NOISE
+    lines(seq(-10,10,.05),dnorm(seq(-10,10,.05),2,1),type='l', lwd=1, lty=2, col='black') 
     axis(1,at=c(-4, -3, -2, -1, 0, 1, 2, 3, 4, 5), labels=c("", "", "", "", "", "", "", "", "", ""), font=2)
     abline(v=qnorm(input$k_rej, 0,1), lwd=2)
     text(-2.9,.5,"Tasas de respuesta:",cex=1,col='black',f=2)
     text(-3.1,.42,paste("Falsa Alarma= ",round(pnorm(qnorm(input$k_rej, 0,1),0,1,lower.tail=FALSE),3)), cex=1, col='firebrick3', f=1) 
     text(-2.6,.38,paste("Rechazo Correcto= ",round(pnorm(qnorm(input$k_rej, 0,1),0,1,lower.tail=TRUE),3)), cex=1, col='dodgerblue3', f=1) 
     text(-3.1,.34,paste("k = ",round(qnorm(input$k_rej, 0,1),3)), cex=1, col='black', f=2) 
+    text(4.5,0.49,"Panel C",cex=1.5,col='black',f=2)
     text(0,.43,"Ruido",cex=1.5,col='black',f=2)
     text(2,.43,"Se\u{00F1}al",cex=1.5,col='black',f=1)
-    mtext("Evidencia evaluada",1,cex=3, line=3, f=2)})
+    mtext("Evidencia evaluada",1,cex=1.5, line=3, f=2)})
+  
+  
   
   
 }
