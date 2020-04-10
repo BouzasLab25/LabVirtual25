@@ -5,9 +5,9 @@ account: adrifelcha
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 2022474
-bundleId: 2990690
+bundleId: 2994043
 url: https://adrifelcha.shinyapps.io/TDS_2020/
-when: 1586413110.52907
+when: 1586468971.70703
 asMultiple: FALSE
 asStatic: FALSE
 ignoredFiles: Bayes.R|Bayes_1.png|Bayes_2.png|Felisa_Template.R|Imagenes.pptx|NormalCurve.R|SDT_Outcomes.jpg|SDT_Outcomes.png|TODO.R|Trial.R
