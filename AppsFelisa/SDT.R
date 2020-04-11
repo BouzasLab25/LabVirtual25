@@ -197,13 +197,13 @@ ui <- dashboardPage(
                        fluidRow(column(width=10, offset = 1,        
                        column(width=5, offset = 1,        
                                      wellPanel(sliderInput(inputId="d_rej", 
-                                                           label = "Tasa de Rechazos Correctos",
-                                                           value=0.5, min=0.01, max=0.99,
+                                                           label = "Tasa de Rechazos Correctos*",
+                                                           value=0.5, min=0.50, max=0.99,
                                                            step= 0.01))),
                               column(width=5, offset = 0,
                                      wellPanel(sliderInput(inputId="d_miss", 
-                                                           label = "Tasa de Omisiones",
-                                                           value=0.5, min=0.01, max=0.99,
+                                                           label = "Tasa de Omisiones*",
+                                                           value=0.5, min=0.01, max=0.50,
                                                            step= 0.01))),
                               column(width=5, offset = 1,
                                      plotOutput(outputId="param_discriminabilidad1"),
@@ -215,6 +215,7 @@ ui <- dashboardPage(
                                      plotOutput(outputId="param_discriminabilidad3"),
                                      tags$br()))),
               fluidRow(column(width=8, offset = 2, background = 'yellow',
+                              HTML('<h4 style="text-align:justify;"><b>*</b> N&oacutetese que, a pesar de que las tasas de respuesta pueden tener como valor cualquier n&uacutemero real entre 0 y 1, para efectos de este graficador hemos restringido los valores de la tasa de Omisiones entre 0 y 0.5, y los valores de la tasa de Rechazos correctos entre 0.5 y 1.</h4>'),
                               tags$br(),
                               HTML('<h2 style="text-align:center; color:purple;"><b>3. Sesgo c</b></h2>'),
                               HTML('<h4 style="text-align:justify;"></h4>'),
@@ -227,7 +228,7 @@ ui <- dashboardPage(
                               column(width=6, offset = 3,        
                                      wellPanel(sliderInput(inputId="c_crit", 
                                                            label = "Criterio",
-                                                           value=1, min=-5, max=5,
+                                                           value=1, min=-4, max=5,
                                                            step= 0.05))),
                               column(width=10, offset = 1,
                                      plotOutput(outputId="param_C"),
@@ -245,7 +246,7 @@ ui <- dashboardPage(
                               column(width=6, offset = 3,        
                                      wellPanel(sliderInput(inputId="beta_crit", 
                                                            label = "Criterio",
-                                                           value=1, min=-5, max=5,
+                                                           value=1, min=-4, max=5,
                                                            step= 0.05))),
                               column(width=10, offset = 1,
                                      plotOutput(outputId="param_beta"),
@@ -313,6 +314,7 @@ server <- function(input, output) {
   hits_na[i] <- pnorm((d_null/2)-bias_c[i])      
   falarms_na[i] <- pnorm((-d_null/2)-bias_c[i])
   }
+  
   output$roc_sdt2 <- renderPlot({
     plot(.5,.5, pch=16, col='white', xlim=c(0,1), ylim=c(0,1), xlab='F.A. Rate', ylab='Hit Rate')    
     lines(pnorm((-(input$d_roc)/2)-bias_c), pnorm((input$d_roc/2)-bias_c), lwd=2, col='deepskyblue2')   
@@ -391,23 +393,24 @@ server <- function(input, output) {
     text(2,.43,"Se\u{00F1}al",cex=1.5,col='black',f=2)
     mtext("Evidencia evaluada",1,cex=1.5, line=3, f=1)})
   
+  param_d <- reactive({qnorm(input$d_rej,0,1)-qnorm(input$d_miss,0,1)})
   
   output$param_discriminabilidad3 <- renderPlot({plot(10, 20, main="", xlab="", ylab="",type='l',
-                                            font.lab=2, axes = "FALSE", xlim= c(-4,5),  ylim= c(0,.5),  col="darkorchid3", lwd=2)
-    lines(seq(qnorm(input$k_rej, 0,1),10,.05),dnorm(seq(qnorm(input$k_rej, 0,1),10,.05),0,1),type='l', lwd=4, col='firebrick3') #FA
-    lines(seq(-10,qnorm(input$k_rej, 0,1),.05),dnorm(seq(-10,qnorm(input$k_rej, 0,1),.05),0,1),type='l', lwd=4, col='dodgerblue3') #Rej
-    lines(seq(-10,10,.05),dnorm(seq(-10,10,.05),0,1),type='l', lwd=1, lty=3, col='white') #NOISE
-    lines(seq(-10,10,.05),dnorm(seq(-10,10,.05),2,1),type='l', lwd=1, lty=2, col='black') 
+                                            font.lab=2, axes = "FALSE", xlim= c(-4,5),  ylim= c(0,.5),  col="white", lwd=2)
+    lines(seq(-10,10,.05),dnorm(seq(-10,10,.05),0,1),type='l', lwd=3, lty=1, col='cornflowerblue') #NOISE
+    lines(seq(-10,10,.05),dnorm(seq(-10,10,.05),param_d(),1),type='l', lwd=3, lty=1, col='blueviolet') #Signal
+    lines(seq(-10,qnorm(input$d_rej, 0,1),.05),dnorm(seq(-10,qnorm(input$d_rej, 0,1),.05),0,1),type='l', lwd=4, col='deepskyblue4') #Rej
+    lines(seq(-10,(qnorm(input$d_miss,0,1)+param_d()),.05),dnorm(seq(-10,(qnorm(input$d_miss,0,1)+param_d()),.05),param_d(),1),type='l', lwd=4, col='darkorchid4') #Miss
     axis(1,at=c(-4, -3, -2, -1, 0, 1, 2, 3, 4, 5), labels=c("", "", "", "", "", "", "", "", "", ""), font=2)
-    abline(v=qnorm(input$k_rej, 0,1), lwd=3, lty=1, col="dodgerblue3")
-    abline(v=qnorm(input$k_rej, 0,1), lwd=3, lty=3, col="darkorchid3")
-    text(-2.9,.5,"Tasas de respuesta:",cex=1,col='black',f=2)
-    text(-3.1,.42,paste("Falsa Alarma= ",round(pnorm(qnorm(input$k_rej, 0,1),0,1,lower.tail=FALSE),3)), cex=1, col='firebrick3', f=1) 
-    text(-2.6,.38,paste("Rechazo Correcto= ",round(pnorm(qnorm(input$k_rej, 0,1),0,1,lower.tail=TRUE),3)), cex=1, col='dodgerblue3', f=1) 
-    text(-3.1,.34,paste("k = ",round(qnorm(input$k_rej, 0,1),3)), cex=1, col='black', f=2) 
+    abline(v=qnorm(input$d_rej, 0,1), lwd=3, lty=1, col="dodgerblue3")
+    abline(v=qnorm(input$d_rej, 0,1), lwd=3, lty=3, col="darkorchid3")
+    #text(-2.9,.5,"Tasas de respuesta:",cex=1,col='black',f=2)
+    #text(-3.1,.42,paste("Falsa Alarma= ",round(pnorm(qnorm(input$k_rej, 0,1),0,1,lower.tail=FALSE),3)), cex=1, col='firebrick3', f=1) 
+    #text(-2.6,.38,paste("Rechazo Correcto= ",round(pnorm(qnorm(input$k_rej, 0,1),0,1,lower.tail=TRUE),3)), cex=1, col='dodgerblue3', f=1) 
+    #text(-3.1,.34,paste("k = ",round(qnorm(input$k_rej, 0,1),3)), cex=1, col='black', f=2) 
     text(4.5,0.49,"Panel C",cex=1.5,col='black',f=2)
     text(0,.43,"Ruido",cex=1.5,col='black',f=2)
-    text(2,.43,"Se\u{00F1}al",cex=1.5,col='black',f=1)
+    text(param_d(),.43,"Se\u{00F1}al",cex=1.5,col='black',f=2)
     mtext("Evidencia evaluada",1,cex=1.5, line=3, f=2)})
   
   
@@ -435,7 +438,7 @@ server <- function(input, output) {
     text(input$c_crit-0.5,.25,"No",cex=1.5,col='gray28',f=2)
     text(0,.43,"Ruido",cex=1.5,col='black',f=2)
     text(2,.43,"Se\u{00F1}al",cex=1.5,col='black',f=2)
-    mtext("Evidencia evaluada",1,cex=3, line=3, f=2)})
+    mtext("Evidencia evaluada",1,cex=1.5, line=3, f=2)})
   
   output$param_beta <- renderPlot({plot(10, 20, main="", xlab="", ylab="",type='l',
                                            font.lab=2, axes = "FALSE", xlim= c(-4,5),  ylim= c(0,.47),  col="darkorchid3", lwd=2)
@@ -460,7 +463,7 @@ server <- function(input, output) {
     text(input$beta_crit-0.5,.25,"No",cex=1.5,col='gray28',f=2)
     text(0,.43,"Ruido",cex=1.5,col='black',f=2)
     text(2,.43,"Se\u{00F1}al",cex=1.5,col='black',f=2)
-    mtext("Evidencia evaluada",1,cex=3, line=3, f=2)})
+    mtext("Evidencia evaluada",1,cex=1.5, line=3, f=2)})
   
   
   
