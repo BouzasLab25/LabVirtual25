@@ -22,6 +22,8 @@ ui <- dashboardPage(
                       .body{
                       background-color:green;}
 
+
+                      <!--About Discriminabilidad-->
                       .js-irs-0 .irs-bar {
                       border-top-color: #000000; border-bottom-color: #000000;} 
                       .js-irs-0 .irs-bar-edge {
@@ -29,26 +31,69 @@ ui <- dashboardPage(
                       .js-irs-0 .irs-single, .js-irs-0 .irs-bar-edge, .js-irs-0 .irs-bar {
                       background: #AC58FA;}
 
+                      <!--About Criterio y Sesgo-->
                       .js-irs-1 .irs-bar {
                       border-top-color: #000000; border-bottom-color: #000000;} 
                       .js-irs-1 .irs-bar-edge {
                       border-color:#000000;}
                       .js-irs-1 .irs-single, .js-irs-1 .irs-bar-edge, .js-irs-1 .irs-bar {
                       background: #000000;}
-                      
+
+                      <!--ROC Discriminabilidad-->                      
                       .js-irs-2 .irs-bar {
                       border-top-color: #000000; border-bottom-color: #000000;} 
                       .js-irs-2 .irs-bar-edge {
                       border-color:#000000;}
                       .js-irs-2 .irs-single, .js-irs-2 .irs-bar-edge, .js-irs-2 .irs-bar {
                       background: #AC58FA;}
-                      
+
+                      <!--ROC Criterio-->                      
                       .js-irs-3 .irs-bar {
                       border-top-color: #000000; border-bottom-color: #000000;} 
                       .js-irs-3 .irs-bar-edge {
                       border-color:#000000;}
                       .js-irs-3 .irs-single, .js-irs-3 .irs-bar-edge, .js-irs-3 .irs-bar {
-                      background: #D19D12;}'))),
+                      background: #D19D12;}
+                      
+                      <!--Parametro K Rechazos Correctos-->                
+                      .js-irs-4 .irs-bar {
+                      border-top-color: #000000; border-bottom-color: #000000;} 
+                      .js-irs-4 .irs-bar-edge {
+                      border-color:#000000;}
+                      .js-irs-4 .irs-single, .js-irs-4 .irs-bar-edge, .js-irs-4 .irs-bar {
+                      background: #267DB9;}
+                      
+                      <!--Parametro D prima Rechazos Correctos-->                      
+                      .js-irs-5 .irs-bar {
+                      border-top-color: #000000; border-bottom-color: #000000;} 
+                      .js-irs-5 .irs-bar-edge {
+                      border-color:#000000;}
+                      .js-irs-5 .irs-single, .js-irs-5 .irs-bar-edge, .js-irs-5 .irs-bar {
+                      background: #267DB9;}
+
+                      <!--Parametro D prima Omisiones-->                      
+                      .js-irs-6 .irs-bar {
+                      border-top-color: #000000; border-bottom-color: #000000;} 
+                      .js-irs-6 .irs-bar-edge {
+                      border-color:#000000;}
+                      .js-irs-6 .irs-single, .js-irs-6 .irs-bar-edge, .js-irs-6 .irs-bar {
+                      background: #B726B9;}
+
+                      <!--Parametro C Criterio-->                      
+                      .js-irs-7 .irs-bar {
+                      border-top-color: #000000; border-bottom-color: #000000;} 
+                      .js-irs-7 .irs-bar-edge {
+                      border-color:#000000;}
+                      .js-irs-7 .irs-single, .js-irs-7 .irs-bar-edge, .js-irs-7 .irs-bar {
+                      background: #1FBE65;}
+
+                      <!--Parametro Beta Criterio-->                      
+                      js-irs-8 .irs-bar {
+                      border-top-color: #000000; border-bottom-color: #000000;} 
+                      .js-irs-8 .irs-bar-edge {
+                      border-color:#000000;}
+                      .js-irs-8 .irs-single, .js-irs-8 .irs-bar-edge, .js-irs-8 .irs-bar {
+                      background: #1FBE65;}'))),
     tabItems(
       
 ############ INTRODUCCION
@@ -159,7 +204,7 @@ ui <- dashboardPage(
                        column(width=5, offset = 0,        
                               wellPanel(sliderInput(inputId="k_roc", 
                                                     label = "Criterio (k)",
-                                                    value=0, min=-4, max=4,
+                                                    value=1, min=-4, max=4,
                                                     step= 0.05))),
                        column(width=5, offset = 1,
                               plotOutput(outputId="roc_sdt"),
@@ -169,8 +214,9 @@ ui <- dashboardPage(
                        column(width=5, offset = 0,
                               plotOutput(outputId="roc_sdt2"))),
               fluidRow(column(width=8, offset = 2, background = 'yellow',
-                              HTML('<h4 style="text-align:justify;"> El &aacuterea bajo la curva ROC (AUC, por sus siglas en ingles: Area Under the Curve) representa una forma precisa y completa de evaluar la sensibilidad del sistema detector ante la tarea estudiada. N&oacutetese que se habla de <b>Sensibilidad</b> y no de <b>Discriminabilidad</b> porque, aunque ambos conceptos refieren a qu&eacute tan f&aacutecil es para el sistema distinguir entre la se&ntildeal y el ruido y se relacionan directamente con la distancia que existe entre sus distribuciones, la primera apela a la precisi&oacuten con que el sistema detector puede responder a la tarea -utilizando distintas estrategias o reglas de elecci&oacuten- y la segunda, a una cualidad inherente a los est&iacutemulos.</h4>'),
-                              HTML('<h4 style="text-align:justify;"> En general, a mayor discriminabilidad, menor incertidumbre en la tarea de detecci&oacuten. Cuando la se&ntildeal es indistinguible del ruido (d = 0) la curva ROC se ve como una funci&oacuten de identidad (con AUC = 0.5), donde la probabilidad de obtener un Hit o una Falsa Alarma es exactamente la misma sin importar d&oacutende se localice el criterio. A mayor discriminabilidad, mayor ser&aacute la distancia entre la curva ROC correspondiente y la funci&oacuten identidad, con un AUC cada vez m&aacutes cercano a 1.0. En general, el AUC puede tomar valores entre 0.5 -un sistema que no distingue en lo absoluto entre la Se&ntildeal y el Ruido- y 1.0 -distinci&oacuten perfecta entre los mismos-.</h4>'),
+                              HTML('<h4 style="text-align:justify;"> El &aacuterea bajo la curva ROC (<b>AUC</b>, por sus siglas en ingl&eacutes, <i>Area Under the Curve</i>) es utilizada para hacer inferencias acerca de la sensibilidad del sistema detector en la tarea estudiada. N&oacutetese que la <b>Sensibilidad</b> es manejada como una propiedad del sistema y no de los est&iacutemulos (como ocurre cuando se habla de Discriminabilidad).</h4>'),
+                              HTML('<h4 style="text-align:justify;"> En general, <b>a mayor discriminabilidad, mayor sensibilidad</b>. Cuando la se&ntildeal es indistinguible del ruido (d = 0) la curva ROC se ve como una funci&oacuten de identidad (con AUC = 0.5), donde la probabilidad de obtener un Hit o una Falsa Alarma es exactamente la misma sin importar d&oacutende se localice el criterio. Conforme aumenta la discriminabilidad, m&aacutes se aleja la curva ROC de la funci&oacuten identidad, con un AUC cada vez m&aacutes cercano a 1.0.</h4>'),
+                              HTML('<h4 style="text-align:justify;"> El AUC puede tomar valores entre 0.5 (indicando que el sistema es incapaz de distinguir entre la Se&ntildeal y el Ruido) y 1.0 (sugiriendo una distinci&oacuten perfecta entre los mismos).</h4>'),
                               HTML('<h2 style="text-align:justify; color:purple;"><b>Referencias</b></h2>'),
                               HTML('<h4 style="text-align:justify;"></h4>'),
                               HTML('<h4 style="text-align:justify;"></h4>'),
@@ -346,10 +392,10 @@ server <- function(input, output) {
     text(-0.5,.13,expression(paste(mu,"R")),cex=1.5,col='black',f=2)
     text(input$d_roc+0.5,.13,expression(paste(mu,"S")),cex=1.5,col='black',f=2)
     lines(c(input$k_roc,input$k_roc), c(0,0.43), lwd=4, col="goldenrod4")
-    text(-2.4,.5,"Probabilidad de:",cex=1,col='black',f=2)
-    text(-2.4,.46,paste("Hit= ",round(pnorm(input$k_roc,2,1,lower.tail=FALSE),3)), cex=1, col='forestgreen', f=2) 
+    text(-2.1,.5,"Probabilidad de:",cex=1,col='black',f=2)
+    text(-2.7,.47,paste("Hit= ",round(pnorm(input$k_roc,2,1,lower.tail=FALSE),3)), cex=1, col='forestgreen', f=2) 
     #text(-3.1,.34,paste("Omisi\u{00F3}n= ",round(pnorm(input$k_roc,2,1,lower.tail=TRUE),3)), cex=1, col='darkorchid3', f=2) 
-    text(-2.6,.43,paste("F.A.= ",round(pnorm(input$k_roc,0,1,lower.tail=FALSE),3)), cex=1, col='firebrick3', f=2) 
+    text(-2.8,.45,paste("F.A.= ",round(pnorm(input$k_roc,0,1,lower.tail=FALSE),3)), cex=1, col='firebrick3', f=2) 
     #text(-3.1,.38,paste("Rechazo Correcto= ",round(pnorm(input$k_roc,0,1,lower.tail=TRUE),3)), cex=1, col='dodgerblue3', f=2) 
     text(0,.43,"Ruido",cex=1.5,col='black',f=2)
     text(2,.43,"Se\u{00F1}al",cex=1.5,col='black',f=2)
